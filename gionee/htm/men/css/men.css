@@ -6,4 +6,5 @@ body{max-width:640px; margin:0 auto; position:relative; background:#ff3962;}
 #content .pText{ font-size:0.6em; margin:0.6em 0; color:#ff3962;}
 #content .pText1{ margin-top:1.5em; font-size:0.8em;}
 #content .pImg{ margin:1em auto; width:40%;}
+#content .pTitle{ margin:0.8em 0 0.8em -0.4em;}
 strong{ font-weight:bold;}
