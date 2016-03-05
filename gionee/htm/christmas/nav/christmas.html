@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>圣诞活动</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/shengdan.css">
+<script type="text/javascript" src="js/size.js"></script>
+<script type="text/javascript" src="js/shengdan.js"></script>
+</head>
+<body>
+<div id="bg" class="pf l0 t0"></div>
+<div id="content" class="pr oh" >
+    <div class="top pr oh">
+        <img src="images/img1.jpg" alt="" class="img">
+    </div>
+	<div class="info">
+    	圣诞节来了，测一测你前世是什么圣诞节小精灵？
+    </div>	
+    <div class="form">
+    	<input type="text" name="name" id="name" placeholder="请输入您的姓名">
+        <input type="button" value="开始测试" id="start" class="btn">
+    </div>
+    <img src="images/ho2.png" alt="" class="fimg">
+</div>
+<div id="result" style="display:none;">
+	<div class="text">
+    	<span id="reName"></span>的圣诞节小精灵是
+    </div>	
+	<div style=" " class="imgWrap">
+        <span id="reTitle">圣诞</span>           
+        <img src="images/1.png" alt="" class="img">
+    </div>
+	<div class="text2" id="reBody">
+    	
+    </div>
+    <div class="text3">
+   	   如果测试结果为“小天使”，请截图发给故事锁屏官方微信（微信号：gushi_cn）,小编随机抽取40名，将得到<span style="color:red">10-100元</span>微信红包！每个微信号限中奖一次，红包发放时间: 12月26日至31日
+    </div>
+    <div class="reWrap">
+    	<input type="button" value="重新测试" id="re" class="btn">
+    </div>
+</div>
+<div id="loading">
+	<div class="spinner">
+        <div class="spinner-container container1">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container2">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+        <div class="spinner-container container3">
+          <div class="circle1"></div>
+          <div class="circle2"></div>
+          <div class="circle3"></div>
+          <div class="circle4"></div>
+        </div>
+    </div>
+    <div class="loadingText" id="loadingText">圣诞活动正在努力加载中···</div>
+</div>
+</body>
+</html>
