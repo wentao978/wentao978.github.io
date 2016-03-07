@@ -17,7 +17,10 @@ span{ background:red;}
 window.onload = function(){
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
 	document.getElementById('span3').innerHTML = getStyle(document.getElementById('span1'),'fontSize');
-	
+	document.getElementById('span4').innerHTML = document.documentElement.clientWidth;
+
+	//alert(	document.getElementsByTagName('html')[0].getAttribute('style'));
+	document.getElementById('span5').innerHTML = document.getElementsByTagName('html')[0].getAttribute('style');
 	function getStyle(obj,attr){    //获取非行间样式，obj是对象，attr是值
 		if(obj.currentStyle){   //针对ie获取非行间样式
 			return obj.currentStyle[attr];
@@ -33,5 +36,7 @@ window.onload = function(){
 <span id="span1">这里是一段测试文字</span>
 <span id="span2"></span>
 <span id="span3"></span>
+<span id="span4"></span>
+<span id="span5"></span>
 </body>
 </html>
