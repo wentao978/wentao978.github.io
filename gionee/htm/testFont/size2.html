@@ -21,6 +21,7 @@ window.onload = function(){
 
 	//alert(	document.getElementsByTagName('html')[0].getAttribute('style'));
 	document.getElementById('span5').innerHTML = document.getElementsByTagName('html')[0].getAttribute('style');
+	document.getElementById('span6').innerHTML = document.getElementsByTagName('html')[0].style.fontSize;
 	function getStyle(obj,attr){    //获取非行间样式，obj是对象，attr是值
 		if(obj.currentStyle){   //针对ie获取非行间样式
 			return obj.currentStyle[attr];
@@ -38,5 +39,6 @@ window.onload = function(){
 <span id="span3"></span>
 <span id="span4"></span>
 <span id="span5"></span>
+<span id="span6"></span>
 </body>
 </html>
