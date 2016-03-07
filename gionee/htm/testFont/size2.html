@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>无标题文档</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script src="size.js"></script>
+<style>
+*{ margin:0; padding:0;}
+span{ background:red;}
+#span1{ }
+</style>
+<script>
+window.onload = function(){
+	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
+	document.getElementById('span3').innerHTML = getStyle(document.getElementById('span1'),'fontSize');
+	
+	function getStyle(obj,attr){    //获取非行间样式，obj是对象，attr是值
+		if(obj.currentStyle){   //针对ie获取非行间样式
+			return obj.currentStyle[attr];
+		}else{
+			return getComputedStyle(obj,false)[attr];   //针对非ie
+		};
+	};
+};
+
+</script>
+</head>
+<body>
+<span id="span1">这里是一段测试文字</span>
+<span id="span2"></span>
+<span id="span3"></span>
+</body>
+</html>
