@@ -17,8 +17,9 @@ span{ background:red;}
 document.addEventListener('DOMContentLoaded',function(){
 	
 	if(getStyle(document.getElementById('span1'),'fontSize') != document.getElementsByTagName('html')[0].style.fontSize){
-		alert('系统字体或浏览器字体大小有变化');	
-		document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+document.documentElement.clientWidth/40+'px')
+		//alert('系统字体或浏览器字体大小有变化');	
+		document.body.style.backgroundColor = 'green';
+		//document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+document.documentElement.clientWidth/40+'px')
 	};
 	
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
