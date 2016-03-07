@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		var cw = document.documentElement.clientWidth;
 		cw = cw > 640 ? 640 : cw;
 		document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+cw/40+'px');
-		document.getElementById('span7').innerHTML = parseInt(document.getElementsByTagName('html')[0].style.fontSize) / parseInt(getStyle(document.getElementById('span1'),'fontSize'));
+		document.getElementById('span7').innerHTML = parseInt(getStyle(document.getElementById('span1'),'fontSize')) / parseInt(document.getElementsByTagName('html')[0].style.fontSize) ;
 	};
 	
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
