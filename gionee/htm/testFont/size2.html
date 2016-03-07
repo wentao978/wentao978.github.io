@@ -16,10 +16,13 @@ span{ background:red;}
 <script>
 document.addEventListener('DOMContentLoaded',function(){
 	
-	if(getStyle(document.getElementById('span1'),'fontSize') != document.getElementsByTagName('html')[0].style.fontSize){
+	if(parseInt(getStyle(document.getElementById('span1'),'fontSize')) != parseInt(document.getElementsByTagName('html')[0].style.fontSize)){
 		//alert('系统字体或浏览器字体大小有变化');	
 		document.body.style.backgroundColor = 'green';
-		//document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+document.documentElement.clientWidth/40+'px')
+		var cw = document.documentElement.clientWidth;
+		cw = cw > 640 ? 640 : cw;
+		document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+cw/40+'px');
+		document.getElementById('span7').innerHTML = parseInt(document.getElementsByTagName('html')[0].style.fontSize) / parseInt(getStyle(document.getElementById('span1'),'fontSize'));
 	};
 	
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
@@ -29,13 +32,15 @@ document.addEventListener('DOMContentLoaded',function(){
 	//alert(	document.getElementsByTagName('html')[0].getAttribute('style'));
 	document.getElementById('span5').innerHTML = document.getElementsByTagName('html')[0].getAttribute('style');
 	document.getElementById('span6').innerHTML = document.getElementsByTagName('html')[0].style.fontSize;
+	
 	function getStyle(obj,attr){    //获取非行间样式，obj是对象，attr是值
 		if(obj.currentStyle){   //针对ie获取非行间样式
 			return obj.currentStyle[attr];
 		}else{
 			return getComputedStyle(obj,false)[attr];   //针对非ie
 		};
-	};	
+	};
+		
 },!1);
 </script>
 </head>
@@ -46,5 +51,6 @@ document.addEventListener('DOMContentLoaded',function(){
 <span id="span4"></span>
 <span id="span5"></span>
 <span id="span6"></span>
+<span id="span7"></span>
 </body>
 </html>
