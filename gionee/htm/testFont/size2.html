@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded',function(){
 		document.body.style.backgroundColor = 'green';
 		var cw = document.documentElement.clientWidth;
 		cw = cw > 640 ? 640 : cw;
-		document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+cw/40+'px');
+		document.getElementsByTagName('html')[0].setAttribute('style','font-size:'+cw/16+'px');
 		document.getElementById('span7').innerHTML = parseInt(getStyle(document.getElementById('span1'),'fontSize')) / parseInt(document.getElementsByTagName('html')[0].style.fontSize) ;
 	};
 	
