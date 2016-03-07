@@ -11,10 +11,11 @@
 <style>
 *{ margin:0; padding:0;}
 span{ background:red;}
-#span1{ }
+#span1{ font-size:1em;}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
+	
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
 	document.getElementById('span3').innerHTML = getStyle(document.getElementById('span1'),'fontSize');
 	document.getElementById('span4').innerHTML = document.documentElement.clientWidth;
