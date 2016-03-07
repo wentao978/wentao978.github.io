@@ -14,7 +14,7 @@ span{ background:red;}
 #span1{ }
 </style>
 <script>
-window.onload = function(){
+document.addEventListener('DOMContentLoaded',function(){
 	document.getElementById('span2').innerHTML = document.getElementById('span1').offsetWidth;	
 	document.getElementById('span3').innerHTML = getStyle(document.getElementById('span1'),'fontSize');
 	document.getElementById('span4').innerHTML = document.documentElement.clientWidth;
@@ -28,9 +28,8 @@ window.onload = function(){
 		}else{
 			return getComputedStyle(obj,false)[attr];   //针对非ie
 		};
-	};
-};
-
+	};	
+},!1);
 </script>
 </head>
 <body>
