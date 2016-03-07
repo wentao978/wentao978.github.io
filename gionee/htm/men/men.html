@@ -10,8 +10,29 @@
 <script type="text/javascript" src="js/size.js"></script>
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/men.css">
+<style>
+#span1{ font-size:1em; position:absolute; left:-120%; top:-120%;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	if(parseFloat(getStyle(document.getElementById('span1'),'fontSize')) != parseFloat(document.getElementsByTagName('html')[0].style.fontSize)){
+		var cw = document.documentElement.clientWidth;
+		cw = cw > 640 ? 640 : cw;
+		var n = parseFloat(getStyle(document.getElementById('span1'),'fontSize')) / parseFloat(document.getElementsByTagName('html')[0].style.fontSize);
+		document.getElementsByTagName("html")[0].style.fontSize = parseFloat(document.getElementsByTagName('html')[0].style.fontSize) / n + "px";
+	};	
+	function getStyle(obj,attr){    //获取非行间样式，obj是对象，attr是值
+		if(obj.currentStyle){   //针对ie获取非行间样式
+			return obj.currentStyle[attr];
+		}else{
+			return getComputedStyle(obj,false)[attr];   //针对非ie
+		};
+	};	
+},!1);
+</script>
 </head>
 <body>
+<span id="span1">字体</span>
 <div id="bg" class="pr l0 t0">
 	<img src="images/base.png" alt="底部花纹" class="img">
 </div>
