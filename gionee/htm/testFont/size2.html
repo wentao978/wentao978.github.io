@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded',function(){
 	//alert(document.getElementsByTagName('html')[0].style.fontSize);
 	if(parseFloat(getStyle(document.getElementById('span1'),'fontSize')) != parseFloat(document.getElementsByTagName('html')[0].style.fontSize)){
 		//alert('系统字体或浏览器字体大小有变化');	
-		//document.body.style.backgroundColor = 'green';
+		document.body.style.backgroundColor = 'green';
 		var cw = document.documentElement.clientWidth;
 		cw = cw > 640 ? 640 : cw;
 		var n = parseFloat(getStyle(document.getElementById('span1'),'fontSize')) / parseFloat(document.getElementsByTagName('html')[0].style.fontSize);
