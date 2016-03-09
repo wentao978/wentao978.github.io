@@ -16,19 +16,22 @@ span{ background:red;}
 <script>
 document.addEventListener('DOMContentLoaded',function(){
 	//alert(document.getElementsByTagName('html')[0].style.fontSize);
-	if(parseFloat(getStyle(document.getElementById('span1'),'fontSize')) != parseFloat(document.getElementsByTagName('html')[0].style.fontSize)){
+	
+	var str = document.getElementsByTagName('html')[0].getAttribute('style');
+
+	function getNum(str){
+		var arr = str.split(':');
+		return parseFloat(arr[1]);	
+	};
+	
+	alert();
+	
+	if(getNum(str) != parseFloat(document.getElementsByTagName('html')[0].style.fontSize)){
 		//alert('系统字体或浏览器字体大小有变化');
 		alert(parseFloat(getStyle(document.getElementById('span1'),'fontSize')));
 		alert(parseFloat(document.getElementsByTagName('html')[0].style.fontSize));	
 		
-		var str = document.getElementsByTagName('html')[0].getAttribute('style');
-
-		function getNum(str){
-			var arr = str.split(':');
-			return parseFloat(arr[1]);	
-		};
 		
-		alert(getNum(str));
 		
 		
 		document.body.style.backgroundColor = 'green';
