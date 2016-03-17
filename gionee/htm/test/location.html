@@ -50,14 +50,22 @@ window.onload = function(){
 	//var str = 'Mozilla/5.0(linux;Android 5.1;M5 Build/LMY47D;wv)AppleWebKit/537.36(KHTML,like Gecko)Version/4.0Chrome/42.0.2311.137Mobile Safari/537.36';
 	
 	function getName(str){
-		return str.split('/')[1].split(';')[2].split(' ')[1];	
+		try{
+			return str.split('/')[1].split(';')[2].split(' ')[1];	
+		}catch(e){
+			return '';	
+		}	
 	};
 	
 	function getVersion(str){
-		return str.split('/')[1].split(';')[1]	
+		try{
+			return str.split('/')[1].split(';')[1];
+		}catch(e){
+			return '';	
+		}	
 	};
 	
-	oDiv6.innerHTML = getName(navigator.userAgent);
+	oDiv6.innerHTML = getName(navigator.userAgent) || 'default';
 	oDiv7.innerHTML = getVersion(navigator.userAgent);
 };
 </script>
