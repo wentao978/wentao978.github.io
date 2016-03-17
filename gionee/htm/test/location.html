@@ -14,12 +14,13 @@ window.onload = function(){
 	var oDiv2 = document.getElementById('div2');
 	var oDiv3 = document.getElementById('div3');
 	var oDiv4 = document.getElementById('div4');
+	var oDiv5 = document.getElementById('div5');
 	oDiv1.innerHTML = window.location.href;
 	oDiv11.innerHTML = window.location.host;
 	oDiv2.innerHTML = window.location.pathname;
 	oDiv3.innerHTML = getQueryString('u');
 	oDiv4.innerHTML = window.location.href.substring(0,window.location.href.indexOf('.html')+5);
-	
+	oDiv5.innerHTML = navigator.userAgent;
 	function getQueryString(name){
 		var qs = location.search.length > 0 ? location.search.substring(1) : '' ,items = qs.length ? qs.split('&') : [] , item = null , i = 0 , len = items.length;	
 		for(i=0;i<len;i++){
@@ -40,5 +41,6 @@ window.onload = function(){
 <div id="div2"></div>
 <div id="div3"></div>
 <div id="div4"></div>
+<div id="div5"></div>
 </body>
 </html>
