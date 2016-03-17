@@ -15,6 +15,8 @@ window.onload = function(){
 	var oDiv3 = document.getElementById('div3');
 	var oDiv4 = document.getElementById('div4');
 	var oDiv5 = document.getElementById('div5');
+	var oDiv6 = document.getElementById('div6');
+	var oDiv7 = document.getElementById('div7');
 	oDiv1.innerHTML = window.location.href;
 	oDiv11.innerHTML = window.location.host;
 	oDiv2.innerHTML = window.location.pathname;
@@ -31,7 +33,32 @@ window.onload = function(){
 		}
 	}
 	
-		
+	//以@分割
+	function getQueryString(name){
+		if(location.href.indexOf('@') != '-1'){
+			var items = location.href.split('@')[1] , item = null , i = 0 , len = items.split('&').length;	
+			for(i=0;i<len;i++){
+				item = items.split('&')[i].split('=');
+				if(decodeURIComponent(item[0]) == name){
+					return decodeURIComponent(item[1]);
+				}
+			}
+		};
+	}
+	//alert(getQueryString('a'));	
+	
+	//var str = 'Mozilla/5.0(linux;Android 5.1;M5 Build/LMY47D;wv)AppleWebKit/537.36(KHTML,like Gecko)Version/4.0Chrome/42.0.2311.137Mobile Safari/537.36';
+	
+	function getName(str){
+		return str.split('/')[1].split(';')[2].split(' ')[0]	
+	};
+	
+	function getVersion(str){
+		return str.split('/')[1].split(';')[1]	
+	};
+	
+	oDiv6.innerHTML = getName(str);
+	oDiv7.innerHTML = getVersion(str);
 };
 </script>
 </head>
@@ -41,6 +68,9 @@ window.onload = function(){
 <div id="div2"></div>
 <div id="div3"></div>
 <div id="div4"></div>
+<a href="http://www.baidu.com">aaa</a>
 <div id="div5"></div>
+<div id="div6"></div>
+<div id="div7"></div>
 </body>
 </html>
