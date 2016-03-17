@@ -10,11 +10,15 @@
 <script>
 window.onload = function(){
 	var oDiv1 = document.getElementById('div1');
+	var oDiv11 = document.getElementById('div11');
 	var oDiv2 = document.getElementById('div2');
 	var oDiv3 = document.getElementById('div3');
-	oDiv1.innerHTML = window.location.href;	
+	var oDiv4 = document.getElementById('div4');
+	oDiv1.innerHTML = window.location.href;
+	oDiv11.innerHTML = window.location.host;
 	oDiv2.innerHTML = window.location.pathname;
 	oDiv3.innerHTML = getQueryString('u');
+	oDiv4.innerHTML = window.location.href.substring(0,window.location.href.indexOf('.html')+5);
 	
 	function getQueryString(name){
 		var qs = location.search.length > 0 ? location.search.substring(1) : '' ,items = qs.length ? qs.split('&') : [] , item = null , i = 0 , len = items.length;	
@@ -32,7 +36,9 @@ window.onload = function(){
 </head>
 <body>
 <div id="div1"></div>
+<div id="div11"></div>
 <div id="div2"></div>
 <div id="div3"></div>
+<div id="div4"></div>
 </body>
 </html>
