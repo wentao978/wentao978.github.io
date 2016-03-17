@@ -57,7 +57,7 @@ window.onload = function(){
 		return str.split('/')[1].split(';')[1]	
 	};
 	
-	oDiv6.innerHTML = getName(navigator.userAgent) +'--'+getName(navigator.userAgent).length;
+	oDiv6.innerHTML = getName(navigator.userAgent) +'--'+getName(navigator.userAgent).length+':'+getName(navigator.userAgent).charAt(1)+':'+getName(navigator.userAgent).charAt(2)+':'+getName(navigator.userAgent).charAt(3)+':'+getName(navigator.userAgent).charAt(4)+':'+getName(navigator.userAgent).charAt(5);
 	oDiv7.innerHTML = getVersion(navigator.userAgent);
 };
 </script>
