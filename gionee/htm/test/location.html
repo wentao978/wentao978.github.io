@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>无标题文档</title>
+<script>
+window.onload = function(){
+	var oDiv1 = document.getElementById('div1');
+	var oDiv2 = document.getElementById('div2');
+	var oDiv3 = document.getElementById('div3');
+	oDiv1.innerHTML = window.location.href;	
+	oDiv2.innerHTML = window.location.pathname;
+	oDiv3.innerHTML = getQueryString('u');
+	
+	function getQueryString(name){
+		var qs = location.search.length > 0 ? location.search.substring(1) : '' ,items = qs.length ? qs.split('&') : [] , item = null , i = 0 , len = items.length;	
+		for(i=0;i<len;i++){
+			item = items[i].split('=');
+			if(decodeURIComponent(item[0]) == name){
+				return decodeURIComponent(item[1]);
+			}
+		}
+	}
+	
+		
+};
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>
