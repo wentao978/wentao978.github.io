@@ -51,21 +51,21 @@ window.onload = function(){
 	
 	function getName(str){
 		try{
-			return str.split('/')[1].split(';')[2].split(' ')[1];	
+			return str.split("/")[1].split(";")[2].split(" ")[1];	
 		}catch(e){
-			return '';	
+			return "";	
 		}	
 	};
 	
 	function getVersion(str){
 		try{
-			return str.split('/')[1].split(';')[1];
+			return str.split("/")[1].split(";")[1];
 		}catch(e){
-			return '';	
+			return "";	
 		}	
 	};
 	
-	oDiv6.innerHTML = getName(navigator.userAgent) || 'default';
+	oDiv6.innerHTML = getQueryString("d") || getName(navigator.userAgent) || "GioneeMobile";
 	oDiv7.innerHTML = getVersion(navigator.userAgent);
 };
 </script>

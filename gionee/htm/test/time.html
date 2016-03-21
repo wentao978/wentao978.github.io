@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+<head>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<title>time demo</title>
+</head>
+<body> 
+<form id="gionee_form" name="gionee_form" method="post"></form>
+<iframe id="gionee_iframe" name="gionee_iframe" width="1" height="1" style="display:none"></iframe>
+测试页面停留时间
+<script type="text/javascript"> 
+var time = '';
+window.onload = function(){
+	time = new Date().getTime();
+	window.localStorage.setItem('timer',time);	
+};
+window.onbeforeunload = function(){
+    var time2 = new Date().getTime() - time;	  
+	window.localStorage.setItem('timer2',new Date().getTime());
+	window.localStorage.setItem('timer1',time2);
+	check();
+	function check(){
+		var frm = document.forms["gionee_form"];
+		var ifm = document.getElementById("gionee_iframe");
+		frm.action = "http://game/closetest.do?timestamp="+time2;
+		frm.target = "gionee_iframe";
+		frm.submit();
+	};
+};
+</script>   
+</body>
+</html>
