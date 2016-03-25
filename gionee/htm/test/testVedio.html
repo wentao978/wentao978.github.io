@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>周大福</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+body{ margin:0px; word-wrap:break-word;line-height:26px; font-size:16px; color:#333;}
+figure{ margin:0; padding:0;}
+body,html{overflow-x:hidden;}
+img{ display:inline-block; max-width:100%;}
+div,p,section{line-height:26px; font-size:16px; margin:15px 0; text-align:left;}
+#content{ margin:0 15px; overflow:hidden;}
+#top{background:#ffd800; width:100%; margin:0; padding:2.5% 0%;}
+.tImgWrap{margin:0; padding:0; display:block; width:20%; margin:0 40%;}
+.guImg{max-width:100%; display:block; margin:0 auto;}
+.title{ font-size:22px; line-height:30px; color:#000; margin-top:15px; margin-bottom:7px; font-weight:bold;}
+.source{ font-size:14px; color:#f28000; margin:4px 0 2px; line-height:20px;}
+.time{ font-size:14px; color:#666; margin:2px 0 -4px; line-height:20px;}
+.yuedu{font-size:12px; text-decoration:underline; color:#999;}
+.mianze{font-size:13px; font-weight:bold; display:block; color:#666}
+.justify{ text-align:justify;}
+.reading{ position: relative; padding:0px 12px; color:#585858; border:1px solid #e5e5e5; border-top:none; border-bottom:none;}
+.reading:after{content: '';position: absolute;left: 0; bottom:0; background: #e5e5e5;width: 100%;height: 1px;}
+.reading:before{content: '';position: absolute;left: 0; top:0; background: #e5e5e5;width: 100%;height: 1px;}
+.re-text{ margin:0px; font-size:12px; height:24px; line-height:24px;}
+.re-ul{ margin:0;}
+.re-ul li{ border-bottom:1px solid #e5e5e5; height:34px; line-height:34px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.re-ul li:last-child{ border-bottom:none; height:36px; line-height:36px;}
+.re-ul li a{ color:#585858; text-decoration:none; font-size:13px;}
+
+#foot{ padding:0.6em 4.5%; width:91%; margin-bottom:0; position:fixed; bottom:0; background:#fff; z-index:5;}
+.app-img{ width:13.5%; vertical-align:top; display:inline-block; max-width:100%;}
+.f-centr{ margin:0; display:inline-block; position:absolute; font-size:1em; left:19%; top:50%; transform:translateY(-50%); -webkit-transform:translateY(-50%);}
+.fc-p1{ margin:0; font-size:0.7em; font-weight:bold; line-height:1.6;}
+.fc-p2{ margin:0; font-size:0.6em; line-height:1.6;}
+.downloada{ text-decoration:none;  padding:.15em .7em .12em; font-size:0.6em; margin:0; position:absolute; right:4.5%; top:50%; transform:translateY(-50%); -webkit-transform:translateY(-50%);}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var tagArr = ['p','div','section'];	
+	tagArr.forEach(function(item){
+		alignTag(item);
+	});	
+	function alignTag(arg){
+		var oParent = document.getElementsByTagName(arg);
+		Array.prototype.forEach.call(oParent,function(item){
+			var aImg = item.getElementsByTagName('img');
+			if(!aImg.length){
+				try{
+					item.classList.add('justify');
+				}catch(ex){
+					console.log('添加样式两端失败');
+				}
+			};
+		});	
+	};
+	
+	if(document.getElementById("foot")){
+		document.getElementById("foot").style.fontSize = (document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth) / 16 + "px";	var fImg = document.getElementById("foot").getElementsByTagName("img")[0];if(!!fImg){var nImg = new Image();nImg.src = fImg.src;nImg.onload = function(){document.body.style.paddingBottom = document.getElementById("foot").offsetHeight + 20 + "px";};nImg.onerror = function(){fImg.width = "13.5%";fImg.style.height = fImg.offsetWidth + "px";document.body.style.paddingBottom = document.getElementById("foot").offsetHeight + 20 + "px";};};
+    	//写在页面的脚本
+    	document.getElementById("foot").style.fontSize = (document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth) / 16 + "px";
+    	var fImg = document.getElementById("foot").getElementsByTagName("img")[0];
+    	if(!!fImg){
+    		var nImg = new Image();
+    		nImg.src = fImg.src;
+    		nImg.onload = function(){
+    			document.body.style.paddingBottom = document.getElementById("foot").offsetHeight + 20 + "px";	
+    		};
+    		nImg.onerror = function(){
+    			fImg.width = "13.5%";
+    			fImg.style.height = fImg.offsetWidth + "px";
+    			document.body.style.paddingBottom = document.getElementById("foot").offsetHeight + 20 + "px";	
+    		};
+    	};
+	}
+	var oV = document.getElementsByTagName("video");
+	
+	Array.prototype.forEach.call(oV,function(item){
+        var h = item.getAttribute("height");
+        var w = item.getAttribute("width");
+        var scale = h/w;
+        item.removeAttribute("width");
+        item.removeAttribute("height");
+        //item.style.width = document.clientWidth-30+'px';
+        item.setAttribute("preload","none");
+        item.setAttribute("poster","1.jpg");
+        item.setAttribute("width",document.body.clientWidth-30+"px");
+        item.setAttribute("height",(document.body.clientWidth-30)*scale+"px");
+        //alert(1);
+    });
+    //alert(navigator.onLine) 
+	
+			
+},!1);
+</script>
+</head>
+<body>
+<div id="top">
+	<div class="tImgWrap">
+    	<img class="guImg" src="data:image/png;base64,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" alt="故事锁屏">
+    </div>
+</div>
+<div id="content">
+	<p class="title">台绘首发第三方的宣的《意味相当明显》</p>
+    <p class="source">金立通信设备</p>
+    <p class="time">2016-03-26</p>
+    <p>
+        <video class="edui-upload-video  vjs-default-skin video-js" controls="" preload="none" width="420" height="280" src="1.mp4" data-setup="{}">
+            <source src="1.mp4" type="video/mp4"/>
+        </video>
+    </p>
+    <p>据台湾《联合上6日报道》，台“内政部”官员称，国民政府于1947年公布南海诸，台“内政部“民政府于1947年公布南海诸岛位置图，当时划海传统U形线，fasdfs，即目前台湾当局一再宣示的“十一段线”，自越南以北向下延伸如舌状，延至兰屿附近海域。如今编绘完成的南海地区地图，承继传统U形线的范围及岛沙位置，经过2011年至2015年的岛礁调查，以高分辨率的卫星影像，更加准确标示南海岛沙位置。报道称，在这张南海地图上，总计超过220个岛礁基础图资全部建置完成，每一座岛礁、暗沙的经纬位置，均标示明确坐标，同时根据颜色区别水深。台湾实质占领的太平岛、中洲礁附近岛沙都标示出来，中沙群岛的黄岩岛、东沙群岛的东沙，与台湾关系及邻近地区的位置也全都记录。《联合报》6日特别提到，大陆3年多前编制南海地图，引发各方关切。</p>
+    <p style="font-weight:bold; text-align:center;">阿萨德发阿萨德发阿萨德发爱上
+    </p>
+    <p>动力方面Model X分为普通和高性能两个版本，普通版本90D续航里程470公里、百公里加速为5秒、最高时速250KM/h，高性能版本P90D（Model S应用）续航里程450公里、Ludi-crous模式下加速3.4秒、最高时速250KM/h。</p>
+    <div>据的位置也全都记录。《联合报》6日特别提到，大陆3年多前编制南海地图，引发各方关切。
+    	<p>阿萨德发阿萨德发阿萨德发爱上
+        </p>
+    </div>
+    <p>
+        &nbsp; &nbsp; 做二手车电商，缘起于我在英国留学的时候，通过网站买到了一辆二手车。这个体验让我觉得非常棒，一来二手车真的很划算，二来网络交易竟然如此的便捷。于是买车的过程激发了我对这个行业的兴趣，我开始琢磨国外二手车电商的商业模式。当时，中国的二手车电商几乎处于空白，因此我萌生了将二手车电商搬到中国的创业想法。毕业回国后，我也就热火朝天的做了起来做二手车电商，缘起于我在英国留学的时候，通过网站买到了一辆二手车。这个体验让我觉得非常棒，一来二手车真的很划算，二来网络交易竟然如此的便捷。于是买车的过程激发了我对这个行业的兴趣，我开始琢磨国外二手车电商的商业模式。当时，中国的二手车电商几乎处于空白，因此我萌生了将二手车电商搬到中国的创业想法。毕业回国后，我也就热火朝天的做了起来
+    </p>
+    <p>
+        &nbsp; &nbsp; 做二手车电商，缘起于我在英国留学的时候，通过网站买到了一辆二手车。这个体验让我觉得非常棒，一来二手车真的很划算，二来网络交易竟然如此的便捷。于是买车的过程激发了我对这个行业的兴趣，我开始琢磨国外二手车电商的商业模式。当时，中国的二手车电商几乎处于空白，因此我萌生了将二手车电商搬到中国的创业想法。毕业回国后，我也就热火朝天的做了起来做二手车电商，缘起于我在英国留学的时候，通过网站买到了一辆二手车。这个体验让我觉得非常棒，一来二手车真的很划算，二来网络交易竟然如此的便捷。于是买车的过程激发了我对这个行业的兴趣，我开始琢磨国外二手车电商的商业模式。当时，中国的二手车电商几乎处于空白，因此我萌生了将二手车电商搬到中国的创业想法。毕业回国后，我也就热火朝天的做了起来
+    </p>
+    <p>
+        &nbsp; &nbsp; 做二手车电商，缘起于我在英国留学的时候，通过网站买到了一辆二手车。这个体验让我觉得非常棒，一来二手车真的很划算，二来网络交易竟然如此的便捷。于是买车的过程激发了我对这个行业的兴趣，我开始琢磨国外二手车电商的商业模式。当时，中国的二手车电商几乎处于空白，因此我萌生了将二手车电商搬到中国的创业想法。毕业回国后，我也就热火朝天的做了起来
+    </p>
+    <span class="mianze">版权说明：转自哈哈最牛逼的新闻网呵呵啊阿发阿</span>
+    <div style="display:block; margin-bottom:15px; margin-top:0px;"><a href="http://www.baidu.com" target="_blank" class="yuedu reader">查看原文</a></div>
+	<div>
+    	<div class="reading">
+            <div class="re-text">相关阅读</div>
+            <div class="re-ul">
+                <li><a href="http://www.baidu.com" target="_blank" class="reader">全职妈妈一周早餐集锦（附做法）</a></li>
+                <li><a href="http://www.163.com" target="_blank" class="reader">减肥何须节食，吃这些让你消瘦不吃这些让你消瘦不停</a></li>
+                <li><a href="http://www.qq.com" target="_blank" class="reader">北京的那些猫咪咖啡馆</a></li>
+                <li><a href="http://www.baidu.com" target="_blank" class="reader">全职妈妈一周早餐集锦（附做法）</a></li>
+                <li><a href="http://www.163.com" target="_blank" class="reader">减肥何须节食，吃这些让你消瘦不吃这些让你消瘦不停</a></li>
+                <li><a href="http://www.qq.com" target="_blank" class="reader">北京的那些猫咪咖啡馆</a></li>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+</body>
+</html>
