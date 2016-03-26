@@ -13,7 +13,7 @@ $(document).ready(function(){
 	//before everything get started
 	$(document).click(function(){
 		if(loader){
-			video.attr('preload','auto').attr('autobuffer','true');
+			video.attr('preload','auto').attr('autobuffer','true').attr('x-webkit-airplay','true').attr('webkit-playsinline','true');
 			
 			loader = false;
 			//alert(1);	
