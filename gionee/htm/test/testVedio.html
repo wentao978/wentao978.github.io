@@ -95,12 +95,13 @@ document.addEventListener('DOMContentLoaded',function(){
     //alert(navigator.onLine) 
 	document.getElementById("v1").onclick = function(){
         this.setAttribute('preload','auto');
-        this.setAttribute('autobuffer','true')
+        this.setAttribute('autobuffer','true');
+		setInterval(function(){
+			document.getElementById('time').innerHTML = oV[0].buffered.end(0);	
+		},1000);
     };
 	
-	setInterval(function(){
-		document.getElementById('time').innerHTML = oV[0].buffered.end(0);	
-	},1000);
+	
 			
 },!1);
 </script>
