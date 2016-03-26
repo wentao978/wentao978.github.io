@@ -97,6 +97,10 @@ document.addEventListener('DOMContentLoaded',function(){
         this.setAttribute('preload','auto');
         this.setAttribute('autobuffer','true')
     };
+	
+	setInterval(function(){
+		document.getElementById('time').innerHTML = oV[0].buffered.end(0);	
+	},1000);
 			
 },!1);
 </script>
@@ -110,7 +114,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div id="content">
 	<p class="title">台绘首发第三方的宣的《意味相当明显》</p>
     <p class="source">金立通信设备</p>
-    <p class="time">2016-03-26</p>
+    <p class="time" id="time">2016-03-26</p>
     <p>
         <video class="edui-upload-video  vjs-default-skin video-js" id="v1" x-webkit-airplay="true" autobuffer="true" webkit-playsinline="true" controls preload="none" width="420" height="280" src="1.mp4" data-setup="{}">
             <source src="1.mp4" type="video/mp4"/>
