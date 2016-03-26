@@ -15,7 +15,7 @@ $(document).ready(function(){
 		if(loader){
 			video.attr('preload','auto');
 			loader = false;
-			alert(1);	
+			//alert(1);	
 		}
 		video.on('loadedmetadata', function() {
 			$('.caption').animate({'top':-45},300);
