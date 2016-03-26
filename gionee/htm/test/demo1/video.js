@@ -13,7 +13,8 @@ $(document).ready(function(){
 	//before everything get started
 	$(document).click(function(){
 		if(loader){
-			video.attr('preload','auto');
+			video.attr('preload','auto').attr('autobuffer','true');
+			
 			loader = false;
 			//alert(1);	
 		}
