@@ -14,7 +14,7 @@ $(document).ready(function(){
 	$(document).click(function(){
 		if(loader){
 			video.attr('preload','auto').attr('autobuffer','true').attr('x-webkit-airplay','true').attr('webkit-playsinline','true');
-			video.get(0).play();
+			//video.get(0).play();
 			loader = false;
 			//alert(1);	
 		}
