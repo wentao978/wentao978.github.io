@@ -1,11 +1,12 @@
 /* video container */
 .videoContainer{
-	width:600px;
+	width:100%;
 	height:350px;
 	position:relative;
 	overflow:hidden;
 	background:#000;
 	color:#ccc;
+	margin:0 auto;
 }
 
 /* video caption css */

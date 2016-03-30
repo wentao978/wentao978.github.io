@@ -4,6 +4,10 @@
 <title>Demo 1 | Custom HTML5 Video Controls with jQuery</title>
 <link rel="stylesheet" href="vendorstyle.css" />
 <link rel="stylesheet" href="style.css" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <script src="jquery.js"></script>
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -18,30 +22,22 @@ $(document).ready(function() {
 });
 </script>
 <![endif]-->
+<style>
+body,html{ width:100%; height:100%;}
+body{ max-width:640px;}
+</style>
 <link rel="shortcut icon" href="http://www.inwebson.com/wp-content/themes/inwebson/favicon.ico" />
 </head>
 
 <body>
 <!-- Header -->
-<header>
-	<h1>Custom HTML5 Video Controls with jQuery</h1>
-	<div id="backlinks">
-		<a href="http://www.inwebson.com/custom-html5-video-controls-with-jquery-and-css/">BACK TO ARTICLE &raquo;</a>
-		<a href="http://www.inwebson.com">Visit inWebson.com &raquo;</a>
-	</div>
-	<div class="clearfix"></div>
-</header>
 
 <!-- Content -->
 <section id="wrapper">
 
-	<!-- Title -->
-	<h2>Demo 1</h2>
-	<h3>Custom HTML5 Video Controls</h3>
-
 <div class="videoContainer">
 	
-	<video id="myVideo" controls preload="none" poster="poster.jpg" width="600" height="350" >
+	<video id="myVideo" controls preload="none" poster="poster.jpg" width="100%" height="100%" >
 	  <source src="http://d.gionee.com/nav/test1.mp4" type="video/mp4" />
 	  <p>Your browser does not support the video tag.</p>
 	</video>
@@ -77,19 +73,10 @@ $(document).ready(function() {
 	<div class="loading"></div>
 </div>
 
-	<!-- Navigation -->
-	<nav id="navigation">
-		<ul>
-			<li class="currentbtn"><a href="#" title="Demo 1">DEMO 1</a></li>
-			<li><a href="../demo2/" title="Demo 2">DEMO 2</a></li>
-		</ul>
-		<div class="clearfix"></div>	
-	</nav>
+	
 </section>
 
 <!-- Footer -->
-<footer>
-	<span>&copy; 2011 <a href="http://www.inwebson.com">inWebson.com</a>. Design by <a href="http://www.inwebson.com/contactus">Kenny Ooi</a>. Powered by <a href="http://www.inwebson.com/html5/">HTML5</a> and <a href="http://www.inwebson.com/jquery/">jQuery</a>.</span>
-</footer>
+
 </body>
 </html>
