@@ -111,8 +111,9 @@ $(document).ready(function(){
 		}	
 		else if ($.isFunction(video[0].mozRequestFullScreen)) {
 			video[0].mozRequestFullScreen();
-		}
-		else {
+		}else if ($.isFunction(video[0].requestFullscreen)){
+			video[0].requestFullscreen();
+		}else {
 			alert('Your browsers doesn\'t support fullscreen');
 		}
 	});
