@@ -211,6 +211,8 @@ window.onload = function(){
 			oV.webkitEnterFullscreen();
 		}else if(isFunction(oV.mozRequestFullScreen())){
 			oV.mozRequestFullScreen();	
+		}else if(isFunction(oV.requestFullScreen())){
+			oV.requestFullScreen();
 		};	
 	};
 	
