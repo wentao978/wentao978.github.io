@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <style>
-#gioneeVideoWrap{ position:relative; overflow:hidden;}
+#gioneeVideoWrap{ position:relative; overflow:hidden; margin:0 auto;}
 #gioneeVideoWrap * { box-sizing:border-box; margin:0;}
 .contentVideoWrap{ position:absolute;}
 .videoContent{ position:relative; overflow:hidden; width:100%; height:100%;}
@@ -66,7 +66,7 @@ window.onload = function(){
 	var oFullbtn = document.querySelector(".fullbtn");
 	var oControls = document.querySelector(".controls");
 	
-	var w,h,s,W=oWrap.offsetWidth;	
+	var w,h,s,W=oWrap.offsetWidth>640?640:oWrap.offsetWidth;	
 	
 	w = oV.getAttribute("width");
 	h = oV.getAttribute("height");
@@ -135,6 +135,7 @@ window.onload = function(){
 	
 	
 	var lastClick = 0;
+	var lastBuff = 0;
 	oV.addEventListener('timeupdate',function(){  //事件在视频/音频（audio/video）当前的播放位置发生改变时触发。
 		oTimeCurrent.innerHTML = timeFormat(oV.currentTime);
 		oTimeWidthCurrent.style.width = 100 * (Math.ceil(oV.currentTime)/Math.ceil(oV.duration)) + "%"; 	
@@ -146,7 +147,12 @@ window.onload = function(){
 		}else{
 			oLoading.style.display = "none";	
 		};
-		
+		if(getEnd(oV) < lastBuff){
+			getEnd(oV) = lastBuff;
+		};
+		oTimeLoaded.style.width = 100 * Math.ceil(getEnd(oV)) / Math.ceil(oV.duration) + "%";
+		//document.getElementById("test").innerHTML = getEnd(oV);
+		lastBuff = getEnd(oV);
 	},!1);
 	var timer = null;
 	timerOut();
