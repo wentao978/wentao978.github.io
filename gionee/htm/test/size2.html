@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>无标题文档</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oG = document.getElementById("go");
+	var iNow = 0;
+	oG.onclick = function(){
+		iNow++;
+		window.localStorage.setItem("go",iNow);	
+		console.log(iNow);
+		document.getElementById("test").innerHTML = iNow;
+	};
+	console.log(888);	
+},!1);
+</script>
+</head>
+<body style="padding-top:1000px;">
+<a href="http://localhost:8080/aaaaa/size.html" target="_self" id="go">跳转1</a>
+<div id="test"></div>
+</body>
+</html>
