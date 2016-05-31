@@ -33,7 +33,7 @@
 		
 			var w = img.width, h = img.height;             
 			var offsetX = oC.offsetLeft, offsetY = oC.offsetTop;                          
-			function init(ctx){                 
+			function init(oGc){                 
 				//oGc.fillStyle = 'gray';   //???             
 				//oGc.fillRect(0, 0, w, h);   
 				oGc.drawImage(oImg,0,0,270,129);       
@@ -41,12 +41,10 @@
 						 
 			oC.width=w;             
 			oC.height=h;             
-			oC.style.backgroundImage='url('+img.src+')';             
-			oGc=oC.getContext('2d');      
+			oC.style.backgroundImage='url('+img.src+')';  
+			oGc.shadowBlur = '3';
+			oGc.shadowColor = 'white';
 			
-				   
-			//oGc.fillStyle='transparent';             
-			//oGc.fillRect(0, 0, w, h);             
 			init(oGc); 
 			
 			
@@ -55,6 +53,7 @@
 					
 			oC.ontouchstart = function(ev){
 				var ev = ev.targetTouches[0];
+				oGc.beginPath();
 				oGc.moveTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop);
 				document.ontouchmove = function(ev){
 					var ev = ev.targetTouches[0];
