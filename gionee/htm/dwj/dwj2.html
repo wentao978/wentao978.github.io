@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>刮刮乐</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head>
+<body style="-webkit-user-select: none; "> 
+<canvas width="270" height="129"></canvas>
+<script type="text/javascript">     
+(function(){         
+	document.body.style.mozUserSelect = 'none';         
+	document.body.style.webkitUserSelect = 'none';              
+	 
+	var canvas = document.querySelector('canvas');         
+    
+	var oImg = new Image();
+	oImg.src = "1.png";
+	
+	oImg.onload = function(){
+		ctx=canvas.getContext('2d');
+		ctx.drawImage(oImg,10,10,270,129);	
+	};
+	
+})();
+</script>
+</body>
+</html>

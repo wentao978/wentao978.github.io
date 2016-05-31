@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>刮刮乐</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+</head>
+<body style="-webkit-user-select: none; user-select: none;"> 
+<canvas width="270" height="129" id="c1"></canvas>
+<script type="text/javascript">     
+(function(){         
+	         
+	
+	//有问题啊啊啊啊啊
+	var oImg = new Image();
+	oImg.src = "1.png";
+	
+	oImg.onload = function(){
+		
+		//oGc.drawImage(oImg,10,10,260,119);	
+		
+		var img = new Image();   
+		img.src = 'bdlogo.gif';     
+		 
+		var oC = document.getElementById('c1');         
+		var oGc = oC.getContext('2d');   
+		
+		img.onload = function(){
+		
+			var w = img.width, h = img.height;             
+			var offsetX = oC.offsetLeft, offsetY = oC.offsetTop;                          
+			function init(ctx){                 
+				//oGc.fillStyle = 'gray';   //???             
+				//oGc.fillRect(0, 0, w, h);   
+				oGc.drawImage(oImg,0,0,270,129);       
+			}   
+						 
+			oC.width=w;             
+			oC.height=h;             
+			oC.style.backgroundImage='url('+img.src+')';             
+			oGc=oC.getContext('2d');      
+			
+				   
+			//oGc.fillStyle='transparent';             
+			//oGc.fillRect(0, 0, w, h);             
+			init(oGc); 
+			
+			
+						  
+			oGc.globalCompositeOperation = 'destination-out';               
+					
+			oC.ontouchstart = function(ev){
+				var ev = ev.targetTouches[0];
+				oGc.moveTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop);
+				document.ontouchmove = function(ev){
+					var ev = ev.targetTouches[0];
+					oGc.lineTo(ev.clientX - oC.offsetLeft,ev.clientY - oC.offsetTop);
+					oGc.lineWidth = "5";
+					oGc.lineCap = 'round';
+					oGc.stroke();
+				};
+				document.ontouchend = function(){
+					document.ontouchmove = null;
+					document.ontouchend = null;	
+				};
+				return false;	
+			};	
+		};
+		
+	};
+	
+	
+	
+	
+})();
+</script>
+</body>
+</html>
