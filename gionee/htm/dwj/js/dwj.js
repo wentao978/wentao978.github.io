@@ -14,12 +14,106 @@ $(document).ready(function(){
 	};
 	//alert(isMobile);
 	//$("body").append("<span style='position:relative'>"+navigator.userAgent+"</span>");
+	//出现积分的时候将滚动条设置到最顶端
+    $('body,html').scrollTop(0);
+	
+	loadImg();
+	function loadImg() {
+		var oLoading = document.getElementById('loading');
+		var imgArr = ['images/topPic.png','images/loading.gif','images/nav.png','images/game.png','images/gp.png','images/7.png','images/qian.png','images/wen.png','images/yi.png'];
+		var num = 0;		
+		for(var i=0;i<imgArr.length;i++){
+			var Img = new Image();
+			Img.src = imgArr[i];
+			Img.onload = function(){
+				num++;
+				if(num == imgArr.length){
+					oLoading.style.display = 'none';
+				};
+			};
+			Img.onerror = function(){
+				oLoading.style.display = 'none';
+			};
+		};
+	};
+		
+	$.ajax({
+		url: 'http://10.8.8.158:8080/active/dwj/dwj.php',
+		type: 'GET',
+		dataType: 'json',
+		timeout:60000,
+		data:{
+			u:u,
+			s:s,
+			type:"query"
+		},
+		success: function(data){
+			resData = data;
+			resLevel = data.level;
+			resCode = data.code;
+			resNumber = data.number;
+			if(data.code){
+				$("#copy").attr("data-clipboard-text",data.code);
+			};
+			loadImg();
+			function loadImg() {
+				var oLoading = document.getElementById('loading');
+				var imgArr = ['images/topPic.png','images/loading.gif','images/nav.png','images/game.png','images/gp.png','images/7.png','images/qian.png','images/wen.png','images/yi.png'];
+				var num = 0;		
+				for(var i=0;i<imgArr.length;i++){
+					var Img = new Image();
+					Img.src = imgArr[i];
+					Img.onload = function(){
+						num++;
+						if(num == imgArr.length){
+							oLoading.style.display = 'none';
+						};
+					};
+					Img.onerror = function(){
+						oLoading.style.display = 'none';
+					};
+				};
+			};
+		
+			if(data.st == "1"){
+				document.onclick = function(){
+					toast('活动未开始',2600);
+				};
+			}else if(data.st == "3"){  //活动正常
+				
+				
+			}else if(data.st == "2"){
+				document.onclick = function(){
+					toast('活动结束',2600);
+				};
+			};	
+		},
+		error:function(jqXHR, textStatus, errorThrown){
+			$('#loading').hide();
+			if(jqXHR.status == 400){
+				toast('参数错误',2600);
+			}else if(jqXHR.status == 401){
+				toast('权限不足',2600);
+			}else if(jqXHR.status == 500){
+				toast('服务器繁忙',2600);
+			};
+			if(textStatus == 'timeout'){
+				toast('请求超时',2600);
+			}
+			document.onclick = function(){
+				toast('数据异常',2600);
+			};
+		}
+	});
+	
+	
+	
 	/*canvas代码*/
 	
 	var oW = $("#c1").width();
 	var oH = oW * 309/833;         
 	var oImg = new Image();
-	oImg.src = "images/1.png";
+	oImg.src = "images/7.png";
 	var jinzhi = 0;
 	
 	var oImg4 = new Image();
@@ -64,8 +158,7 @@ $(document).ready(function(){
 			var oT = false;	
 			var mousedown = false;
 			
-			function eventDown(ev){  
-				console.log("down");                 
+			function eventDown(ev){                 
 				ev.preventDefault();                 
 				mousedown = true;
 				if(times){
@@ -78,8 +171,7 @@ $(document).ready(function(){
 					removeEvent(ev);	
 				};            
 			};   
-			function eventUp(ev){ 
-				console.log("up");                  
+			function eventUp(ev){               
 				ev.preventDefault();                 
 				mousedown = false;
 				jinzhi = 1;
@@ -121,21 +213,18 @@ $(document).ready(function(){
 							oC.width=w;             
 							oC.height=h;             
 							
-							alert("***");
-							
 							oGc.drawImage(oImg,0,0,833,309,0,0,oW,oH);
 							//document.getElementById("div1").innerHTML = iNow;			  
 							oGc.globalCompositeOperation = 'destination-out'; 
 							
 							//重置canvas之后，在这里弹出框...
-							
+							console.log("***");
 						};
 					},80);	
 					
 				};             
 			};               
-			function eventMove(ev){    
-				console.log("move");             
+			function eventMove(ev){              
 				ev.preventDefault();                 
 				if(mousedown){                     
 					var x = ev.clientX || ev.changedTouches[0].pageX;
@@ -207,12 +296,12 @@ $(document).ready(function(){
 	
 	
 	
-	var resData;
+	/*var resData;
 	var resLevel;
 	var resCode;
 	var resNumber;
 	
-	/*转动代码*/
+	转动代码*/
 	/*var oStart = $(".start");
 	var oZhuan = $(".zhuan");
 	var numTurn = 10;
@@ -231,317 +320,7 @@ $(document).ready(function(){
 					{"deg" : 337,"data" : "100阅饼卷"}
 				];
 	
-	$.ajax({
-		url: 'http://10.8.8.141/game/getRead.do',
-		type: 'GET',
-		dataType: 'jsonp',
-		timeout:60000,
-		jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
-		jsonpCallback:"callback",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
-		data:{
-			u:u,
-			s:s,
-			type:"search"
-		},
-		success: function(data){
-			resData = data;
-			resLevel = data.level;
-			resCode = data.code;
-			resNumber = data.number;
-			if(data.code){
-				$("#copy").attr("data-clipboard-text",data.code);
-			};
-			loadImg();
-			function loadImg() {
-				var oLoading = document.getElementById('loading');
-				var imgArr = ['images/flower.png','images/loading.gif','images/fail.png','images/pan.png','images/readText.png','images/circleText.png','images/rule.png','images/gushi.png','images/zhuan.png','images/ireader.png','images/start.png'];
-				var num = 0;		
-				for(var i=0;i<imgArr.length;i++){
-					var Img = new Image();
-					Img.src = imgArr[i];
-					Img.onload = function(){
-						num++;
-						if(num == imgArr.length){
-							oLoading.style.display = 'none';
-						};
-					};
-					Img.onerror = function(){
-						oLoading.style.display = 'none';
-					};
-				};
-			};
-		
-			if(data.st == "2"){
-				document.onclick = function(){
-					toast('活动未开始',2600);
-				};
-			}else if(data.st == "3"){  //活动正常
-								
-				oStart.click(function(){
-	
-					if (oBtn) {
-						
-						var num = Math.floor(Math.random() * 8);
-						oStart.addClass("gray");
-						num = 6;	
-						
-						timer = requestAnimationFrame(move);
-						
-						$.ajax({
-							url: 'http://10.8.8.141/game/getRead.do',
-							type: 'POST',
-							dataType: 'jsonp',
-							timeout:15000,
-							jsonp: "callback",//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
-							jsonpCallback:"callback2",//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名
-							data:{
-								u:u,
-								s:s,
-								type:"click"
-							},
-							success:function(data){
-								
-								resData = data;
-								resNumber = data.number;
-															
-								if(data.level != "0"){
-									resLevel = data.level;
-								};
-								
-								if(data.level == "3" || data.level == "4" || data.level == "5"){
-									resCode = data.code;
-									$("#copy").attr("data-clipboard-text",data.code);	
-								};
-								
-								switch (data.level){
-									case "5":
-										num = 5;
-									break;
-									case "4":
-										num = 3;
-									break;
-									case "3":
-										num = 7;
-									break;
-									case "2":
-										num = 2;
-									break;
-									case "1":
-										num = 1;
-									break;
-									case "0":
-										num = 6;
-									break;
-								};
-								
-							},
-							error:function(jqXHR,textStatus,errorThrown){
-								if(jqXHR.status == 400){
-									toast('参数错误',2600);
-								}else if(jqXHR.status == 401){
-									toast('权限不足',2600);
-								}else if(jqXHR.status == 500){
-									toast('服务器繁忙',2600);
-								};
-								if(textStatus == 'timeout'){
-									toast('请求超时',2600);
-								}
-							}
-						});	
-												
-						function move(){
-							
-							iSpeed = ((360 * numTurn + aDatas[num].deg) - iCur) / 80;
-							
-							iCur += Math.ceil(iSpeed); 
-							
-							if (iCur >= numTurn * 360 + aDatas[num].deg) {
-			
-								window.cancelAnimationFrame(timer);
-								
-								oBtn = !oBtn;
-								oStart.removeClass("gray");
-								
-								//setTimeout(function(){
-									
-									//转盘转结束之后
-																		
-									if(resData){ //有正常返回结果
-										
-										if(resData.number != "4"){//还可以抽奖
-										
-											switch (resData.level){
-												case "5":  //500阅饼券
-													
-													iCur = aDatas[num].deg;
-													$("#mask,.yuebing").show();
-													$(".text").html(resData.code);
-													$("#copy").attr("data-clipboard-text",resData.code);
-												break;
-												case "4":  //200阅饼券
-													
-													iCur = aDatas[num].deg;
-													$("#mask,.yuebing").show();
-													$(".text").html(resData.code);
-													$("#copy").attr("data-clipboard-text",resData.code);
-												break;
-												case "3":  //100阅饼券
-													
-													iCur = aDatas[num].deg;
-													$("#mask,.yuebing").show();
-													$(".text").html(resData.code);
-													$("#copy").attr("data-clipboard-text",resData.code);
-												break;
-												case "2":  //台灯
-													
-													iCur = aDatas[num].deg;
-													$("#mask,.jdk").show();
-													$(".jdk").find(".prize").attr("src","images/p-taideng.png");
-												break;
-												case "1":  //读书器
-													
-													iCur = aDatas[num].deg;
-													$("#mask,.jdk").show();
-													$(".jdk").find(".prize").attr("src","images/p-ireader.png");
-												break;
-												case "0":  //没中奖
-												
-													iCur = aDatas[num].deg;
-													$('.success,#mask').stop(true,false).fadeIn('100',function(){//没有中奖
-														setTimeout(function(){
-															$('.success,#mask').fadeOut('200');	
-														},1500);
-													});
-													
-													if(resData.number == "3"){
-														setTimeout(function(){
-															setScrollTop();	
-														},2000);
-													};
-													
-												break;							
-											};
-											
-										}else{//机会用完了
-											
-											iCur = aDatas[num].deg;
-											
-											$('.error,#mask').stop(true,false).fadeIn('100',function(){//三次机会用完了
-												setTimeout(function(){
-													$('.error,#mask').fadeOut('200',function(){
-														setScrollTop();	
-													});	
-												},1500);
-											});
-										};
-											
-									}else{ //没有正常返回结果
-										
-										num = 6;
-										iCur = aDatas[num].deg;
-										$('.success,#mask').stop(true,false).fadeIn('100',function(){//没有中奖
-											setTimeout(function(){
-												$('.success,#mask').fadeOut('200');	
-											},1500);
-										});
-										
-									};
-									
-								//},200);
-								
-							}else{
-								
-								oZhuan.css("WebkitTransform","rotate(" + iCur + "deg)");
-								requestAnimationFrame(move);
-							};
-								
-						};
-						
-						oBtn = !oBtn;
-						
-					};	
-				
-				});
-				
-			/
-				$(".ruleText").click(function(){
-					if(oBtn){
-						$("#mask,.rules").show();
-					};	
-				});
-				
-				$(".scord").click(function(){
-					
-					if(oBtn){
-						
-						if(resLevel == "0"){
-							toast('您还没有中奖纪录',2600);
-						}else{
-							switch (resLevel){
-								
-								case "5":  //500阅饼券
-									
-									$("#mask,.yuebing").show();
-									$(".text").html(resCode);
-									
-								break;
-								case "4":  //200阅饼券
-									
-									$("#mask,.yuebing").show();
-									$(".text").html(resCode);
-								break;
-								case "3":  //100阅饼券
-									
-									$("#mask,.yuebing").show();
-									$(".text").html(resCode);
-								break;
-								case "2":  //台灯
-									
-									$("#mask,.shouhuoWrap").show();
-									$(".shouhuoWrap").find(".prizeImg").attr("src","images/p-taideng.png");
-									$('.addressInfo').find('.nameInfo').html(resData.name);
-									$('.addressInfo').find('.phoneInfo').html(resData.phone);
-									$('.addressInfo').find('.addrInfo').html(resData.address);
-								break;
-								case "1":  //读书器
-									
-									$("#mask,.shouhuoWrap").show();
-									$(".shouhuoWrap").find(".prizeImg").attr("src","images/p-ireader.png");
-									$('.addressInfo').find('.nameInfo').html(resData.name);
-									$('.addressInfo').find('.phoneInfo').html(resData.phone);
-									$('.addressInfo').find('.addrInfo').html(resData.address);
-								break;
-								
-							};	
-						};
-						
-					};
-				});
-				
-				
-			}else if(data.st == "1"){
-				document.onclick = function(){
-					toast('活动结束',2600);
-				};
-			};	
-		},
-		error:function(jqXHR, textStatus, errorThrown){
-			$('#loading').hide();
-			if(jqXHR.status == 400){
-				toast('参数错误',2600);
-			}else if(jqXHR.status == 401){
-				toast('权限不足',2600);
-			}else if(jqXHR.status == 500){
-				toast('服务器繁忙',2600);
-			};
-			if(textStatus == 'timeout'){
-				toast('请求超时',2600);
-			}
-			document.onclick = function(){
-				toast('数据异常',2600);
-			};
-		}
-	});*/
+	*/
 	
 	/*点击复制*/
 	var copy = document.getElementById('copy');
@@ -676,6 +455,62 @@ $(document).ready(function(){
 			});
 			
 		}
+	});
+	
+	//只有手机号的情况
+	var rePhone = /^\d{11}$/;
+	$('.phoneCon').click(function(){
+		if(!rePhone.test($('.phoneNum').val())){
+			toast('请输入正确的手机号码',2600);
+			return;
+		}else{
+			usePhoneNum = $('.phoneNum').val();
+			$('.load').show();
+			$.ajax({
+				url: '/lockimage/updateAddr.do',
+				type: 'POST',
+				dataType: 'json',
+				timeout:15000,
+				data: {
+					u:u,
+					s:s,
+					ri:hongbaoId,
+					n:'1',
+					ph:$('.phoneNum').val(),
+					d:'1',
+					a:'1',
+					pc:'100000'
+				},
+				success: function(data,status,code){
+					switch (code.status){
+						case 200 :
+							if(data.s == 1){
+								toast('保存成功',2600);
+								$('.close-button').trigger('click');
+								
+								yesHb = true;
+							}else if(data.s == 0){
+								toast('保存失败',2600);
+								$('.close-button').trigger('click');
+							};
+						break;
+						
+					};	
+					$('.load').hide();				
+				},
+				error:function(jqXHR, textStatus, errorThrown){
+					$('.load').hide();
+					if(jqXHR.status == 400){
+						toast('参数错误',2600);
+					}else if(jqXHR.status == 500){
+						toast('服务器繁忙',2600);
+					};
+					if(textStatus == 'timeout'){
+						toast('请求超时',2600);
+					}
+				}
+			});	
+		};	
 	});
 	
 	//requestAnimationFrame方法
