@@ -13,7 +13,7 @@ $(document).ready(function(){
 		isMobile = false;	
 	};
 	//alert(isMobile);
-	$("body").append("<span style='position:relative'>"+navigator.userAgent+"</span>");
+	//$("body").append("<span style='position:relative'>"+navigator.userAgent+"</span>");
 	/*canvas代码*/
 	
 	var oW = $("#c1").width();
