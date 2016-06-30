@@ -72,7 +72,11 @@ function change(){
 
 document.getElementById("click").onclick = function(){
 
-	lan == "en" ? alert("you do") : alert("你做了操作");;	
+	alert(zhOrEn("love yuanyuan~","你做了操作"));
+};
+
+function zhOrEn(en,zh){
+	return lan == "en" ? en : zh;
 };
 
 </script>
