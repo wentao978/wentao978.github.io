@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+.lanWrap{ position:fixed; right:10px; top:5px;}
+a{ color:#000; text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="div1">
+	<label><a href="javascript:;" class="qiehuan" data-id="biaoti"></a></label>
+</div>
+<div class="div1">
+	<label><a href="javascript:;" class="qiehuan" data-id="guanggao"></a></label>
+</div>
+
+<div class="lanWrap"><span data-id="qhyy" class="qiehuan"></span>：
+	<select name="lan" id="lan">
+    	<option value="zh">中文</option>
+        <option value="en">english</option>
+    </select>
+</div>
+<br>
+<span data-id="kuan" class="qiehuan"></span><br>
+<span data-id="gao" class="qiehuan"></span><br>
+<input type="button" class="qiehuan" data-id="dianji" id="click" value="">
+<script>
+
+//纯前端中英文切换，构建了数据字典dic
+/**
+  1.元素上必须绑定有class名称为qiehuan
+  2.元素上必须绑定有data-id,且这个id与dic字典中一条数据的id相对应
+  3.dic中的数据必须有id,zh和en,来显示对应的中引文	
+  tips:页面中元素没有汉字,为了方便查找,id命名为汉字拼音
+*/
+var dic = [
+		{"id":"kuan","zh":"宽度","en":"width"},
+		{"id":"gao","zh":"高度","en":"height"},
+		{"id":"biaoti","zh":"标题","en":"title"},
+		{"id":"guanggao","zh":"广告","en":"ad"},
+		{"id":"dianji","zh":"点击","en":"click"},
+		{"id":"qhyy","zh":"切换语言","en":"change Language"}
+	];
+
+var lan = localStorage.getItem("lan") ? localStorage.getItem("lan") : "zh";
+document.getElementById("lan").value = lan;
+	
+document.getElementById("lan").onchange = function(){
+	lan = this.value;
+	window.localStorage.setItem("lan",this.value);
+	change();	
+};
+
+change();
+function change(){
+	var oVar = document.getElementsByClassName("qiehuan");
+	var tp = dic;
+	if(oVar.length){
+		for(var i=0;i<oVar.length;i++){
+			for(var j=0;j<tp.length;j++){
+				if(oVar[i].dataset.id == tp[j].id){
+					oVar[i].innerHTML = tp[j][lan];
+					oVar[i].value = tp[j][lan];
+				};
+			};
+		};
+	};
+};
+
+document.getElementById("click").onclick = function(){
+
+	lan == "en" ? alert("you do") : alert("你做了操作");;	
+};
+
+</script>
+</body>
+</html>
