@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+em{ font-style:normal;}
+#div1{ margin:20px auto; width:600px; height:400px; background:#ccc; overflow:hidden;}
+ul{ list-style:none; height:60px; margin-top:160px; width:400px; margin:160px auto 0;}
+ul li{ transition: all .2s ease-in-out; float:left; position:relative; cursor:pointer; width:60px; height:60px; line-height:60px; text-align:center; background:#fff; border-radius:50%; margin:0 20px;}
+ul li span{ position:absolute; left:0; top:0; display:inline-block; width:100%; height:100%; border-radius:50%;}
+ul li.active{ background:#0C9; color:#fff;}
+ul li.active span{ background:#0C9; transition: all .4s ease-in-out;transform: scale(1.5); opacity: 0}
+</style>
+</head>
+<body>
+<div id="div1">
+	<ul>
+		<li class="active"><em>启程</em><span></span></li>
+		<li><em>轻装</em><span></span></li>
+		<li><em>从容</em><span></span></li>
+		<li><em>幸福</em><span></span></li>
+	</ul>
+</div>
+<script>
+var aLi = document.getElementsByTagName("li");
+
+for(var i=0;i<aLi.length;i++){
+	aLi[i].index = i;
+	aLi[i]['onclick'] = function(){
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].className = "";
+		};
+		aLi[this.index].className = "active";	
+	};
+};
+
+</script>
+</body>
+</html>
