@@ -35,7 +35,7 @@ setImageWidth();
 function setImageWidth(){
 	var oImg = document.getElementsByTagName("img");
 	var oW = (document.documentElement.clientWidth || document.body.clientWidth) - 30;
-	for(var i=0;i<oImg.length;i++){
+	for(var i=0,len=oImg.length;i<len;i++){
 		var dW = oImg[i].dataset ? oImg[i].dataset.width : oImg[i].getAttribute("data-width");
 		var dH = oImg[i].dataset ? oImg[i].dataset.height : oImg[i].getAttribute("data-height")
 		var oWw = dW < oW ? dW : oW;
@@ -51,7 +51,7 @@ window.onscroll = function(){
 };
 lazyLoad();
 function lazyLoad(){
-	for(var i=0;i<oImg.length;i++){
+	for(var i=0,len=oImg.length;i<len;i++){
 		(function(i){
 			if( ((oH + oS) > oImg[i].getBoundingClientRect().top) && !oImg[i].isLoad ){
 				oImg[i].isLoad = true;
