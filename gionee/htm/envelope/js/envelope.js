@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var resNumber;
 	var levelArr = ["","s8","100","50","10","lb","jf"];
 	/*端午节活动代码*/
-	$("#bg").css({"width":$(window).width(),"height":$(window).height(),"max-width":640});
+	$("body").css({"width":$(window).width(),"height":$(window).height(),"max-width":640});
 	
 	//检测是不是移动设备
 	var isMobile = true;
