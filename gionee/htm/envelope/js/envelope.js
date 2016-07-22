@@ -9,7 +9,7 @@ $(document).ready(function(){
 	var resNumber;
 	var levelArr = ["","s8","100","50","10","lb","jf"];
 	/*端午节活动代码*/
-	$("body,.bgWrap").css({"width":$(window).width(),"height":$(window).height(),"max-width":640});
+	$("body,.bgWrap,.content").css({"width":$(window).width(),"height":$(window).height(),"max-width":640});
 	
 	//检测是不是移动设备
 	var isMobile = true;
@@ -28,7 +28,7 @@ $(document).ready(function(){
 	
 	setInterval(function(){
 		for(var i=0,len=1;i<len;i++){
-		    $("body").append("<div class='box run run"+Math.floor(Math.random()*2+1)+"' style='left:"+(Math.random()*12 + 1)+"em;top:3em'></div>");
+		    $(".content").append("<div class='box run run"+Math.floor(Math.random()*2+1)+"' style='left:"+(Math.random()*12 + 1)+"em;top:3em'></div>");
 		};	
 		$(".box").off("click").on("click",function(){
 			if(!$(this).hasClass("open")){

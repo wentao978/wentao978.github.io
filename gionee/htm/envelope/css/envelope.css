@@ -3,10 +3,11 @@ body,html{ width:100%; height:100%;}
 body{max-width:640px; width:100%; margin:0 auto; position:relative; background:#FE6970; overflow:hidden;}
 .bgWrap{ margin:0 auto; width:100%; height:100%; position:relative; z-index:1;}
 .topWrap{ width:86.6%; margin:0 6.7%; position:absolute; top:.86em; z-index:5;}
+.content{ width:100%; height:100%; max-width:640px; margin:0 auto; z-index:3; overflow:hidden;}
 .box{ width:1.78em; height:3.15em; background:url(../images/normal.png) no-repeat center bottom; position:absolute; z-index:3; background-size:contain; transform-origin:55% center; }
 .box.open{ width:1.78em; height:3.15em; background:url(../images/open.png) no-repeat center bottom; position:absolute; z-index:3; background-size:contain; transform-origin:55% center;}
 .run.run1{-webkit-animation:run1 .9s infinite linear!important;animation:run1 .9s infinite linear!important}
-.run.run2{-webkit-animation:run2 .9s infinite linear!important;animation:run2 .9s infinite linear!important}
+.run.run2{-webkit-animation:run2 1.9s infinite linear!important;animation:run2 .9s infinite linear!important}
 @keyframes run1{
 	0%{-webkit-transform:rotate(0);transform:rotate(0)}
 	100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}
