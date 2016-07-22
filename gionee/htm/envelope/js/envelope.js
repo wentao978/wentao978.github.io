@@ -46,12 +46,12 @@ $(document).ready(function(){
 		
 	   $(".box.run").each(function(index,element){
            if(!$(this).is(":animated")){
-			  $(this).animate({'top':$(window).height()+20},2000,"linear");   
+			  $(this).animate({'top':$(window).height()},2000,"linear");   
 		   }
    	   });
        
 	   $(".box.run").each(function(index,element){
-			if(parseInt($(this).css("top")) > $(window).height()){
+			if(parseInt($(this).css("top")) >= $(window).height()){
 				$(this).remove();
 			};
 		});
