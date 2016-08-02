@@ -46,7 +46,7 @@ $(document).ready(function(){
 		
 	   $(".box.run").each(function(index,element){
            if(!$(this).is(":animated")){
-			  $(this).animate({'top':$(window).height()},2000,"linear");   
+			  $(this).animate({'top':$(window).height()},3000,"linear");   
 		   }
    	   });
        
