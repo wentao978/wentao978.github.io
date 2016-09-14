@@ -25,7 +25,7 @@ $(document).ready(function(){
 			
 		
 	}*/
-	
+	var num = 0;
 	setInterval(function(){
 		for(var i=0,len=1;i<len;i++){
 		    $(".content").append("<div class='box run run"+Math.floor(Math.random()*2+1)+"' style='left:"+(Math.random()*12 + 1)+"em;top:3em'></div>");
@@ -35,12 +35,13 @@ $(document).ready(function(){
 				$(this).addClass("open");
 				$(this).removeClass("run");
 				$(this).stop(true,false);
+				num++ ;
+				console.log(num);
 				$(this).append("<img src='images/flower.png' style='width:150%; position:relative; top:-23%; left:-23%;'>");
 				var _this = $(this);
 				setTimeout(function(){
 					_this.remove();
 				},1000);
-				
 			};	
 		});
 		
