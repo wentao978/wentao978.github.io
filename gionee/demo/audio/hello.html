@@ -12,6 +12,13 @@
 <body>
 <h1>Hello world!</h1>
 <audio id="audio" autoplay="autoplay" loop="loop" src="1.mp3">不支持audio</audio>
+<a href="#" id="a">111</a>
+<script>
+document.onclick = function(){
+	document.getElementById("a").innerHTML = "222";
+	document.getElementById("audio").play();	
+};
+</script>
 </body>
 </html>
-<a href="#" id="a">111</a>
+
