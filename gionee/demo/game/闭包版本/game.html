@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="scarecrow" content="http://duanwentao.github.io"/>
+<title>转动方块(小游戏)</title>
+</head>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:300px; height:300px; margin:50px auto; border:1px solid #0f0; position:relative;}
+#div1 ul { list-style:none;}
+#div1 ul li{ position:absolute; width:100px; height:100px; float:left; text-align:center; line-height:100px; background:#ccc; cursor:pointer;}
+#div1 ul li.active{ background:#f00; color:#fff;}
+#div1 ul li:nth-of-type(1){ left:0; top:0;}
+#div1 ul li:nth-of-type(2){ left:100px; top:0;}
+#div1 ul li:nth-of-type(3){ left:200px; top:0;}
+#div1 ul li:nth-of-type(4){ left:200px; top:100px;}
+#div1 ul li:nth-of-type(5){ left:200px; top:200px;}
+#div1 ul li:nth-of-type(6){ left:100px; top:200px;}
+#div1 ul li:nth-of-type(7){ left:0px; top:200px;}
+#div1 ul li:nth-of-type(8){ left:0; top:100px;}
+#div1 .start{ background:#aaa; position:absolute; left:100px; top:100px; width:100px; height:100px; text-align:center; line-height:100px; cursor:pointer;}
+</style>
+<body>
+<div id="div1">
+	<ul>
+		<li data-index="1">1</li>
+		<li data-index="2">2</li>
+		<li data-index="3">3</li>
+		<li data-index="4">4</li>
+		<li data-index="5">5</li>
+		<li data-index="6">6</li>
+		<li data-index="7">7</li>
+        <li data-index="8">8</li>
+	</ul>
+    <span class="start">开始</span>
+</div>
+<script>
+!function(a){
+	var g = {
+		init : function(){
+			a.addEventListener('DOMContentLoaded',function(){
+				g.exFn();	
+			},!1);
+		}(),
+		exFn : function(){
+			var obj = {
+				li : document.getElementsByTagName('li'),  //要转动的元素
+				len : document.getElementsByTagName('li').length,	
+				iNow : 0,  //默认从第一个开始
+				timer : null,  //定时器
+				bBtn : true,  //开关
+				qqq : 5,  //默认转的圈数
+				time : 100  //默认时间间隔(ms)
+			};
+			document.getElementsByClassName('start')[0].onclick = function(){
+				var num = Math.floor(Math.random()*obj.len+1); //随机多少数
+				if(obj.bBtn){
+					obj.bBtn = false;
+					clearInterval(obj.timer);
+					obj.timer = setInterval(function(){
+						Array.prototype.forEach.call(obj.li,function(item){
+							item.classList.remove('active');	/*请使用高级浏览器*/
+						});
+						obj.li[obj.iNow].classList.add('active');	
+						obj.iNow++;
+						if(obj.iNow == obj.len){
+							obj.iNow = 0;
+						};
+					},obj.time);
+					setTimeout(function(){
+						clearInterval(obj.timer);
+						obj.iNow == '0' ? alert(obj.len) : alert(obj.iNow);
+						obj.bBtn = true;
+					},obj.qqq*obj.time*obj.len+num*obj.time);
+				};	
+			};	
+		},	
+	};
+}(window);
+</script>
+</body>
+</html>

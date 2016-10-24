@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="scarecrow" content="http://duanwentao.github.io"/>
+<title>转动方块(小游戏)</title>
+</head>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:300px; height:300px; margin:50px auto; border:1px solid #0f0; position:relative;}
+#div1 ul { list-style:none;}
+#div1 ul li{ position:absolute; width:100px; height:100px; float:left; text-align:center; line-height:100px; background:#ccc; cursor:pointer;}
+#div1 ul li.active{ background:#f00; color:#fff;}
+#div1 ul li:nth-of-type(1){ left:0; top:0;}
+#div1 ul li:nth-of-type(2){ left:100px; top:0;}
+#div1 ul li:nth-of-type(3){ left:200px; top:0;}
+#div1 ul li:nth-of-type(4){ left:200px; top:100px;}
+#div1 ul li:nth-of-type(5){ left:200px; top:200px;}
+#div1 ul li:nth-of-type(6){ left:100px; top:200px;}
+#div1 ul li:nth-of-type(7){ left:0px; top:200px;}
+#div1 ul li:nth-of-type(8){ left:0; top:100px;}
+#div1 .start{ background:#aaa; position:absolute; left:100px; top:100px; width:100px; height:100px; text-align:center; line-height:100px; cursor:pointer;}
+#div2{ width:300px; height:300px; margin:50px auto; border:1px solid #0f0; position:relative;}
+#div2 ul { list-style:none;}
+#div2 ul li{ position:absolute; width:100px; height:100px; float:left; text-align:center; line-height:100px; background:#ccc; cursor:pointer;}
+#div2 ul li.active{ background:#f00; color:#fff;}
+#div2 ul li:nth-of-type(1){ left:0; top:0;}
+#div2 ul li:nth-of-type(2){ left:100px; top:0;}
+#div2 ul li:nth-of-type(3){ left:200px; top:0;}
+#div2 ul li:nth-of-type(4){ left:200px; top:100px;}
+#div2 ul li:nth-of-type(5){ left:200px; top:200px;}
+#div2 ul li:nth-of-type(6){ left:100px; top:200px;}
+#div2 ul li:nth-of-type(7){ left:0px; top:200px;}
+#div2 ul li:nth-of-type(8){ left:0; top:100px;}
+#div2 .start{ background:#aaa; position:absolute; left:100px; top:100px; width:100px; height:100px; text-align:center; line-height:100px; cursor:pointer;}
+</style>
+<body>
+<div id="div1">
+	<ul>
+		<li data-index="1">1</li>
+		<li data-index="2">2</li>
+		<li data-index="3">3</li>
+		<li data-index="4">4</li>
+		<li data-index="5">5</li>
+		<li data-index="6">6</li>
+		<li data-index="7">7</li>
+        <li data-index="8">8</li>
+	</ul>
+    <span class="start">开始</span>
+</div>
+<div id="div2">
+	<ul>
+		<li data-index="1">1</li>
+		<li data-index="2">2</li>
+		<li data-index="3">3</li>
+		<li data-index="4">4</li>
+		<li data-index="5">5</li>
+		<li data-index="6">6</li>
+		<li data-index="7">7</li>
+        <li data-index="8">8</li>
+	</ul>
+    <span class="start">开始</span>
+</div>
+<script>
+!function(a){
+	function Game(opt){
+		this.settings = {
+			query : document.querySelectorAll('li'),
+			qqq : 5,
+			time : 100,
+			clickd : document.querySelector('.start'),
+		};
+		var opt = opt ? opt : '';
+		for(var attr in opt){
+			this.settings[attr] = opt[attr];
+		};
+		this.len = this.settings.query.length,
+		this.iNow = 0;
+		this.timer = null;
+		this.bBtn = true;
+		this.num = '';
+	};
+	Game.prototype.init = function(){
+		var This = this;
+		this.settings.clickd.onclick = function(){
+			This.num = Math.floor(Math.random()*This.len+1); //随机多少数
+			This.change();
+		};	
+	};
+	Game.prototype.change = function(){
+		var This = this;
+		if(this.bBtn){
+			this.bBtn = false;
+			clearInterval(this.timer);
+			this.timer = setInterval(function(){
+				This.interval();
+			},this.settings.time);
+			setTimeout(function(){
+				This.timeout();
+			},this.settings.qqq*this.settings.time*this.len+this.num*this.settings.time);
+		};	
+	};
+	Game.prototype.interval = function(){
+		Array.prototype.forEach.call(this.settings.query,function(item){
+			item.classList.remove('active');	//请使用高级浏览器
+		});
+		this.settings.query[this.iNow].classList.add('active');	
+		this.iNow++;
+		if(this.iNow == this.len){
+			this.iNow = 0;
+		};	
+	};
+	Game.prototype.timeout = function(){
+		clearInterval(this.timer);
+		this.iNow == '0' ? alert(this.len) : alert(this.iNow);
+		this.bBtn = true;	
+	};
+	a.Game = Game;	
+}(window);
+
+
+window.onload = function(){
+	new Game({
+		query : document.querySelectorAll('#div1 li'),
+		clickd : document.querySelector('#div1 .start')	
+	}).init();
+	new Game({
+		query : document.querySelectorAll('#div2 li'),
+		qqq : 3,
+		time : 200,
+		clickd : document.querySelector('#div2 .start')		
+	}).init();
+};
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

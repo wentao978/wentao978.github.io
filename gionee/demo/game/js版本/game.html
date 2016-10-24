@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="scarecrow" content="http://duanwentao.github.io"/>
+<title>转动方块(小游戏)</title>
+</head>
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:300px; height:300px; margin:50px auto; border:1px solid #0f0; position:relative;}
+#div1 ul { list-style:none;}
+#div1 ul li{ position:absolute; width:100px; height:100px; float:left; text-align:center; line-height:100px; background:#ccc; cursor:pointer;}
+#div1 ul li.active{ background:#f00; color:#fff;}
+#div1 ul li:nth-of-type(1){ left:0; top:0;}
+#div1 ul li:nth-of-type(2){ left:100px; top:0;}
+#div1 ul li:nth-of-type(3){ left:200px; top:0;}
+#div1 ul li:nth-of-type(4){ left:200px; top:100px;}
+#div1 ul li:nth-of-type(5){ left:200px; top:200px;}
+#div1 ul li:nth-of-type(6){ left:100px; top:200px;}
+#div1 ul li:nth-of-type(7){ left:0px; top:200px;}
+#div1 ul li:nth-of-type(8){ left:0; top:100px;}
+#div1 .start{ background:#aaa; position:absolute; left:100px; top:100px; width:100px; height:100px; text-align:center; line-height:100px; cursor:pointer;}
+</style>
+<body>
+<div id="div1">
+	<ul>
+		<li data-index="1">1</li>
+		<li data-index="2">2</li>
+		<li data-index="3">3</li>
+		<li data-index="4">4</li>
+		<li data-index="5">5</li>
+		<li data-index="6">6</li>
+		<li data-index="7">7</li>
+        <li data-index="8">8</li>
+	</ul>
+    <span class="start">开始</span>
+</div>
+<script>
+window.onload = function(){
+	var li = document.getElementsByTagName('li');
+	var len = li.length;
+	var iNow = 0;  //当前的索引
+	var timer = null; //定时器
+	var bBtn = true; //开关
+	var qqq = 5 //圈数
+	var time = 100 //每隔秒数
+	
+	document.getElementsByClassName('start')[0].onclick = function(){
+		var num = Math.floor(Math.random()*len+1); //随机多少数
+		if(bBtn){
+			bBtn = false;
+			clearInterval(timer);
+			timer = setInterval(function(){
+				Array.prototype.forEach.call(li,function(item){
+					item.classList.remove('active');	/*请使用高级浏览器*/
+				});
+				li[iNow].classList.add('active');	
+				iNow++;
+				if(iNow == len){
+					iNow = 0;
+				};
+			},time);
+			setTimeout(function(){
+				clearInterval(timer);
+				iNow == '0' ? alert(len) : alert(iNow);
+				bBtn = true;
+			},qqq*time*len+num*time);
+		};	
+	};		
+};
+</script>
+</body>
+</html>
