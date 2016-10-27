@@ -8,10 +8,12 @@
 </head>
 <body>
 ---------
+<div class="sign"></div>
 <div class="info"></div>
 <script>
 var u = getQueryString("u");
 var s = getQueryString("s");
+document.querySelector(".sign").innerHTML = u +":"+ s;
 var userInfo = null;
 try{
 	userInfo = JSON.parse(window.stroy.getUserInfo(u,s));
