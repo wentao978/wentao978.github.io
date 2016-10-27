@@ -11,7 +11,7 @@
 <script>
 var u = getQueryString("u");
 var s = getQueryString("s");
-var userInfo = {};
+var userInfo = null;
 try{
 	userInfo = JSON.parse(window.stroy.getUserInfo(u,s));
 }catch(e){
