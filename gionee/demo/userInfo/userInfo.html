@@ -11,6 +11,14 @@
 <div class="sign"></div>
 <div class="info"></div>
 <script>
+
+
+
+var getFilterPackageInfos = null;
+getFilterPackageInfos = window.story.getFilterPackageInfos();
+console.log(getFilterPackageInfos);
+
+
 var u = getQueryString("u") ? getQueryString("u") : "2041505121327397891";
 var s = getQueryString("s") ? getQueryString("s") : "A3DFED8FA563E14A19345CF9BB8606C6";
 console.log(u);
@@ -44,9 +52,6 @@ function getQueryString(name){
 };
 
 
-var getFilterPackageInfos = null;
-getFilterPackageInfos = window.story.getFilterPackageInfos();
-console.log(getFilterPackageInfos);
 
 </script>
 </body>
