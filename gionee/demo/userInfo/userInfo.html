@@ -13,6 +13,8 @@
 <script>
 var u = getQueryString("u") ? getQueryString("u") : "2041505121327397891";
 var s = getQueryString("s") ? getQueryString("s") : "A3DFED8FA563E14A19345CF9BB8606C6";
+console.log(u);
+console.log(s);
 document.querySelector(".sign").innerHTML = u +":"+ s;
 var userInfo = null;
 /*try{
@@ -20,9 +22,8 @@ var userInfo = null;
 }catch(e){
 	userInfo = {};
 };*/
+console.log(userInfo);
 userInfo = JSON.parse(window.stroy.getUserInfo(u,s));
-console.log(u);
-console.log(s);
 console.log(userInfo);
 
 var oDiv = document.querySelector(".info");
