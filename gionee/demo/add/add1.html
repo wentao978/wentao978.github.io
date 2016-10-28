@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{ margin:0; padding:0;}
+a{ text-decoration:none; color:#000;}
+.pv-list{ height:54px; border:1px solid #ccc; margin:3px; box-sizing:border-box;}
+</style>
+<script src="jquery.js"></script>
+</head>
+<body>
+<input type="hidden" name="pv_num" id="pv_num" class="pv_num"/>
+<div id='pv_data' style="width:100%;height:500px; overflow-x:hidden;overflow-y:auto;">
+	<!--<div class="pv-list">
+    	<table>
+        	<tbody>
+            	<tr>
+                	<td height="25">监测类型：
+                    <select name="url_pv_type_1" id="url_pv_type_1">
+                    	<option value="1">实时监测</option>
+                        <option value="0">延时监测</option>
+                    </select>
+                    &nbsp;监测地址：<input type="text" name="url_pv_1" id="url_pv_1" size="16" />
+                    <a href="javascript:;" onClick="add()" class="add-pv">+</a>
+                    <a href="javascript:;" onClick="del()" class="del-pv">-</a>	
+                    </td>
+                </tr>
+                <tr>
+                	<td height="25">监测曝光有效时间（毫秒）：
+                    <input type="text" name="pv_ava_time_1" id="pv_ava_time_1" size="16" class="easyui-numberbox"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pv-list">
+    	<table>
+        	<tbody>
+            	<tr>
+                	<td height="25">监测类型：
+                    <select name="url_pv_type_2" id="url_pv_type_2">
+                    	<option value="1">实时监测</option>
+                        <option value="0">延时监测</option>
+                    </select>
+                    &nbsp;监测地址：<input type="text" name="url_pv_2" id="url_pv_2" size="16" />
+                    <a href="javascript:;" onClick="del()" class="del-pv">-</a>	
+                    </td>
+                </tr>
+                <tr>
+                	<td height="25">监测曝光有效时间（毫秒）：
+                    <input type="text" name="pv_ava_time_2" id="pv_ava_time_2" size="16" class="easyui-numberbox"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>-->
+</div>
+<script>
+$(function(){
+	
+	
+		
+});
+
+var pv_check = [
+	{
+		"url_pv":"http://www.baidu.com",
+		"url_pv_type":1,
+		"pv_ava_time":1000	
+	},
+	{
+		"url_pv":"http://www.gionee.com",
+		"url_pv_type":0,
+		"pv_ava_time":2000	
+	},
+	{
+		"url_pv":"http://www.github.com",
+		"url_pv_type":1,
+		"pv_ava_time":3000	
+	},
+];
+
+
+pv_dater();
+
+function pv_dater(){
+	$('#pv_data').html('');
+	var html = '';
+	for(var j=0;j<pv_check.length;j++){
+		html += '<div class="pv-list"><table><tbody><tr><td height="25">监测类型：<select name="url_pv_type_'+(j+1)+'" class="url_pv_type" id="url_pv_type_'+(j+1)+'"><option value="1">实时监测</option><option value="0">延时监测</option></select>&nbsp;监测地址：<input type="text" name="url_pv_'+(j+1)+'" id="url_pv_'+(j+1)+'" class="url_pv" size="16" />';
+		if(j == 0){
+			html += '<a href="javascript:;" onClick="addPv(true)" class="add-pv">+</a><a href="javascript:;" onClick="delPv('+j+')" class="del-pv">-</a>';
+		}else{
+			html += '<a href="javascript:;" onClick="delPv('+j+')" class="del-pv">-</a>';	
+		};
+		html += '</td></tr><tr><td height="25">监测曝光有效时间（毫秒）：<input type="text" name="pv_ava_time_'+(j+1)+'" id="pv_ava_time_'+(j+1)+'" class="pv_ava_time" size="16" class="easyui-numberbox"/></td></tr></tbody></table></div>';
+	};
+	$('#pv_data').html(html);
+	for(var j=0; j< pv_check.length;j++){
+		$('.pv-list:eq('+j+')').each(function(index,element){
+			var This = $('.pv-list:eq('+j+')');
+			This.find('.url_pv_type').val(pv_check[j].url_pv_type);
+			This.find('.url_pv').val(pv_check[j].url_pv);
+			This.find('.pv_ava_time').val(pv_check[j].pv_ava_time);
+		});
+	};	
+};
+
+function addPv(flag){
+	pv_check = [];
+	if(flag){
+		savePv();
+	}
+	var new_pv = {
+		url_pv:'', 	
+		url_pv_type:'',
+		pv_ava_time:''
+	};
+	pv_check.push(new_pv);
+	pv_dater();
+};
+
+function delPv(index){
+	pv_check = [];
+	savePv();
+	pv_check.splice(index,1);
+	if(pv_check.length<1)
+	{
+		var new_pv = {
+			url_pv:'', 	
+			url_pv_type:'1',
+			pv_ava_time:''
+		};
+		pv_check.push(new_pv);
+	}
+	pv_dater();
+};
+
+function savePv(){
+	var num = $('.pv-list').length;
+	for(var j=0; j< num;j++){
+		$('.pv-list:eq('+j+')').each(function(index,element){
+			var This = $('.pv-list:eq('+j+')');
+			var new_pv = {
+				url_pv_type:This.find('.url_pv_type').val(),
+				url_pv:This.find('.url_pv').val(),
+				pv_ava_time:This.find('.pv_ava_time').val()
+			};
+			if(!(new_pv.url_pv==''&&new_pv.pv_ava_time=='')){
+				pv_check.push(new_pv);
+			};
+		});
+	};
+};
+
+</script>
+</body>
+</html>
