@@ -80,11 +80,6 @@ var pv_check = [
 	},
 ];
 
-var pv_check = [{
-		"url_pv":"",
-		"url_pv_type":1,
-		"pv_ava_time":""	
-	}];
 
 pv_dater();
 
@@ -113,39 +108,15 @@ function pv_dater(){
 
 function addPv(flag){
 	pv_check = [];
-	var bBtn = false;
-	var pv_check2 = [];
-	
-	var num = $('.pv-list').length;
-	for(var j=0; j< num;j++){
-		$('.pv-list:eq('+j+')').each(function(index,element){
-			var This = $('.pv-list:eq('+j+')');
-			var new_pv = {
-				url_pv_type:This.find('.url_pv_type').val(),
-				url_pv:This.find('.url_pv').val(),
-				pv_ava_time:This.find('.pv_ava_time').val()
-			};
-			if(new_pv.url_pv!=''&&new_pv.pv_ava_time!=''){
-				pv_check.push(new_pv);
-			}else{
-				bBtn = true;
-			};
-			pv_check2.push(new_pv);
-		});
-	};
-	
-
+	if(flag){
+		savePv();
+	}
 	var new_pv = {
 		url_pv:'', 	
 		url_pv_type:'',
 		pv_ava_time:''
 	};
-	
-	if(!bBtn){
-		pv_check2.push(new_pv);
-	}
-	
-	pv_check = pv_check2;
+	pv_check.push(new_pv);
 	pv_dater();
 };
 
@@ -175,7 +146,7 @@ function savePv(){
 				url_pv:This.find('.url_pv').val(),
 				pv_ava_time:This.find('.pv_ava_time').val()
 			};
-			if(new_pv.url_pv!=''&&new_pv.pv_ava_time!=''){
+			if(!(new_pv.url_pv==''&&new_pv.pv_ava_time=='')){
 				pv_check.push(new_pv);
 			};
 		});
