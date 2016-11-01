@@ -16,11 +16,12 @@ var form = document.getElementById('fileOperationsForm');
 oBtn.onclick = function(){
 	form.submit();
 	iframe.onload = function(){
-		var iframe1 = document.getElementById('file_upload_return');
-		console.log(iframe1);
-		console.log(iframe1.contentWindow);
-		console.log(iframe1.contentWindow.document);
-		console.log(iframe1.contentWindow.document.body);
+		console.log(window.name);
+		console.log(iframe);
+		console.log(iframe.contentWindow);
+		console.log(iframe.contentWindow.name);
+		console.log(iframe.contentWindow.document);
+		console.log(iframe.contentWindow.document.body);
 	}
 }
 
