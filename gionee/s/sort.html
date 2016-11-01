@@ -16,20 +16,32 @@ div.wrap{ position:relative; width:100px; height:500px; border:1px dashed #ccc;}
 	<div class="t t1">10</div>
 	<div class="t t2">7</div>
 </div>
-<input type="button" value="sort" id="sort">
+<input type="button" value="↑" id="sort1">
+<input type="button" value="↓" id="sort2">
 <script>
-var oBtn = document.getElementById("sort");
+var oBtn1 = document.getElementById("sort1");
+var oBtn2 = document.getElementById("sort2");
 var oRarr = ["10","07"];
 
 for(var i=0;i<oRarr.length;i++){
 	oRarr[i] = parseInt(oRarr[i]);
 };
 
-oRarr.sort(function(a,b){return a-b;});
+
 
 var aT = document.querySelectorAll(".t");
 
-oBtn.onclick = function(){
+oBtn1.onclick = function(){
+	oRarr.sort(function(a,b){return a-b;});
+	go();
+}
+
+oBtn2.onclick = function(){
+	oRarr.sort(function(a,b){return b-a;});
+	go();
+}
+
+function go(){
 	for(var i=0;i<oRarr.length;i++){
 		for(var j=0;j<aT.length;j++){
 			if(oRarr[i] == aT[j].innerHTML){
