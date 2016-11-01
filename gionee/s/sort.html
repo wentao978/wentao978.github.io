@@ -9,19 +9,23 @@ div.wrap{ position:relative; width:100px; height:500px; border:1px dashed #ccc;}
 .t{ position:absolute; height:30px; line-height:30px; left:0; text-align:center; width:100%; transition:all .5s;}
 .t1{ top:0px; background:#096;}
 .t2{ top:30px; background:#C90;}
+.t3{ top:60px; background:#96C;}
+.t4{ top:90px; background:#6FC;}
 </style>
 </head>
 <body>
 <div class="wrap">
 	<div class="t t1">10</div>
 	<div class="t t2">7</div>
+    <div class="t t3">9</div>
+	<div class="t t4">8</div>
 </div>
 <input type="button" value="↑" id="sort1">
 <input type="button" value="↓" id="sort2">
 <script>
 var oBtn1 = document.getElementById("sort1");
 var oBtn2 = document.getElementById("sort2");
-var oRarr = ["10","07"];
+var oRarr = ["10","07","09","08"];
 
 for(var i=0;i<oRarr.length;i++){
 	oRarr[i] = parseInt(oRarr[i]);
