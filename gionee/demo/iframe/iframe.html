@@ -18,7 +18,8 @@ oBtn.onclick = function(){
 	form.submit();
 	iframe.onload = function(){
 		console.log(iframe);
-		console.log(iframe.contentWindow);
+		console.log(iframe.contentWindow.document);
+		console.log(iframe.contentWindow.document.body);
 	}
 }
 /*
