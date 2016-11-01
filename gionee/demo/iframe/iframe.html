@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>无标题文档</title>
-<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <iframe id="file_upload_return" hidden="true" name="file_upload_return"></iframe>    <!-- 提交表单处理iframe框架 -->	
@@ -11,6 +10,18 @@
 <form action="http://t-musicadm.gionee.com/cms/modeltypeListSave.do?ID=&Series=h&ModelType=h5" id="fileOperationsForm" name="fileOperationsForm" target="file_upload_return" enctype="multipart/form-data" method="post">
 <input type="button" value="click" id="btn">
 <script>
+var oBtn = document.getElementById('btn');
+var iframe = document.getElementById('file_upload_return');
+var form = document.getElementById('fileOperationsForm');
+
+oBtn.onclick = function(){
+	form.submit();
+	iframe.onload = function(){
+		console.log(iframe);
+		console.log(iframe.contentWindow);
+	}
+}
+/*
 $("#btn").click(function(){
 	$("#fileOperationsForm").get(0).submit();	
 	$("#file_upload_return").load(function(){//获取iframe中的内容
@@ -23,7 +34,7 @@ $("#btn").click(function(){
 		console.log(data);
 	});
 });
-
+*/
 </script>
 </body>
 </html>
