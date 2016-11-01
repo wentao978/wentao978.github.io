@@ -15,6 +15,7 @@ $("#btn").click(function(){
 	$("#fileOperationsForm").get(0).submit();	
 	$("#file_upload_return").load(function(){//获取iframe中的内容
 		console.log($(this));
+		console.log($('#file_upload_return').get(0));
 		var body = $(window.frames['file_upload_return'].document.body);
 		var data = eval('(' + body[0].textContent + ')');  
 		console.log(data);
