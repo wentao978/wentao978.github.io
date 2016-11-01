@@ -24,7 +24,6 @@ drag.prototype.down = function(ev){
 	var ev = ev || window.event;
 	this.disX = ev.clientX - this.oDiv.offsetLeft;
 	this.disY = ev.clientY - this.oDiv.offsetTop;
-	this.oDiv.style.zIndex = "2";	
 };
 
 drag.prototype.move = function(ev){
@@ -46,7 +45,6 @@ drag.prototype.move = function(ev){
 };
 
 drag.prototype.up = function(){
-	this.oDiv.style.zIndex = "1";
 	document.onmousemove = null;
 	document.onmouseup = null;
 };
