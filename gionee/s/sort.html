@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+<style>
+div.wrap{ position:relative; width:100px; height:500px; border:1px dashed #ccc;}
+.t{ position:absolute; height:30px; line-height:30px; left:0; text-align:center; width:100%; transition:all .5s;}
+.t1{ top:0px;}
+.t2{ top:30px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="t t1">10</div>
+	<div class="t t2">7</div>
+</div>
+<input type="button" value="sort" id="sort">
+<script>
+var oBtn = document.getElementById("sort");
+var oRarr = ["10","07"];
+
+for(var i=0;i<oRarr.length;i++){
+	oRarr[i] = parseInt(oRarr[i]);
+};
+
+oRarr.sort(function(a,b){return a-b;});
+
+var aT = document.querySelectorAll(".t");
+
+oBtn.onclick = function(){
+	for(var i=0;i<oRarr.length;i++){
+		for(var j=0;j<aT.length;j++){
+			if(oRarr[i] == aT[j].innerHTML){
+				aT[j].style.top = i * 30 + "px";
+			};
+		};
+	};	
+}
+
+</script>
+</body>
+</html>
