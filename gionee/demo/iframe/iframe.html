@@ -6,7 +6,6 @@
 </head>
 <body>
 <iframe id="file_upload_return" hidden="true" name="file_upload_return"></iframe>    <!-- 提交表单处理iframe框架 -->	
-
 <form action="http://t-musicadm.gionee.com/cms/modeltypeListSave.do?ID=&Series=h&ModelType=h5" id="fileOperationsForm" name="fileOperationsForm" target="file_upload_return" enctype="multipart/form-data" method="post">
 <input type="button" value="click" id="btn">
 <script>
@@ -18,24 +17,12 @@ oBtn.onclick = function(){
 	form.submit();
 	iframe.onload = function(){
 		console.log(iframe);
+		console.log(iframe.contentWindow);
 		console.log(iframe.contentWindow.document);
 		console.log(iframe.contentWindow.document.body);
 	}
 }
-/*
-$("#btn").click(function(){
-	$("#fileOperationsForm").get(0).submit();	
-	$("#file_upload_return").load(function(){//获取iframe中的内容
-		console.log($(this));
-		console.log($('#file_upload_return').get(0));
-		console.log($('#file_upload_return').get(0).contentWindow);
-		console.log($('#file_upload_return').get(0).contentDocument);
-		var body = $(window.frames['file_upload_return'].document.body);
-		var data = eval('(' + body[0].textContent + ')');  
-		console.log(data);
-	});
-});
-*/
+
 </script>
 </body>
 </html>
