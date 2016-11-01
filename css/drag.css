@@ -1,0 +1,5 @@
+*{ margin:0; padding:0;}
+html,body{ width:100%; height:100%;}
+body{ background:url(../images/bg.jpg) no-repeat; background-size:100% 100%;}
+#div1,#div2{ width:100px; height:100px; position:absolute; background:red; top:100px; left:32%;}
+#div2{ background:green; left:60%;}
