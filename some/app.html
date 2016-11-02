@@ -36,12 +36,24 @@ document.getElementById("zjmobliestart").onclick = applink();
 
 document.getElementById("zjmobliestart").onclick = function(){
 	
+	$.ajax({
+		url:"zjmobile://platformapi/startapp",
+		type:"get",
+		success: function(){
+			
+		},
+		error: function(){
+			window.location.href = "http://www.baidu.com";
+		}	
+	});
+	
+	/*
 	window.setTimeout(function(){
 		window.location.href = "http://www.baidu.com";		
-	},500);
+	},5000);
 	
 	window.location.href = "zjmobile://platformapi/startapp";	
-	
+	*/
 	
 	
 };
