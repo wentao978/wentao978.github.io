@@ -1,7 +1,0 @@
-<ion-view view-title="共读">
-  <ion-content class="padding" has-bouncing="true">
-    <ui-view name="Page1">
-		<h2>暂时还未开放,敬请期待</h2>
-	</ui-view>
-  </ion-content>
-</ion-view>
