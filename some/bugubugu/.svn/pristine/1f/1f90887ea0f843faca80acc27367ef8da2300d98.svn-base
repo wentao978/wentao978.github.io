@@ -1,0 +1,114 @@
+
+<ion-modal-view hide-nav-bar="true" ng-controller="SigninCtrl">
+  <!-- <ion-header-bar class="bar mt-bar mt-bar-with-input zx-my-header">
+      <h1 class="title zx-login-title">{{title}}</h1>
+      <div class="buttons">
+        <button class="button button-icon icon ion-android-close" ng-click="cancelLogin()"></button>
+      </div>
+  </ion-header-bar> -->
+<div class="zx-signin-header">
+	<div class="">我的</div>
+</div>
+  <ion-content class="" scroll="false">
+     <div class="mt-login-bg mt-full-height">
+        <form class="">
+        	<div ng-show="state === 'NEED'" class="mt-full-height">
+                <div class="padding-top" ng-show="state != 'SIGNUP'">
+                	<div class="zx-mylogin-off">
+                		<img src="img/mypic/Group10.png" alt="">
+                		<span>未登录</span>
+                	</div>
+                    <button class="button button-full zx-color-as-bg mt-no-border" ng-click="gotoSignin()">
+                        登录
+                     	<span class="zx-right-jiantou">&gt;</span>
+                    </button>
+                    <button class="button button-full zx-color-as-bg mt-no-border" ng-click="gotoSignup()">
+                        注册
+                        <span class="zx-right-jiantou">&gt;</span>
+                    </button>
+                </div>	
+        	</div>
+        	<div ng-show="state === 'SIGNIN'" class="bugu-signin">
+               	<div class="zx-signin-login">
+						<img src="img/Image3.png" alt="">
+						<div class="zx-signin-bugu">布谷布谷</div>
+						<div class="zx-sign-bugubugu">BUGU</div>
+				</div>
+				<p class="zx-signin-load
+				">
+					<input type="text" maxlength="11" placeholder="手机号" ng-model="user.account" class="mt-sign-left zx-signin-phone" autocapitalize="false">
+					<div class=zx-signin-line></div>
+					<div class="clear"></div>
+				</p>
+				<p>
+					<input type="password"  placeholder="密码" ng-model="user.psw " class="mt-sign-left zx-signin-phone zx-signin-password psw" autocapitalize="false">
+					<img class="watchpsw" src="img/password01.png" alt="">
+					<div class=zx-signin-line></div>
+					<div class="clear"></div>
+				</p>
+				<div>
+					<div ng-click="goDirectly()" class="zx-signin-income">直接进入</div>
+					<div class="zx-signin-forgetpassword" ng-click="gotoForget()"> 忘记密码</div>
+					<div class="clear"></div>
+				</div> 
+				<div style="height:1.8rem;">
+					<div ng-show="signinError" class="zx-login-text">{{signinErrorMsg}}
+    				</div>
+				</div>          
+                <div class="zx-signin-loginbtn" ng-show="state != 'SIGNUP'">
+                    <button class="zx-signin-loginbutton" ng-click="signin()">
+                        登录
+                    </button>
+                    <div ng-show="state === 'SIGNIN'" ng-click="gotoSignup()" class="zx-signin-button"> 注册</div>
+                </div>
+                <div class="mt-center padding-top" ng-show="state == 'SIGNIN' && weixinInstalled">
+                   <div class="mt-color-main">用微信登陆</div>
+                   <div class="mt-middle padding-top">
+                       <button class="button fa fa-weixin fa-2x"
+                                style="border-radius:50%; width:55Px; height: 55px" ng-click="wxAuthLogin($event)">
+                        </button>
+                   </div>
+	            </div>
+        	</div>	
+			<div ng-show="state === 'SIGNUP'">
+				<div class="zx-signin-header">
+					<ion-header-bar class="bar-stable bar bar-header" align-title="center">
+			            <button ng-click="gotoSignin()" class="button back-button buttons button-clear header-item">
+			              <i class="icon ion-ios-arrow-back"></i> 
+			              <span class="back-text"><span class="previous-title" style="display: block;">登录</span></span>
+			              </button>
+			            <div class="title title-center header-item">注册</div>
+          			</ion-header-bar>
+				</div>
+				<p class="zx-signin-label">
+					<input type="text" maxlength="11" placeholder="手机号" class="zx-signin-left" ng-model="user.account">
+					<div class="zx-signin-line"></div>
+				</p>
+				<p class="zx-signin-label">
+					<input type="text" maxlength="4" placeholder="输入验证码" class="zx-signin-left zx-signin-lefter" ng-model="user.verify">
+					<button ng-disabled="keySent" ng-click="getRegKey()" class="zx-signin-messagebutton">
+					{{keyBtnTitle}}
+					</button>							
+				</p>
+				<div style="display: inline-flex; display: -webkit-inline-flex; width: 100%;">
+					<p class="zx-signin-label">		
+						<input type="password"  placeholder="密码" class="zx-signin-left psw" ng-model="user.psw">
+						<img class="watchpsw" src="img/password01.png" alt="">
+					</p>
+				</div>
+				<div style="height:1.8rem;">
+					<div ng-show="signupError" class="zx-login-text">{{signupErrorMsg}}</div>
+				</div>				
+				<div class="zx-signin-loginbtn zx-signin-loginbtner">
+					<button class="zx-signin-commit" ng-click="signup()" ng-disabled="signupError">
+					提交
+					</button>
+					 <div ng-show="state === 'SIGNUP'" ng-click="gotoSignin()" class="zx-signin-cancel"> 取消</div>
+				</div>
+			</div>
+        </form>
+    	</div>
+    </div>
+  </ion-content>
+</ion-modal-view>
+	

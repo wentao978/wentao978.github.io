@@ -1,0 +1,56 @@
+<ion-view hide-nav-bar="true" class="zx-header-title" view-title="{{title}}">
+  <ion-header-bar class="zx-piaoliu-header">
+    <!--头部按钮以及按钮切换-->
+    <div class="buttons">
+      <button class="button ion-chevron-left click" ng-click="goback()">返回</button>
+    </div>
+    <div class="zx-piaoliu-title">
+      <div ng-click="gotoPage1()" ng-class="{error:isWarning}" class="zx-piaoliu-btn zx-bookbtn">被关注</div>
+      <div ng-click="gotoPage2()" ng-class="{warning:isError}" class="zx-piaoliu-btn">关注</div>
+    </div>
+<!--主题部分-->
+  </ion-header-bar>
+    <ion-content class="kzb-gz">
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png" ui-sref="my-tixing"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+      <div class="userms">
+        <img src="img/mypic/Path2Copy11.png"/>
+        <p><b>用户名</b><span>关注34人</span><span>被关注2343人</span></p>
+        <a>取消关注</a>
+      </div>
+
+    </ion-content>
+

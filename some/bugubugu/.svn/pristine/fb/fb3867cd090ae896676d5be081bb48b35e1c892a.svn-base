@@ -1,0 +1,27 @@
+<ion-view  view-title="添加标签" hide-tabs>
+  <ion-nav-buttons side="right">
+       <button  class="button button-clear button-outline" ng-click="submit()">
+         完成</button>
+  </ion-nav-buttons>
+  <ion-header-bar class="zx-piaoliu-header"></ion-header-bar>  
+  <ion-content class="padding" has-bouncing="true">
+    <div class="zx-tushu-bookfooter zx-addbook-bookfooter zx-addbiaoqian">
+      <span class="zx-qiushu-label">标签:</span>
+      <ul>
+        <li class="{{color|randomColor}}" ng-repeat="x in tuijianBq" ng-click="clickadd(x.bqname)">{{x.bqname}}</li>
+      </ul>
+    </div>
+    <div class="zx-addbiaoqian-content">
+      <ul>
+        <li ng-repeat="x in editBq">
+          <input ng-model="x.bqname" maxlength="8">
+          <div><spqn ng-if="!x.bqname">点击填写标签（8字以内）</spqn>{{x.bqname}}</div>
+        </li>
+      </ul>
+      <div class="zx-addbiaoqian-btn" ng-click="add()">
+        <div>+</div>
+        <span>再加一个</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

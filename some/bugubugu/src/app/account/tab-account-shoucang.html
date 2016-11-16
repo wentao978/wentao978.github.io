@@ -1,0 +1,62 @@
+<ion-view view-title="收藏"  hide-tabs>
+  <ion-nav-buttons side="right" >
+    <button ng-click="showButton($event)" class="button button-clear button-outline zx-shoucang-button">
+      </button>
+  </ion-nav-buttons>
+  <ion-content class="kzb-sc" has-bouncing="true">
+  <ion-view ng-click="show_Button($event)" ng-show="flag" style="z-index: 100000;background: none;">
+      <div ng-click="Lei_bie($event)" class="zx-shoucang-right">
+        <span>分享</span></br>
+        <span>收藏</span>
+      </div>
+  </ion-view>
+  <div class="sc-top">
+    <ul>
+      <li>漫咖啡(金融街店)</li>
+      <li>公共站点 | 每天 9:00-22:00</li>
+      <li>西城区丰盛胡同20号丰铭国际大厦B座101室(近金融街)<br/>(010) 63211186 张先生</li>
+    </ul>
+    <img src="img/driftagepic/Bitmap2.png" />
+  </div>
+  <div class="sc-mid">
+    <p>
+      漂流图书 &nbsp;<span>54</span>本
+    </p>
+    <p>
+     <img src="img/driftagepic/CombinedShape4.png" />
+       <b>距离<span>1.5km</span></b>
+    </p>
+  </div>
+  <div class="zx-tushu-content zx-jianhaoshushu-content">
+      <div class="zx-tushu-bookpic">
+        <img src="{{y.picture}}" alt="">
+      </div>
+      <div class="zx-tushu-abstract">
+        <div class="zx-tushu-bookname">
+          <span class="zx-book-name">{{y.name}}</span>
+          <p>&nbsp&nbsp|&nbsp&nbsp</p>
+          <span class="zx-book-fen">7.6</span></div>
+        <div>作者:{{y.writer}}</div>
+        <div>出版社:{{y.publish}}</div>
+        <div>ISBN：{{y.recommendid}}</div>
+      </div>
+      <div class="zx-tushu-state">
+        <!-- <div>1000本</div> -->
+        <div>漂流中</div>
+        <div class="zx-tushu-bespoke"></div>
+      </div>
+    </div>
+    <div class="zx-tushu-bookfooter">
+      <span class="zx-qiushu-label">标签:</span>
+      <ul>
+        <li class="{{color|randomColor}}">日本</li>
+        <li class="{{color|randomColor}}">文学</li>
+        <li class="{{color|randomColor}}">经典</li>
+      </ul>
+      <div class="zx-tushu-position">
+        <img src="img/tuijianpic/ForYouCopy4.png" alt="">
+        <span>15个赞同</span>
+      </div>
+    </div>
+</ion-content>
+</ion-view>

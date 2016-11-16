@@ -1,0 +1,105 @@
+<ion-view hide-nav-bar="true" class="zx-header-title">
+  <ion-header-bar ng-click="show_Button($event)" class="zx-piaoliu-header">
+      <div ng-click="gotoAddBook()" ng-show="noflag" class="zx-addbook-button">
+          <img src="img/tuijianpic/Grou2.png" alt="">
+      </div>
+      <div ng-hide="isflag" class="zx-addbook-button">
+          <img ng-click="gotoTuiBook()" src="img/tuijianpic/Grou2.png" alt="">
+      </div>
+      <div class="zx-piaoliu-title">
+        <div ng-click="gotoPage1()" ng-class="{error:isError}" class="zx-piaoliu-btn zx-bookbtn">求好书</div>
+        <div ng-click="gotoPage2()" ng-class="{warning:isWarning}" class="zx-piaoliu-btn">荐好书</div>
+      </div>
+      <div ng-click="showButton($event)" class="zx-piaoliu-scan zx-tuijian-rightkk">
+        <img ng-click="gotoScan()" src="img/tuijianpic/CombinedShape.png" alt="">
+      </div>
+  </ion-header-bar>
+    <ion-view ng-click="show_Button($event)" ng-show="flag" style="z-index: 100000;background: none;">
+      <div ng-click="Lei_bie($event)" class="zx-tuijian-right">类别</div>
+    </ion-view>
+    <ion-view id="qiuhaoshu" name="Page1" style="display: block">
+      <ion-content class="padding" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新" on-refresh="qiuDoRefresh()"></ion-refresher>
+        <div ng-repeat="z in qiudata.rows" class="zx-qiushu-main">
+          <div class="zx-qiushu-detail">
+            <div class="zx-qiushu-header">
+              <div class="zx-qieshu-pic" ui-sref="tab.tuijian.peosonal">
+                <img src="img/mypic/Path2Copy11.png" alt="">
+              </div>
+              <div class="zx-qiushu-name">{{z.username}}</div>
+              <span>{{z.keywords}}</span>
+            </div>
+            <div class="zx-qiushu-content" ui-sref="tab.tuijian.detail" class="zx-tushu-book">
+              {{z.content}}
+            </div>
+            <div class="zx-tushu-bookfooter">
+              <span class="zx-qiushu-label">标签:</span>
+              <ul>
+                <li class="{{color|randomColor}}">日本</li>
+                <li class="{{color|randomColor}}">文学</li>
+                <li class="{{color|randomColor}}">经典</li>
+              </ul>
+              <div class="zx-tushu-position">
+                <span>15同求&nbsp&nbsp|&nbsp&nbsp5个推荐</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-infinite-scroll ng-if="qiuload" on-infinite="qiuLoadMore()" distance="1%" ></ion-infinite-scroll>
+      </ion-content>
+    </ion-view>
+    <ion-view id="jianhaoshu" name="Page2" style="display: none">
+      <ion-content class="padding" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新" on-refresh="tuiDoRefresh()"></ion-refresher>
+        <div ng-repeat="x in tuidata.rows" ng-if="x.booklist.length" class="zx-qiushu-main">
+          <div class="zx-qiushu-detail">
+            <div class="zx-qiushu-header">
+              <div ui-sref="tab.tuijian.peosonal" class="zx-qieshu-pic">
+                <img src="img/mypic/Path2Copy11.png" alt="">
+              </div>
+              <div class="zx-qiushu-name">{{x.name}}</div>
+              <span>推荐给</span>
+              <span>求书用户名</span>
+            </div>
+            <div class="zx-tushu-content zx-jianhaoshushu-content" ui-sref="tab.tuijian.jianhaoshudetail({bookid: x.booklist[0].id})">
+              <div class="zx-qiushu-content zx-jianshu-content" class="zx-tushu-book">{{x.booklist[0].remark}}</div>
+              <div class="zx-tushu-bookpic">
+                <img src="{{x.booklist[0].picture||'img/driftagepic/Group3.png'}}" alt="">
+              </div>
+              <div class="zx-tushu-abstract">
+                <div class="zx-tushu-bookname">
+                  <span class="zx-book-name">{{x.booklist[0].name}}</span>
+                  <p>&nbsp&nbsp|&nbsp&nbsp</p>
+                  <span class="zx-book-fen">7.6</span></div>
+                <div>作者:{{x.booklist[0].writer||"未知"}}</div>
+                <div>出版社:{{x.booklist[0].publish||"未知"}}</div>
+                <div>ISBN：{{x.booklist[0].isbn||"未知"}}</div>
+              </div>
+              <div class="zx-tushu-state">
+                <div>1000本</div>
+                <!-- <div>漂流中</div> -->
+                <div class="zx-tushu-bespoke"></div>
+              </div>
+            </div>
+            <div class="zx-tushu-bookfooter">
+              <span class="zx-qiushu-label">标签:</span>
+              <ul>
+                <li class="{{color|randomColor}}">日本</li>
+                <li class="{{color|randomColor}}">文学</li>
+                <li class="{{color|randomColor}}">经典</li>
+              </ul>
+              <div class="zx-tushu-position">
+                <img src="img/tuijianpic/ForYouCopy4.png" alt="">
+                <span>15</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ion-infinite-scroll ng-if="tuiload" on-infinite="tuiLoadMore()" distance="1%" ></ion-infinite-scroll> 
+      </ion-content>
+    </ion-view>    
+</ion-view>
+
+
+
+  

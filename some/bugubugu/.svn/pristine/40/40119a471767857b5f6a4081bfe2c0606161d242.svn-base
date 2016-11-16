@@ -1,0 +1,142 @@
+<ion-view hide-nav-bar='true' hide-tabs>
+  <ion-content class="kzb-self-i" has-bouncing="true">
+        <ul class='selfpage'>
+          <li>
+            <i class='ion-chevron-left 'ng-click="goback()" ></i>
+            <b>个人主页</b>
+          </li>
+          <li>
+            <img ng-show='false ' src="img/mypic/Group10.png">
+            <img src="img/mypic/Path2Copy11.png">
+          </li>
+          <li ng-show='true'>
+            <b>关注TA</b>
+          </li>
+          <li>
+            <img src="img/mypic/Group9.png" ui-sref="my-jifen">
+          </li>
+        </ul>
+
+        <div class='focus'>
+          <p>
+            <b class='color'>derekfox</b>
+            <img src="img/mypic/Path2Copy.png">
+            <b>北京</b>
+          </p>
+          <p>个性签名的内容，联网的熏陶下完成22字符</p>
+          <p>
+            <b>被 23 人关注</b>
+            <span class='color1'>关注345人</span>
+          </p>
+        </div>
+
+        <div class='recommend'>
+            —— 推荐图书 ——
+        </div>
+
+        <ul class='book'>
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png">
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png">
+            <b>白夜行啊啊啊啊啊啊</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png">
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png">
+            <b>白夜行</b>
+            <a>[日]野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png">
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+        </ul>
+
+         <div class='recommend'>
+            —— 求书 ——
+         </div>
+
+        <div class='label'>
+             <b>标签 :</b>
+             <ul>
+               <li>日本</li>
+               <li>文学</li>
+               <li>经典</li>
+               <li>哲学</li>
+               <li>经典</li>
+               <li>政治经济</li>
+               <li>EMBA</li>
+               <li>化学</li>
+               <li>深夜食堂 板井</li>
+               <li>机器猫</li>
+               <li>文学</li>
+               <li>UED</li>
+               <li>......</li>
+               <li >全部</li>
+             </ul>
+        </div>
+
+       <ul class='tuijian'>
+         <li>
+           <span>共获得15次推荐</span>
+           <span class='same'>30个同求</span>
+         </li>
+         <li>查看全部求书</li>
+       </ul>
+        <div class='recommend'>
+            —— 投漂图书 ——
+        </div>
+
+         <ul class='book'>
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png" >
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png" >
+            <b>白夜行啊啊啊啊啊啊</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png" >
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png" >
+            <b>白夜行</b>
+            <a>[日]野圭吾</a>
+          </li>
+
+          <li>
+            <img src="img/driftagepic/BitmapCopy2.png" >
+            <b>白夜行</b>
+            <a>[日]东野圭吾</a>
+          </li>
+        </ul>
+
+         <div class='recommend'>
+            —— 活动的站点——
+         </div>
+
+         <div id='map'></div>
+  </ion-content>
+</ion-view>

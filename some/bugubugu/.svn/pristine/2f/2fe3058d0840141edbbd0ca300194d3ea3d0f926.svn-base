@@ -1,0 +1,67 @@
+<ion-view  view-title="站点" hide-tabs>  
+	<ion-content class="padding" has-bouncing="true">
+    	<div class="zx-setzhandian-header">
+    		<div class="zx-setzhandian-pic">
+    			<img src="img/driftagepic/Group5.png" alt="">
+                <input type="file">
+    		</div>
+    		<span>点击拍照或上传站点介绍图片</span>
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>站点名称:</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>类型 :</span></br>
+    		<div class="zx-setzhandian-radio">
+    			<input type="radio" name="atde">
+    			<span class="zx-setzhandian-zhandian">公共站点</span>
+    			<input type="radio" name="atde">
+    			<span class="zx-setzhandian-zhandian">家庭/小组</span>
+    		</div>	
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>联系方式 (公开) :</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>联系方式 (审核备案) :</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>联系人 :</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>所在地区 :</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list zx-setzhandian-olist">
+            <span class="zx-setzhandian-div">申请理由 :</span>
+    		<textarea name="" id="" cols="30" rows="10"></textarea>
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>站点状态 :</span></br>
+    		<div class="zx-setzhandian-radio">
+    			<input type="radio" name="atde">
+    			<span class="zx-setzhandian-zhandian">公开</span>
+    			<input type="radio" name="atde">
+    			<span class="zx-setzhandian-zhandian">仅自己可见</span>
+    		</div>	
+    	</div>
+    	<div class="zx-setzhandian-list">
+    		<span>服务时间 :</span>
+    		<input type="text">
+    	</div>
+    	<div class="zx-setzhandian-list zx-setzhandian-olist">
+            <span class="zx-setzhandian-div">申请理由 :</span>
+    		<textarea name="" id="" cols="30" rows="10"></textarea>
+    	</div>
+        <div class="zx-addbook-commit">
+          <button class="zx-signin-commit">
+          提交
+          </button>
+          </br><p>我们会在3个工作日内完成审核</p>
+        </div>
+	</ion-content>
+</ion-view>

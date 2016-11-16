@@ -1,0 +1,46 @@
+
+<ion-header-bar align-title="center"class="bar-stable" >
+  <div class="buttons">
+    <button class="button ion-chevron-left button-outline button-clear " ng-click="goback()">返回</button>
+  </div>
+  <h1 class="title">积分</h1>
+  <div class="buttons">
+    <button class="button button-outline button-clear ">记录</button>
+  </div>
+</ion-header-bar>
+<ion-content class="kzb-jf" style="top:54px;">
+  <div class="integral">
+     <b>积分</b>
+     <a href="#">规则说明</a>
+     <span>30 点</span>
+  </div>
+  <!--会员区-->
+
+  <ul class="member">
+    <li>
+      <a>一级会员</a>
+      <span>点击购买</span>
+      <b>10元/月</b>
+    </li>
+    <li>
+      <a>二级会员</a>
+      <span>点击购买</span>
+      <b>49元/半年</b>
+    </li>
+    <li>
+      <a>VIP会员</a>
+      <span>点击购买</span>
+      <b>89元/年</b>
+    </li>
+  </ul>
+
+  <!--充值区-->
+  <ul class="recharge">
+    <li>
+      您可以为自己的账号充值，<a href="">充值优惠</a>
+    </li>
+    <li>
+      <a ui-sref="my-shezhi">去充值</a>
+    </li>
+  </ul>
+</ion-content>

@@ -1,0 +1,113 @@
+ <ion-view hide-nav-bar="true" class="zx-header-title" view-title="{{title}}" hide-tabs>
+  <ion-header-bar class="zx-piaoliu-header">
+    <!--头部按钮以及按钮切换-->
+    <!-- <div class="buttons">
+      <button class="button ion-chevron-left click" ng-click="goback()">返回</button>
+    </div> -->
+    <button ng-click="$ionicGoBack()" class="button back-button buttons button-clear header-item">
+    	<i class="icon ion-ios-arrow-back">
+    		返回
+    	</i>
+    </button>
+    <div class="zx-piaoliu-title zx-guanzhu-title">
+      <div ng-click="gotoPage1()" ng-class="{error:isWarning}" class="zx-piaoliu-btn zx-bookbtn">求书</div>
+      <div ng-click="gotoPage2()" ng-class="{warning:isError}" class="zx-piaoliu-btn">推荐</div>
+    </div>
+    <div style="visibility:hidden;width:50px" >
+        <img ng-click="gotoScan()" src="img/tuijianpic/Scan.png" alt="">
+      </div>
+<!--主题部分-->
+  </ion-header-bar>
+    <ion-view id="qiushu" name="Page1" style="display: block">
+      <ion-content class="padding" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新" on-refresh="DoQiuRefresh()"></ion-refresher>
+        <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+      	<ion-item ng-repeat="x in data.rows" class="zx-qiushu-main item-remove-animate">
+          <div class="zx-qiushu-detail">
+          	<div class="zx-qiutuishu-header">
+          		<div>{{x.username}}</div>
+          		<div class="zx-qiutuishu-book">&nbsp&nbsp({{x.keywords}})</div>
+        		<span class="zx-qiutuishu-time">{{x.createtime|dateTo}}</span>
+          	</div>
+            <!-- <div class="zx-qiushu-header">
+              <div class="zx-qiushu-name">{{x.username}}</div>
+              <span>{{x.keywords}}</span>
+            </div> --> 
+            <div class="zx-qiushu-content" class="zx-tushu-book">
+              {{x.content}}
+            </div>
+            <div class="zx-tushu-bookfooter">
+              <span class="zx-qiushu-label">标签:</span>
+              <ul>
+                <li class="{{color|randomColor}}">日本</li>
+                <li class="{{color|randomColor}}">文学</li>
+                <li class="{{color|randomColor}}">经典</li>
+              </ul>
+              <div class="zx-tushu-position">
+                <span>15同求&nbsp&nbsp|&nbsp&nbsp5个推荐</span>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="modal">
+             <h1>{{ selectedId }}</h1>
+          </div> -->
+          <ion-option-button ng-click="onItemDelete($index)">
+            删除
+          </ion-option-button>  
+        </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="load" on-infinite="QiuLoadMore()" distance="1%" ></ion-infinite-scroll>
+      <div class="zx-qiushu-showMsg">{{msg}}</div>
+      </ion-content>
+    </ion-view>
+    <ion-view id="tuijian" name="Page2" style="display: none">
+      <ion-content class="padding" has-bouncing="true">
+      <ion-refresher pulling-text="下拉刷新" on-refresh="DoTuiRefresh()"></ion-refresher>
+      <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+        <ion-item ng-repeat="y in Odata.rows" class="zx-qiushu-main item-remove-animate">
+          <div class="zx-qiushu-detail">
+            <div class="zx-qiutuishu-header">
+          		<div>{{y.content}}</div>
+          	</div>
+            <div ng-repeat="z in y.booklist" class="zx-tushu-content zx-jianhaoshushu-content">
+              <div class="zx-tushu-bookpic">
+                <img src="{{z.picture}}" alt="">
+              </div>
+              <div class="zx-tushu-abstract">
+                <div class="zx-tushu-bookname">
+                  <span class="zx-book-name">{{z.name}}</span>
+                  <p>&nbsp&nbsp|&nbsp&nbsp</p>
+                  <span class="zx-book-fen">7.6</span></div>
+                <div>作者:{{z.writer||"未知"}}</div>
+                <div>出版社:{{z.publish||"未知"}}</div>
+                <div>ISBN：{{z.recommendid||"未知"}}</div>
+              </div>
+              <div class="zx-tushu-state">
+                <!-- <div>1000本</div> -->
+                <!-- <div>漂流中</div> -->
+                <div class="zx-tushu-bespoke"></div>
+              </div>
+            </div>
+            <div class="zx-tushu-bookfooter">
+              <span class="zx-qiushu-label">标签:</span>
+              <ul>
+                <li class="{{color|randomColor}}">日本</li>
+                <li class="{{color|randomColor}}">文学</li>
+                <li class="{{color|randomColor}}">经典</li>
+              </ul>
+              <div class="zx-tushu-position">
+                <img src="img/tuijianpic/ForYouCopy4.png" alt="">
+                <span>15</span>
+              </div>
+            </div>
+          </div>
+          <ion-option-button ng-click="ItemDelete($index)">
+            删除
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+        <ion-infinite-scroll ng-if="tuiload" on-infinite="TuiLoadMore()" distance="1%" ></ion-infinite-scroll>
+        <div class="zx-qiushu-showMsg">{{Tuimsg}}</div> 
+      </ion-content>
+    </ion-view>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view view-title="我的">
+  <ion-content>
+    <ion-list>
+      <ion-toggle  ng-model="settings.enableFriends">
+          Enable Friends
+      </ion-toggle>
+
+      <a class="item item-thumbnail-left" ng-click="scanBarCode()">
+        <h2>扫描二维码</h2>
+        <p>扫描结果{{data.barCodeResult}}</p>
+      </a>
+      <a class="item item-thumbnail-left" ng-click="takePicture()">
+        <img ng-src="{{data.camareResult}}">
+        <h2>拍照</h2>
+        <p>拍照后照片显示在左边{{data.camareResultError}}</p>
+      </a>
+      <a class="item item-thumbnail-left" ng-click="getPicture()">
+        <img ng-src="{{data.pictureResult}}">
+        <h2>照片</h2>
+        <p>照片显示在左边{{data.pictureResultError}}</p>
+      </a>
+    </ion-list>
+  </ion-content>
+</ion-view>

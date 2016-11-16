@@ -1,0 +1,41 @@
+<ion-view view-title="推荐" hide-tabs>
+  <ion-content class="padding" has-bouncing="true">
+  	<div class="zx-addtuijian-main" ng-repeat="x in touPiaobooks">
+  		<div class="zx-addtuijian-header">
+  			<div class="zx-addtuijian-left">
+  				<img src="{{x.img!=''?x.img:'img/driftagepic/Group3.png'}}" alt="">
+          <!-- <input type="file"> -->
+  			</div>
+  			<div class="zx-addtuijian-abstract">
+				<p>书名:</p>
+  				<input class="zx-addtuijian-ipt" ng-disabled="x.flag" placeholder="必填" type="text" ng-model="x.name">
+  				<img ui-sref="tab.tuijian.search({id:$index})" src="img/tuijianpic/Search.png" alt="">
+  			</div>
+        <div class="zx-addtuijian-abstract" ng-click="scanBarcode()">
+        <p>ISBN:</p>
+          <input placeholder="点击扫描条形码" disabled="true" type="text" ng-model="x.isbn">
+          <img src="img/tuijianpic/Scan.png" alt="">
+        </div>
+  			<!-- <div class="zx-addtuijian-abstract">
+				<p>作者:</p>
+  				<input class="zx-addtuijian-ipt" disabled="true" placeholder="选填" type="text" ng-model="x.writer">
+  			</div> -->
+  		  </div>
+  		  <div class="zx-detail-position zx-jiandetail-position">
+          <span>我的书评</span>
+          <textarea class="zx-addtuijian-remark" placeholder="选填" ng-model="x.remark"></textarea>
+      	</div>
+      	<div class="zx-tushu-bookfooter zx-addtuijian-bookfooter">
+    			<span class="zx-qiushu-label">标签:</span>
+    			<ul>
+    				<li class="{{color|randomColor}}" ui-sref="tab.tuijian.addbiaoqian">+添加</li>
+    			</ul>
+		    </div>
+    		<div class="zx-detail-button zx-allrecommed-button zx-addtuijian-button">
+            <button class="zx-signin-commit" ng-click="addTuijian()">
+           	确定
+            </button>
+        </div>
+  	</div>
+  </ion-content>
+</ion-view>

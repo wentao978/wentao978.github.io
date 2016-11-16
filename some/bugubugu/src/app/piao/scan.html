@@ -1,0 +1,15 @@
+<ion-view  view-title="扫描">
+  <ion-header-bar class="zx-piaoliu-header"></ion-header-bar>
+      
+  <ion-content class="padding">
+    <button ng-click="scanBarcode()" class="button button-block button-positive">Scan</button>
+
+	<div class="card">
+	  <div class="item item-divider">Barcode Results</div>
+	  <div class="item">二维码信息: {{scanResult.text}}</div>
+	  <div class="item">编码格式: {{scanResult.format}}</div>
+	  <div class="item">Cancelled: {{scanResult.cancelled}}</div>
+	</div>
+	<a ui-sref="tab.saomiao">扫描页面</a>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+{
+  "name": "buguapp",
+  "app_id": "",
+  "documentRoot": "src",
+  "watchPatterns": [
+    "src/index.html",
+    "src/app/**/*.js",
+    "src/css/*",
+    "!src/app/**/*.html"
+  ],
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://www.bookbugu.com/"
+    }
+  ]
+}

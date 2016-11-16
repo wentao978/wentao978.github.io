@@ -1,0 +1,63 @@
+<ion-modal-view hide-nav-bar="true" ng-controller="PasswordForgetCtrl">
+  <!-- <ion-header-bar class="bar mt-bar mt-bar-with-input">
+      <h1 class="title mt-color-text">忘记密码</h1>
+      <div class="buttons">
+        <button class="button button-icon icon ion-android-close" ng-click="cancelForget()"></button>
+      </div>
+  </ion-header-bar>
+  <ion-content class="mt-full-height" scroll="false">
+    <div class="mt-login-bg mt-full-height">
+        <form class="mt-full-height">
+
+            <div class="padding-horizontal-2x mt-full-height" >
+        		  <div>
+	                <label class="item-input mt-login-input-bg mt-bg-devider-bottom" style="height:60px; border-bottom-color: gray">
+	                    <i class="fa fa-phone placeholder-icon mt-color-main"></i>
+	                    <input type="text" placeholder="请输入注册时的电话号码" class="mt-sign-left" ng-model="user.mobile">
+	                </label>
+                    <button class="button button-full mt-color-as-bg mt-no-border" ng-click="getPassword()" ng-disabled="resetError">
+                        获取密码
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </ion-content> -->
+        <div class="zx-signin-header">
+          <ion-header-bar class="bar-stable bar bar-header" align-title="center">
+            <button ng-click="cancelForget()" class="button back-button buttons button-clear header-item">
+              <i class="icon ion-ios-arrow-back"></i> 
+              <span class="back-text"><span class="previous-title" style="display: block;">登录</span></span>
+              </button>
+            <div class="title title-center header-item">忘记密码</div>
+          </ion-header-bar>
+        </div>
+        <p class="zx-signin-label">
+          <input type="text" placeholder="手机号" maxlength="11" class="zx-signin-left" ng-model="user.account">
+          <div class="zx-signin-line"></div>
+        </p>
+        <!-- <p class="zx-signin-label">
+          <input type="text" placeholder="输入验证码" maxlength="4" class="zx-signin-left zx-signin-lefter" ng-model="user.activationKey">
+          <span class="zx-signin-messagebutton" ng-disabled="getRegKeyBtn" ng-click="getRegKey()" 
+           class="zx-signin-messagebutton">
+          {{keyBtnTitle}}
+          </span>             
+        </p> -->
+        <!-- <div style="display: inline-flex; display: -webkit-inline-flex; width: 100%;">
+          <p class="zx-signin-label">   
+            <input type="password" placeholder="设置新密码" class="zx-signin-left" ng-model="user.password">
+            <img src="img/password01.png" alt="">
+          </p>
+        </div> -->
+        <div style="height:1.8rem;">
+            <div ng-show="signupError" class="padding-top zx-login-text">{{signupErrorMsg}}</div>
+        </div>       
+        <div class="zx-signin-loginbtn zx-signin-loginbtner">
+          <button class="zx-signin-commit" ng-click="getPassword()" >
+          提交
+          </button>
+          <div ng-click="cancelForget()" class="zx-signin-cancel"> 取消</div>
+        </div>
+      </div>
+</ion-modal-view>
+	

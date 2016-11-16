@@ -1,0 +1,42 @@
+<ion-view view-title="待投漂图书" hide-tabs>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear button-outline" >
+      全投票</button>
+  </ion-nav-buttons>
+  <ion-content class="padding" has-bouncing="true">
+  <div class="zx-jieyue-main">
+  	<div class="zx-tushu-content zx-jianhaoshushu-content">
+      <div class="zx-tushu-bookpic">
+        <img src="{{y.picture}}" alt="">
+      </div>
+      <div class="zx-tushu-abstract">
+        <div class="zx-tushu-bookname">
+          <span class="zx-book-name">{{y.name}}</span>
+          <p>&nbsp&nbsp|&nbsp&nbsp</p>
+          <span class="zx-book-fen">7.6</span></div>
+        <div>作者:{{y.writer}}</div>
+        <div>出版社:{{y.publish}}</div>
+        <div>ISBN：{{y.recommendid}}</div>
+      </div>
+      <div class="zx-tushu-state zx-jieyue-state">
+        <div>待漂流</div>
+        <!-- <div>剩三天</div> -->
+        <div class="zx-tushu-bespoke"></div>
+      </div>
+    </div>
+    <div class="zx-tushu-bookfooter">
+      <span class="zx-qiushu-label">标签:</span>
+      <ul>
+        <li class="{{color|randomColor}}">日本</li>
+        <li class="{{color|randomColor}}">文学</li>
+        <li class="{{color|randomColor}}">经典</li>
+      </ul>
+      <div class="zx-tushu-position">
+        <span>马上投漂</span>
+        <span>|</span>
+        <span>删除</span>
+      </div>
+    </div>
+  </div>  
+  </ion-content>
+</ion-view>

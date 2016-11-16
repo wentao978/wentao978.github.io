@@ -1,0 +1,59 @@
+<div class="zx-tushu-main">
+	<div class="zx-tushu-search">
+		<input type="text" value="" placeholder="搜索" >
+	</div>
+	<div class="zx-tushu-line"></div>
+	<div class="zx-tushu-nav">
+		<span>一级分类</span>
+		<ul>
+			<li>文学</li>
+			<li>史学</li>
+			<li>医学</li>
+			<li>自然科学</li>
+			<li>其它</li>
+		</ul>
+		<div>二级分类</div>
+		<ul>
+			<li>小说</li>
+			<li>散文</li>
+			<li>自传</li>
+			<li>诗歌</li>
+			<li>其它</li>
+		</ul>
+	</div>
+	<div class="zx-tushu-line zx-tushu-line2"></div>
+	<div ng-repeat="x in data.rows" class="zx-tushu-book">
+		<div class="zx-tushu-content">
+			<div ui-sref="tab.piao.detail" class="zx-tushu-bookpic">
+				<img src="{{x.picture}}" alt="">
+			</div>
+			<div class="zx-tushu-abstract">
+				<div class="zx-tushu-bookname">
+					<span class="zx-book-name">{{x.bookname}}</span>
+					<p>&nbsp&nbsp|&nbsp&nbsp</p>
+					<span class="zx-tushu-fen">7.6</span>
+				</div>
+				<div>作者:{{x.writer}}</div>
+				<div>出版社:{{x.publish}}</div>
+				<div>ISBN：{{x.qrid}}</div>
+			</div>
+			<div class="zx-tushu-state">
+				<div>1000本</div>
+				<div>漂流中</div>
+				<div ui-sref="tab.order" class="zx-tushu-bespoke">预约</div>
+			</div>
+		</div>
+		<div class="zx-tushu-bookfooter">
+			<span class="zx-qiushu-label">标签:</span>
+			<ul>
+				<li>日本</li>
+				<li>文学</li>
+				<li>经典</li>
+			</ul>
+			<div class="zx-tushu-position">
+				<img src="img/driftagepic/CombinedShapeCopy.png" alt="">
+				<span>距离26km</span>
+			</div>
+		</div>
+	</div>
+</div>

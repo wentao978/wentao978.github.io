@@ -1,0 +1,43 @@
+<ion-header-bar align-title="center" class="bar-stable" >
+  <div class="buttons">
+    <button class="button ion-chevron-left button-outline button-clear " ng-click="goback()">返回</button>
+  </div>
+  <h1 class="title">设置</h1>
+</ion-header-bar>
+<ion-content class="kzb-sz" style="top:53px;">
+  <!--设置区-->
+
+  <ul class="member">
+    <li class="item item-toggle">
+      <a>推送</a>
+      <label class="toggle toggle-assertive">
+        <input type="checkbox">
+        <div class="track ">
+          <div class="handle "></div>
+        </div>
+      </label>
+    </li>
+
+    <li>
+      <a>关于我们</a>
+      <span class="ion-chevron-right"></span>
+    </li>
+    <li>
+    <a>清除缓存</a>
+    <span>0.5W</span>
+  </li>
+    <li>
+      <a>建议</a>
+      <span class="ion-chevron-right"></span>
+    </li>
+  </ul>
+
+  <!--推出区-->
+  <ul class="recharge">
+
+    <li>
+      <a ui-sref="my-shoucang">退出登陆</a>
+    </li>
+  </ul>
+</ion-content>
+
