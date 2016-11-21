@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>摇一摇</title>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<style type="text/css">
+a{-webkit-tap-highlight-color: rgba(0,0,0,0);}
+.btn-blue{display:block;height:42px;line-height:42px;text-align:center;border-radius:4px;font-size:18px;color:#FFFFFF;background-color: #4185F3;}
+.btn-blue:active{background-color: #357AE8;}
+.animated-slow {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    z-index: 100000;
+}
+.shake{
+    -webkit-animation-name: shake;
+    animation-name: shake;
+}
+@-webkit-keyframes shake {
+0%, 100% {
+-webkit-transform:translate3d(0, 0, 0);
+transform:translate3d(0, 0, 0)
+}
+10%, 30%, 50%, 70%, 90% {
+-webkit-transform:translate3d(-10px, 0, 0);
+transform:translate3d(-10px, 0, 0)
+}
+20%, 40%, 60%, 80% {
+-webkit-transform:translate3d(10px, 0, 0);
+transform:translate3d(10px, 0, 0)
+}
+}
+</style>
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="btn-blue animated-slow" id="btn">摇一摇</div>
+
+
+<script type="text/javascript">
+
+</script>
+
+    <script>
+    var SHAKE_THRESHOLD = 800;
+    var last_update = 0;
+    var x = y = z = last_x = last_y = last_z = 0;
+
+    if (window.DeviceMotionEvent) {
+        window.addEventListener('devicemotion', deviceMotionHandler, false);
+    } else {
+        alert('本设备不支持devicemotion事件');
+    }
+
+    function deviceMotionHandler(eventData) {
+        var acceleration = eventData.accelerationIncludingGravity;
+        var curTime = new Date().getTime();
+
+        if ((curTime - last_update) > 100) {
+            var diffTime = curTime - last_update;
+            last_update = curTime;
+            x = acceleration.x;
+            y = acceleration.y;
+            z = acceleration.z;
+            var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+            var status = document.getElementById("status");
+
+            if (speed > SHAKE_THRESHOLD) {
+                var text = "x:"+x+"<br />y:"+y+"<br />z:"+z+"<br />speed:"+speed;
+                //status.innerHTML = text;
+                $('#btn').addClass('shake');
+                setTimeout(function(){
+                	$('#btn').removeClass('shake')
+                },500)
+            }
+            last_x = x;
+            last_y = y;
+            last_z = z;
+        }
+    }
+    </script>
+
+</body>
+</html>
