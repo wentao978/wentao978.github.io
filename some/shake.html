@@ -43,7 +43,7 @@ transform:translate3d(10px, 0, 0)
 <body>
 
 <div class="btn-blue animated-slow" id="btn">摇一摇</div>
-
+<div id="text"></div>
 
 <script type="text/javascript">
 
@@ -56,7 +56,9 @@ transform:translate3d(10px, 0, 0)
 
     if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
+		document.getElementById("text").innerHTML = "支持摇一摇";
     } else {
+		document.getElementById("text").innerHTML = "sorry,no支持摇一摇";
         alert('本设备不支持devicemotion事件');
     }
 
