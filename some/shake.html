@@ -58,14 +58,32 @@ transform:translate3d(10px, 0, 0)
         window.addEventListener('devicemotion', deviceMotionHandler, false);
 		//document.getElementById("text").innerHTML = "支持摇一摇";
     } else {
-		document.getElementById("text").innerHTML = "sorry,no支持摇一摇";
+		document.getElementById("text").innerHTML = "sorry,不支持摇一摇,试试点击";
+		document.getElementById("btn").onclick = function(){
+			 $('#btn').addClass('shake');
+			 setTimeout(function(){
+				$('#btn').removeClass('shake')
+			 },500)	
+		}
         //alert('本设备不支持devicemotion事件');
     }
 
     function deviceMotionHandler(eventData) {
         var acceleration = eventData.accelerationIncludingGravity;
         var curTime = new Date().getTime();
-		document.getElementById("text").innerHTML = acceleration;
+		if(acceleration){
+			document.getElementById("text").innerHTML = "支持摇一摇";
+		}else{
+			
+			document.getElementById("text").innerHTML = "sorry,不支持摇一摇,试试点击";
+			document.getElementById("btn").onclick = function(){
+			 $('#btn').addClass('shake');
+			 setTimeout(function(){
+					$('#btn').removeClass('shake')
+				 },500)	
+			}	
+		}
+		
         if ((curTime - last_update) > 100) {
             var diffTime = curTime - last_update;
             last_update = curTime;
