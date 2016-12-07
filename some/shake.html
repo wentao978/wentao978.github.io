@@ -56,16 +56,16 @@ transform:translate3d(10px, 0, 0)
 
     if (window.DeviceMotionEvent) {
         window.addEventListener('devicemotion', deviceMotionHandler, false);
-		document.getElementById("text").innerHTML = "支持摇一摇";
+		//document.getElementById("text").innerHTML = "支持摇一摇";
     } else {
 		document.getElementById("text").innerHTML = "sorry,no支持摇一摇";
-        alert('本设备不支持devicemotion事件');
+        //alert('本设备不支持devicemotion事件');
     }
 
     function deviceMotionHandler(eventData) {
         var acceleration = eventData.accelerationIncludingGravity;
         var curTime = new Date().getTime();
-
+		document.getElementById("text").innerHTML = acceleration;
         if ((curTime - last_update) > 100) {
             var diffTime = curTime - last_update;
             last_update = curTime;
