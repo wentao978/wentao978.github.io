@@ -78,6 +78,94 @@ $(document).ready(function(){
 		});
     });
 	
+	
+	
+	
+	
+	
+	
+	//抽奖代码
+	var $list = $('.gridWrap .list');
+	var $start = $('.gridWrap .start');
+	var btn = true;
+	var level = 8;
+	
+	$start.click(function(){
+		if(!btn)return;
+		
+		if(parseInt(resNumber)){
+			$start.addClass('gray');
+			//在此处写ajax即可
+			setTimeout(function(){
+				level = 8;	
+			},2000);
+			
+			
+			var t1 = Date.now();
+			raffleInit(level,function(n){
+				console.log("恭喜你获得了："+(n)+' 等奖');
+				console.log((Date.now() - t1)/1000);
+				$start.removeClass('gray');
+				btn= !btn;
+			});
+			btn= !btn;	
+		}else{
+			toast('您的摇杆次数用完了',2600);
+		}	
+	});
+	
+	var timer = null,now = $list.length - 1,count = 0,startOff = true,s = 200;  
+	function raffleInit(){
+		var endnum = arguments[0]-1;
+		var cb =arguments[1];
+		clearInterval(timer)
+		timer = setInterval(function(){
+			startGo();
+		},s);
+		function startGo(){
+			
+			endnum = level - 1;//将等级设置为延时后的值
+			
+			if(!startOff){
+				cb(endnum+1)
+				clearInterval(timer);
+				count = 0,startOff = true,s = 180;
+				return false;
+			};
+			for(var i=0;i<$list.length;i++){
+				$list.eq(i).removeClass('active');
+			};
+			now++;
+			now = now++%$list.length;
+			if(now %$list.length == 0) {
+				count++;   //计算圈数
+			};
+			
+			$list.eq(now).addClass('active');
+			if(count>=1 && count<7){
+				clearInterval(timer);
+				s *= 0.96;
+				timer = setInterval(function(){
+					startGo();
+				},s);
+			};
+			if(count>7){
+				clearInterval(timer);
+				s *= 1.08;
+				timer = setInterval(function(){
+					startGo();
+				},s);
+				if(s>260 && (now == endnum)){
+					startOff = false;
+				};
+			};
+		};
+	};
+	
+	
+	
+	
+	
 
 	$.ajax({
 		url: '/active/year2017/search.php',
