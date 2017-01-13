@@ -85,6 +85,7 @@ $(document).ready(function(){
 	
 	
 	//抽奖代码
+	resNumber = 10;
 	var $list = $('.gridWrap .list');
 	var $start = $('.gridWrap .start');
 	var btn = true;
