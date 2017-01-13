@@ -96,6 +96,8 @@ window.onload = function () {
     img.onprogress = function (evt) {
         if (evt.lengthComputable) {
             console.log(evt.loaded / evt.total);
+			document.getElementById("inner").style.width = document.getElementById("text").innerHTML = (evt.loaded / evt.total) * 100 + "%";
+		
         }
     };
     document.body.appendChild(img);
