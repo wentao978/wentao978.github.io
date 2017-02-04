@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<body>
+<form action="http:www.gionee.com" method="get"  oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+    <input list="browsers" name="browser">
+    <datalist id="browsers">
+      <option value="Internet Explorer">
+      <option value="Firefox">
+      <option value="Chrome">
+      <option value="Opera">
+      <option value="Safari">
+    </datalist>
+    <br>
+    <input type="range" id="a" value="50">100
+    +<input type="number" id="b" value="50">
+    =<output name="x" for="a b"></output>
+    <br>
+    <input type="submit">
+</form>
+
+</body>
+</html>

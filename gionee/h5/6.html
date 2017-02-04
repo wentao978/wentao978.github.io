@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>音频&视频</title>
+<style>
+#a1{ display:block;} 
+</style>
+</head>
+
+<body>
+<audio id="a1" controls src="johann_sebastian_bach_air.mp3"></audio>
+
+<video controls>
+
+	<source src="Intermission-Walk-in.ogv"></source>
+    <source src="Intermission-Walk-in_512kb.mp4"></source>
+
+</video>
+<script>
+window.onload = function () {
+	var oA = document.getElementById('a1');
+	
+	/*setInterval(function(){
+		
+		console.log(oA.currentTime);
+		
+	},1000);*/
+	
+	oA.currentTime = 60;
+	
+	console.log( oA.duration );
+	console.log( oA.volume );
+	
+	console.log( oA.muted );
+	
+	console.log( oA.paused );
+	console.log( oA.ended );
+	console.log( oA.error );
+	console.log( oA.currentSrc );	
+}
+
+</script>
+</body>
+</html>

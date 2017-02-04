@@ -1,0 +1,165 @@
+1.
+H5是什么？
+	H：HTML ： HyperText Markup Language 超文本标记语言 
+		标记语言是由一套标记标签（markup tag）如<html></html>、<head></head>、<title></title>、
+		<body></body>等组成。HTML就使用这些标记标签来描述网页。	
+	5：第五代标准（HTML5 是对 HTML 标准的第五次修订，其主要的目标是将互联网语义化，
+	   以便更好地被人类和机器阅读，并同时提供更好地支持各种媒体的嵌入）   
+2.
+HyperText Markup Language & HTML5 & H5之间的关系是什么？
+HTML5可以说是HyperText Markup Language标准的第五次修订，可以简称为html5，
+	是一门解释型语言，而非编程语言，更多的是以html网页的形式展现
+H5个人理解可以看作是HTML5网页的一个单位（一个电阻3欧姆，简称3Ω）
+	更多吐槽（Http://www.zhihu.com/）
+3.
+说到HTML5，不妨来说一下html的发展史
+	HTML1.0
+		实际上应该没有HTML1,所谓的HTML1是1993年IETF(互联网工作任务组)团队的一个工作草案，并不是成型的标准
+	HTML2.0
+		1995年11月作为RFC1866发布，于2000年6月RFC2854发布之后宣布过时。
+	HTML3.2
+		1996年W3C撰写新规范，并于1997年1月推出HTML3.2。
+	HML4.0与HTML4.0.1
+		2000年5月15日发布，基于HTML4.01的ISO HTML成为了国际标准化组织和国际电工委员会的标准，
+		一直被沿用至今，虽然有小的改动，但大体方向没有大变化。
+	XHTML1.0
+		2002年8月1日发布。
+		XHTML 指可扩展超文本标签语言。
+		XHTML 是 HTML 与 XML（扩展标记语言）的结合物。
+		XHTML 包含了所有与 XML 语法结合的 HTML 4.01 元素。
+	XHTML1.1
+		2001年5月31日发布。XHTML1.0是XML风格的HTML4.01。XHTML1.1主要是初步进行了模块化。
+	XHTML2.0
+		XHTML 2是一种通用的标记语言。但不及HTML5的冲击。XHTML 2的开发工作将于2009年底停止，而资源将用于推动HTML 5的进展		
+	HTML5
+		HTML 5 的第一份正式草案已于2008年1月22日公布
+		2014年10月29日，万维网联盟宣布，经过接近6年的艰苦努力，该标准规范终于制定完成。	
+4.
+HTML5新增的语义化标签
+	HTML5的目标是为了能够创建更简单的Web程序，书写出更简洁规范的符合语义化的HTML代码
+	简洁规范
+		(1)DOCTYPE声明（文档类型）
+		   XHTML 1.0 Transitional：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		   XHTML 1.1：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">	
+		   XHTML 1.0 Strict：<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+		   HTML 4.01 Transitional：<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+		   HTML4.01 Strict：<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+		   HTML5：<!DOCTYPE html>
+		   doctype更加简洁，缺少了dtd文件约束，书写变得简单，但不是文档不是严格的
+		   egg：java1.5版本出现的增强for循环，简化了书写，但遍历时无法获取索引
+		(2)字符编码
+		   HTML4.01 Strict：<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	   
+		   HTML5：<meta charset="utf-8">
+	语义化标签
+		HTML5从HTML4.01中废弃的元素（过时，有歧义，有更好的方式替代）
+			<acronym>
+			<applet>
+			<basefont>
+			<big>
+			<center>
+			<dir>
+			<font>
+			<frame>
+			<frameset>
+			<noframes>
+			<strike>
+			<tt>
+		HTML5新增元素
+			新增语义和结构元素
+				<header>	定义了文档的头部区域	
+				<nav>	定义导航链接的部分。	
+				<article>	定义页面独立的内容区域。
+				<aside>	定义页面的侧边栏内容。
+				<section>	定义文档中的节（section、区段）。
+				<bdi>	允许您设置一段文本，使其脱离其父元素的文本方向设置。
+				<command>	定义命令按钮，比如单选按钮、复选框或按钮
+				<details>	用于描述文档或文档某个部分的细节
+				<dialog>	定义对话框，比如提示框
+				<summary>	标签包含 details 元素的标题
+				<figure>	规定独立的流内容（图像、图表、照片、代码等等）。
+				<figcaption>	定义 <figure> 元素的标题
+				<mark>	定义带有记号的文本。
+				<meter>	定义度量衡。仅用于已知最大和最小值的度量。
+				<progress>	定义任何类型的任务的进度。
+				<ruby>	定义 ruby 注释（中文注音或字符）。
+				<rt>	定义字符（中文注音或字符）的解释或发音。
+				<rp>	在 ruby 注释中使用，定义不支持 ruby 元素的浏览器所显示的内容。
+				<time>	定义日期或时间。
+				<wbr>	规定在文本中的何处适合添加换行符。
+				<footer>   定义 section 或 document 的页脚。
+			新增表单元素
+				<datalist>	定义选项列表。请与 input 元素配合使用该元素，来定义 input 可能的值。
+				<output>	定义不同类型的输出，比如脚本的输出。
+			HTML5 新的 Input 类型
+				
+			HTML5 新的表单属性
+				<form>新属性：
+					autocomplete
+					novalidate
+				<input>新属性：
+					autocomplete
+					autofocus
+					form
+					formaction
+					formenctype
+					formmethod
+					formnovalidate
+					formtarget
+					height 与 width
+					list
+					min 与 max
+					multiple
+					pattern (regexp)
+					placeholder
+					required
+					step		
+			新增多媒体元素
+				<audio>	定义音频内容
+				<video>	定义视频（video 或者 movie）
+				<source>	定义多媒体资源 <video> 和 <audio>
+				<embed>	定义嵌入的内容，比如插件。	
+			画布类元素	
+				<canvas>
+				3d绘图环境：webgl
+				<svg xmlns="http://www.w3.org/2000/svg"></svg>
+			HTML5 拖放（Drag 和 Drop）
+			HTML5 Geolocation（地理定位）
+			HTML5 Web 存储
+				HTML5 web 存储,一个比cookie更好的本地存储方式。
+			HTML5 应用程序缓存
+			HTML5 重力感应
+			HTML5 Web Workers
+			HTML5 WebSocket
+			HTML5 新的选择器
+				querySelector
+				querySelectorAll
+				getElementsByClassName
+			HTML5 获取class列表属性
+				classList
+					length :  class的长度
+					add()  :  添加class方法
+					remove()  :  删除class方法
+					toggle() :  切换class方法 
+			HTML5 JSON的新方法
+					parse() : 把字符串转成json
+						字符串中的属性要严格的加上引号
+					stringify() : 把json转化成字符串
+						会自动的把双引号加上
+					(evel)
+			HTML5 data自定义数据
+					dataset
+					data-name :  dataset.name
+					data-name-first  :  dataset.nameFirst 	
+			HTML5 FileReader(读取文件信息)
+					readAsDataURL
+						参数为要读取的文件对象，将文件读取为DataUrl 
+					onload
+						当读取文件成功完成的时候触发此事件
+						this. result , 来获取读取的文件数据，如果是图片，将返回base64格式的图片数据
+			HTML5 内容编辑
+					contenteditable="true"
+			HTML5 桌面提醒
+					桌面提醒
+				
+			
+	

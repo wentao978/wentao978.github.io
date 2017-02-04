@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+<body>
+<input type="file" id="file">
+<div id="fileDiv"></div>
+<script>
+showImg("fileDiv","file")
+function showImg(show,file){
+	var result = document.getElementById(show); 
+	var input = document.getElementById(file); 
+	if(typeof FileReader==='undefined'){ 
+	    result.innerHTML = "你的浏览器不支持 FileReader,无法预览图片"; 
+	}else{ 
+	    input.addEventListener('change',readFile,false); 
+	}
+	function readFile(){ 
+		var file = this.files[0];
+		if(!/image\/\w+/.test(file.type)){ 
+			alert("文件必须为图片！");
+			input.value = '';
+		    return false; 
+		}else{
+			var reader = new FileReader(); 
+			reader.readAsDataURL(file); 
+			reader.onload = function(e){ 
+				result.innerHTML = '<img src="'+this.result+'" alt="上传的图片"/>';
+			};
+		}
+	} 
+}
+
+</script>
+</body>
+</html>
