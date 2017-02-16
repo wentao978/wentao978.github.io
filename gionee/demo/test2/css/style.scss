@@ -1,0 +1,22 @@
+body{
+	background-image: url(../images/4.png);
+	color:white;
+}
+#app{
+	background-color: #f90;
+}
+:local {
+	 .big{
+		font-size:50px;
+	}
+	 .red{
+		color:#f00;	
+	}
+	 .some{
+		background-color:#f20;
+	}
+	 .other{
+		composes:red;
+		background-color:#390;
+	}
+}
