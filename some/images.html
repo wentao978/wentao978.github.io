@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+<script src="wap/jquery.js"></script>
+<style>
+#imgcontainer img{ width:50%;}
+.progress{ background:#f90; width:0; height:2px;}
+</style>
+</head>
+<body>
+<!--<a href="五一.psd">aaa</a>-->
+<div class="progress"></div>
+<div id="imgcontainer"></div>
+<script>
+  
+/*function downloadFile(fileName, content){
+    var aLink = document.createElement('a');
+    var blob = new Blob([content]);
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+    aLink.download = fileName;
+    aLink.href = URL.createObjectURL(blob);
+    aLink.dispatchEvent(evt);
+}*/
+
+$.ajax({
+	//url: 'http://localhost:8888/day21kick/servlet/Data?some=adf&Other=dddd',
+	//url:'http://navadm.gionee.com/bootstrap/js/npm.js',
+	type: 'POST',
+	dataType: 'json',
+	timeout:60000,
+	data:{
+		
+	},
+	success: function(data){
+		console.log(data);	
+	},
+	error: function(){}
+});
+
+/*var xhr = new XMLHttpRequest();
+xhr.open("GET","http://navadm.gionee.com/bootstrap/js/npm.js");
+xhr.send();*/
+
+var url = "2.jpg";
+//var url = "http://d.gionee.com/nav/20170517/lockimage/haokan/1494953623006.jpg_540-960";
+var xhr = new XMLHttpRequest();    
+xhr.open("get", url, true);
+//xhr.setRequestHeader("client_type", "DESKTOP_WEB");
+xhr.responseType = "blob";
+xhr.onload = function() {
+	if (this.status == 200) {
+		var blob = this.response;
+		var img = document.createElement("img");
+		img.onload = function(e) {
+		  window.URL.revokeObjectURL(img.src); //释放资源
+		};
+		img.src = window.URL.createObjectURL(blob);
+　　　　  console.log('load');　
+		$("#imgcontainer").html(img);
+	} 
+	console.log(this.status);
+} 
+xhr.onerror = function(a,b,c){
+	console.log(a,b,c);
+}
+xhr.onprogress = function(e){
+	document.querySelector(".progress").style.width = e.loaded/e.total * 100 + "%"; 
+	console.log(e.loaded/e.total)	
+};
+xhr.send();
+
+</script>
+</body>
+</html>
