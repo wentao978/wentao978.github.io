@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>一种通过前端来防止页面被劫持的方法</title>
+</head>
+<body>
+<p>21323</p>
+<img src="images/2.png" alt="">
+<script>
+var bodyNow = document.body;
+var bodyClone = document.body.cloneNode(true);
+var bodyCloneChildrenLength = bodyClone.children.length;
+
+var fragment = nodeToFragment(bodyClone);
+
+function nodeToFragment (node) {
+	var flag = document.createDocumentFragment();
+	var child;
+	while (child = node.firstChild) {
+		flag.append(child);
+	}
+	return flag;	
+}
+
+setTimeout(function(){
+	var img = document.createElement("img");
+	img.src = 'images/1.png';
+	document.body.append(img);
+},1500);
+
+setTimeout(function(){
+	var img = document.createElement("img");
+	img.src = 'images/3.png';
+	document.body.append(img);
+},3500);
+
+setTimeout(function(){
+	var img = document.createElement("img");
+	img.src = 'images/4.png';
+	document.body.append(img);
+},5500);
+
+
+hidden();
+function hidden(){
+	requestAnimationFrame(hidden);
+	if( bodyCloneChildrenLength != document.body.children.length){
+		console.log('替换掉');
+		document.body.innerHTML = "";
+		document.body.appendChild(fragment);
+		
+		bodyClone = document.body.cloneNode(true);
+		fragment = nodeToFragment(bodyClone);
+	}	
+}
+
+</script>
+</body>
+</html>
