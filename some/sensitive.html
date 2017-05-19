@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>一种通过虚拟DOM实现网页敏感词过滤的方法技术交底书</title>
+<style>
+p{ margin-left:100px;}
+</style>
+</head>
+<body>
+啊啊东方正闪电bb
+<div>
+	啊啊方法
+	<p>我bb的</p>
+    啊啊方法正
+</div>
+<script>
+
+String.prototype.myReplace = function(s){
+	var str = "";
+	var s = s;
+	if(this.length){
+		for (var i=0,len=this.length;i<len;i++) {
+			str += s;
+		}
+	}
+	return str;	
+}
+
+var msgArr = ["啊啊","bb","正"];
+
+var dom = nodeToFragment(document.body);
+
+function nodeToFragment (node) {
+	var flag = document.createDocumentFragment();
+	var child;
+	while ( child = node.firstChild) {
+		compile(child);
+		flag.append(child);		
+	}
+	return flag;	
+}
+
+function compile (node) {
+	//节点类型为元素
+	if(node.nodeType === 1 && node.nodeName.toLowerCase() !== 'script'){
+		
+		var d = nodeToFragment(node); 
+		node.appendChild(d);
+
+	}
+	//节点类型为text
+	if(node.nodeType === 3){
+		for (var i=0,len=msgArr.length;i<len;i++) {
+			node.nodeValue = node.nodeValue.replace(new RegExp(msgArr[i],'g'),msgArr[i].myReplace("*"));
+		}
+		console.log(node.nodeValue);
+	}
+}
+
+
+
+document.body.appendChild(dom);
+
+</script>
+</body>
+</html>
