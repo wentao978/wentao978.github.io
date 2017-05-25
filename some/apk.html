@@ -14,6 +14,7 @@
 <!--<a href="五一.psd">aaa</a>-->
 <div class="progress"></div>
 <div id="imgcontainer"></div>
+<a href="88.apk" target="_self">下载</a>
 <script>
   
 /*function downloadFile(fileName, content){
@@ -61,7 +62,8 @@ xhr.onload = function() {
 		img.src = window.URL.createObjectURL(blob);
 　　　　  console.log('load');　
 		$("#imgcontainer").html(img);*/
-		window.location.href = url;
+		//window.location.href = url;
+		document.getElementsByTagName("a")[0].click();
 		console.log('下载完成');
 	} 
 	console.log(this.status);
