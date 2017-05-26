@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no, address=no, email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+body{ background:black; margin:0;}
+#c1{ background:white; background-image:url(boy.png); background-repeat:no-repeat; background-size:contain;}
+#num{ color:#fff;}
+</style>
+<script>
+//HTML5 canvas 的动画如何开发呢，这个能不能出些视频
+
+window.onload = function(){
+	var oC = document.getElementById('c1');
+	var oGC = oC.getContext('2d');
+	oC.width = document.documentElement.clientWidth;
+	var stimer = null;
+	var playNum = 0;
+	
+	var setArr1 = [];   //收集所有元素的集合(绘制的图形)
+	var setArr2 = [];   //收集所有元素的集合(绘制的图形)
+	
+	window.requestAnimFrame = (function() {
+		return window.requestAnimationFrame ||
+		window.webkitRequestAnimationFrame ||
+		window.mozRequestAnimationFrame ||
+		window.oRequestAnimationFrame ||
+		window.msRequestAnimationFrame ||
+		function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+			window.setTimeout(callback, 1000/60);
+		};
+	})();
+	
+	function show(){
+		
+		stimer = requestAnimFrame(show);
+		
+		oGC.clearRect(0,0,oC.width,oC.height);
+		//遍历setArr1
+		for(var i=0;i<setArr1.length;i++){
+			
+			setArr1[i].w -= 1;
+			setArr1[i].h -= 1;
+			
+			setArr1[i].sY += 0.02;
+			
+			setArr1[i].x += setArr1[i].sX;
+			setArr1[i].y += setArr1[i].sY;
+			
+			if( setArr1[i].y >= oC.height - setArr1[i].r ){
+				setArr1[i].y = oC.height - setArr1[i].r;
+				setArr1[i].sY *= -1;
+				setArr1[i].sY *= 0.9;
+				setArr1[i].sX *= 0.9;
+			}
+			/*if( Math.abs(setArr1[i].sX) <= 0.01 ){
+				setArr1.splice(i,1);
+			}*/
+			
+			if( setArr1[i].w < 1){
+				setArr1.splice(i,1);
+			}
+			
+		}
+		
+		//遍历setArr2
+		for(var i=0;i<setArr2.length;i++){
+			
+			setArr2[i].w2 -= 1;
+			setArr2[i].h2 -= 1;
+			
+			setArr2[i].sY2 += 0.03;
+			
+			setArr2[i].x2 += setArr2[i].sX2;
+			setArr2[i].y2 += setArr2[i].sY2;
+			
+			if( setArr2[i].y2 >= oC.height - setArr2[i].r2 ){
+				setArr2[i].y2 = oC.height - setArr2[i].r2;
+				setArr2[i].sY2 *= -1;
+				setArr2[i].sY2 *= 0.8;
+				setArr2[i].sX2 *= 0.8;
+			}
+			/*if( Math.abs(setArr2[i].sX2) <= 0.01 ){
+				setArr2.splice(i,1);
+			}*/
+			
+			if( setArr2[i].w2 < 1){
+				setArr2.splice(i,1);
+			}
+			
+		}
+		
+		//绘制setArr1
+		for(var i=0;i<setArr1.length;i++){
+			oGC.beginPath();
+			
+			oGC.moveTo(setArr1[i].x , setArr1[i].y);
+			
+			var image1 = new Image();
+			image1.src = "1.png";
+			oGC.drawImage(image1,setArr1[i].x,setArr1[i].y,setArr1[i].w,setArr1[i].h);
+						
+			oGC.closePath();
+			oGC.fill();
+		}
+		
+		//绘制setArr2
+		for(var i=0;i<setArr2.length;i++){
+			oGC.beginPath();
+			
+			oGC.moveTo(setArr2[i].x2 , setArr2[i].y2);
+			
+			var image2 = new Image();
+			image2.src = "eat.png";
+			oGC.drawImage(image2,setArr2[i].x2,setArr2[i].y2,setArr2[i].w2,setArr2[i].h2);
+			
+			
+			oGC.closePath();
+			oGC.fill();
+		}
+	}
+	show();
+	
+	document.getElementById("btn1").onclick = function(){
+		var x = oC.width/2;
+		var y = oC.height - 20;
+		var r = 10;
+		var sX = -3 //Math.random()*6 - 3;
+		var sY = -1 //- (Math.random()*3 + 1);
+		var w = 50;
+		var h = 50;
+		
+		setArr1.push({
+			x : x, //起始x坐标
+			y : y, //起始y坐标
+			r : r, //半径
+			w : w, //宽
+			h : h, //高
+			sX : sX, //x方向的速度
+			sY : sY  //y方向的速度
+		});	
+		
+		var x2 = oC.width/2 - 50;
+		var y2 = oC.height - 20 - 50;
+		var r2 = 10;
+		var sX2 = -1 //Math.random()*6 - 3;
+		var sY2 = -1 //- (Math.random()*3 + 1);
+		var w2 = 50;
+		var h2 = 50;
+		
+		setArr2.push({
+			x2 : x2, //起始x坐标
+			y2 : y2, //起始y坐标
+			r2 : r2, //半径
+			w2 : w2,
+			h2 : h2,
+			sX2 : sX2, //x方向的速度
+			sY2 : sY2  //y方向的速度
+		});	
+		playNum++;
+		document.getElementById("num").innerHTML = playNum;	
+		if(playNum == 10){
+			document.getElementById("c1").style.backgroundImage = 'url(boy2.png)';
+		}
+		if(playNum == 20){
+			document.getElementById("c1").style.backgroundImage = 'url(boy3.png)';
+		}
+	}
+	
+	document.getElementById("btn2").onclick = function(){
+		window.cancelAnimationFrame(stimer);	
+	}
+	document.getElementById("btn3").onclick = function(){
+		stimer = requestAnimFrame(show);	
+	}
+	
+};
+
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="500" height="500"></canvas>
+<input type="button" value="增加" id="btn1">
+<input type="button" value="停止" id="btn2">
+<input type="button" value="开始" id="btn3">
+<div id="num"></div>
+</body>
+</html>
