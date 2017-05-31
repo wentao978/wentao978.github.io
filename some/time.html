@@ -69,6 +69,9 @@ window.onload = function(){
 	tnum.onclick = function(){
 		if(isPlaying){
 			tbtn.value = iNow++;	
+			if(iNow == 10){
+				document.getElementsByTagName("img")[0].src = "22.jpg";
+			}
 		}	
 	}
 	
@@ -95,6 +98,6 @@ window.onload = function(){
 <div id="s">0</div>
 <div>点击开始之后，点击灰色区域开始计数</div>
 <div class="circle"></div>
-
+<img src="" alt="" width="100%">
 </body>
 </html>
