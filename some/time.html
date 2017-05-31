@@ -63,7 +63,9 @@ window.onload = function(){
 	
 	btn3.onclick = function(){
 		isPlaying = true;
-		timer = setInterval(go,40);
+		if(!isPlaying){
+			timer = setInterval(go,40);	
+		}
 	}
 	
 	tnum.onclick = function(){
