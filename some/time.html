@@ -47,6 +47,7 @@ window.onload = function(){
 		timeCount++;
 		
 		if(timeCount > 250){
+			console.timeEnd("time");
 			tcon.innerHTML = "00:00";
 			isPlaying = false;
 			clearInterval(timer);
@@ -63,7 +64,9 @@ window.onload = function(){
 	
 	btn3.onclick = function(){
 		isPlaying = true;
+		console.time("time");
 		timer = setInterval(go,40);
+		go();
 	}
 	
 	tnum.onclick = function(){
