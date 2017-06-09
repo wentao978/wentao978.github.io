@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+</head>
+<body>
+<input type="button" value="开始" id="btn3">
+<input type="button" value="暂停" id="btn2">
+<div id="timeout">10:00</div> 
+<script id="worker" type="app/worker">
+	//这个是webworker里面的代码
+	Number.prototype.myToString = function(){
+		if(this < 1000){
+			if(this < 100){
+				return "00" + ":" + "0" + this.toString().substring(0,1);
+			}
+			return "00" + ":" + this.toString().substring(0,2);
+		}
+		return "0" + Math.floor(this/1000) + ":" + this.toString().substring(1,3);
+	}
+		
+	var timeDuration=10000;
+	var timeCount = 0;
+	var timer = null;
+	
+	function go(){
+		timeCount++;
+		
+		if(timeCount > 250){
+			console.timeEnd("time");
+			clearInterval(timer);
+			return ;
+		}
+		timer = setTimeout(go,40);
+		postMessage((timeDuration - timeCount * 40).myToString());		
+	}
+	
+	
+	addEventListener('message', function(e) {
+		console.log(e.data);
+		console.time("time");
+		if (e.data === 'start') {
+			console.time("time");
+			go();
+		} else {
+			clearTimeout(timer);	
+		}
+		//postMessage('Work done!');
+	}, false);
+</script>
+
+<script>
+	(function() {
+	  var blob = new Blob([document.querySelector('#worker').textContent]);
+	  var url = window.URL.createObjectURL(blob);
+	  var worker = new Worker(url);
+	  var btn2 = document.getElementById("btn2");
+	  var btn3 = document.getElementById("btn3");	
+	  var tcon = document.getElementById("timeout");
+	  	
+	  worker.addEventListener('message', function(e) {
+		console.info(e.data);
+		tcon.innerHTML = e.data;
+	  }, false);
+	  
+	  btn2.onclick = function(){
+		  worker.postMessage('stop');
+	  }
+	
+	  btn3.onclick = function(){
+		  worker.postMessage('start');
+	  }
+	  	
+	  
+	})();
+	
+	
+	
+	
+	
+	
+	
+	
+	function sum(x){ 
+		var y = function(x){ 
+			return sum(x+y) 
+		} 
+		y.toString = y.valueOf = function(){ 
+			//console.info('√');
+			return x; 
+		} 
+		return y; 
+	} 
+
+	var a = sum(1)
+	//console.log(a);//1
+	var a = sum(1)(2)
+	//console.log(a);//3
+</script>
+</body>
+</html>
