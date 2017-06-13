@@ -73,6 +73,13 @@ audio.addEventListener("progress",function(){
 
 //canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本
 audio.addEventListener("canplay",function(){
+	if(isShowLoad){
+		console.log("正在加载数据,显示loading");	
+	}
+},false);
+
+//play	当媒介数据将要开始播放时运行脚本
+audio.addEventListener("play",function(){
 	isShowLoad = false;
 	console.log("可以播放了,关闭loading");
 },false);
