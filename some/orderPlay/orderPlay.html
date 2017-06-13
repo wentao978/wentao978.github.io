@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+</head>
+<body>
+<audio src="" id="audio"></audio>
+<input type="button" value="开始" id="start">
+<input type="button" value="暂停" id="pause">
+<ul id="ul"></ul>
+<script>
+var audio = document.getElementById("audio");
+var start = document.getElementById("start");
+var pause = document.getElementById("pause");
+var ul = document.getElementById("ul");
+var index = 0;
+var playList = ['apk/1.mp3','apk/1.m4a','apk/1.mp3','apk/2.m4a']
+
+var html = '';
+if(playList.length){
+	for (var i=0;i<playList.length;i++) {
+		html += '<li index="'+i+'">'+playList[i]+'</li>';
+	}
+}
+ul.innerHTML = html;
+
+ul.onclick = function(e){
+	console.log(e.target.getAttribute('index'));
+	if(!audio.paused){
+		audio.pause();
+	}
+	index = e.target.getAttribute('index');
+	audio.src = playList[index];
+	audio.play();
+}
+
+start.onclick = function(){
+	if(audio.getAttribute('src') === ''){
+		audio.src = playList[index];		
+	}
+	audio.play();
+}
+
+pause.onclick = function(){
+	if(!audio.paused){
+		audio.pause();
+	}	
+}
+
+audio.onended = function() {
+	index++;
+	if(index == playList.length){
+		index = 0;
+	}
+	audio.src = playList[index];
+	audio.play();
+    //alert("音频播放完成");
+}
+
+//每次切换src，audio绑定的事件都会执行，可以设置事件
+//progress事件 当浏览器正在取媒介数据时运行脚本
+audio.addEventListener("progress",function(){
+	console.log("正在加载数据,显示loading");
+},false);
+
+//canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本
+audio.addEventListener("canplay",function(){
+	console.log("可以播放了,关闭loading");
+},false);
+</script>
+</body>
+</html>
