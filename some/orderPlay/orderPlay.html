@@ -30,6 +30,7 @@ ul.innerHTML = html;
 ul.onclick = function(e){
 	console.log(e.target.getAttribute('index'));
 	isShowLoad = true;
+	console.log("正在加载数据,显示loading");
 	if(!audio.paused){
 		audio.pause();
 	}
