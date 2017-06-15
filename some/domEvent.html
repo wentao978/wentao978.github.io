@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+</head>
+<body>
+<div id="demo" class=""></div>
+<p></p>
+<p></p>
+<p></p>
+<script>
+
+function $(query,isList){
+	var selectorAll = document.querySelectorAll(query);
+	var selector = document.querySelector(query);
+	var result = isList ? selectorAll : selector;
+	var methods = ['addClass','removeClass','hasClass','replaceClass'];
+	if(result){
+		result.length = isList ? selectorAll.length : (selector === null ? 0 : 1);
+		if(result.length){
+			if(isList){
+				for (var i=0,len=methods.length;i< len;i++) {
+					for (var j=0;j<result.length;j++) {
+						result[j][methods[i]] = eval( '('+methods[i]+')' );
+						continue;
+					}
+				}
+			}else{
+				for (var i=0,len=methods.length;i< len;i++) {
+					result[methods[i]] = eval( '('+methods[i]+')' );
+				}
+			}	
+		}	
+	}
+	return result;	
+}
+
+function addClass(className){
+	if(!this.hasClass(className)){
+		this.className === '' ? this.className = className : this.className += " " + className;
+	}
+	return this;
+}
+
+function removeClass(className){
+	if(this.hasClass(className)){
+		var classNum = this.className.split(" ");
+		for(var i=0;i<classNum.length;i++){
+			if(classNum[i] === className){
+				classNum.splice(i,1);
+				this.className = classNum.join(" ");
+				break;
+			}
+		}
+	}
+	return this;
+}
+
+function replaceClass(hasClassName,replaceClassName){
+	if(this.hasClass(hasClassName)){
+		var classNum = this.className.split(" ");
+		for(var i=0;i<classNum.length;i++){
+			if(classNum[i] === hasClassName){
+				classNum[i] = replaceClassName;
+				this.className = classNum.join(" ");
+				break;
+			}
+		}
+	}
+	return this;
+}
+
+function hasClass(className){
+	var classNum = this.className.split(" "),
+		result;
+	for(var i=0;i<classNum.length;i++){
+		if(classNum[i] === className){
+			result = true;
+			break;
+		}else{
+			result = false;
+		}
+	}
+	return result;
+	
+}
+
+//测试对象
+
+var demo = $("#demo");
+console.log(demo.length);
+
+demo.addClass('b').addClass('a').removeClass('c').removeClass('a').replaceClass('b','bb');
+demo.addClass('b');
+demo.addClass('a');
+document.write(demo.hasClass("a")+"<br/>");
+document.write(demo.hasClass("b")+"<br/>");
+document.write(demo.hasClass("bb")+"<br/>");
+
+//var p = $('p',true);
+//console.log(p.length);
+//Array.prototype.forEach.call(p,function(item){
+//	item.addClass('p')
+//});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
