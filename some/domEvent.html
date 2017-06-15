@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>无标题文档</title>
+<title>对dom事件的简单封装</title>
 </head>
-<body>
+<body style="color:green; font-size:16px; transform:translate3d(0,-15px,0)">
 <div id="demo" class=""></div>
 <p></p>
 <p></p>
@@ -16,7 +16,7 @@ function $(query,isList){
 	var selectorAll = document.querySelectorAll(query);
 	var selector = document.querySelector(query);
 	var result = isList ? selectorAll : selector;
-	var methods = ['addClass','removeClass','hasClass','replaceClass'];
+	var methods = ['addClass','removeClass','hasClass','replaceClass','getStyle','attr'];
 	if(result){
 		result.length = isList ? selectorAll.length : (selector === null ? 0 : 1);
 		if(result.length){
@@ -87,7 +87,33 @@ function hasClass(className){
 	
 }
 
+function getStyle(attr){
+	if(this.currentStyle){
+		return this.currentStyle[attr];
+	}else{
+		return getComputedStyle(this,false)[attr];
+	};
+}
+
+function attr(attribute,value){
+	switch (arguments.length) {
+		case 0:
+			return this;
+		break;
+		case 1:
+			return this.getAttribute(attribute);		
+		break;
+		default:
+			this.setAttribute(attribute,value)
+			return this;	
+	}
+}
+
 //测试对象
+
+//console.log(getStyle(document.body,'color'))
+console.log($('body').getStyle('fontSize'))
+console.log($('body').getStyle('transform'))
 
 var demo = $("#demo");
 console.log(demo.length);
@@ -96,9 +122,10 @@ demo.addClass('b').addClass('a').removeClass('c').removeClass('a').replaceClass(
 demo.addClass('b');
 demo.addClass('a');
 document.write(demo.hasClass("a")+"<br/>");
-document.write(demo.hasClass("b")+"<br/>");
+document.write(demo.hasClass("d")+"<br/>");
 document.write(demo.hasClass("bb")+"<br/>");
-
+demo.attr("name","jack").attr("age",18)
+document.write(demo.attr("name")+"<br/>");
 var p = $('p',true);
 console.log(p.length);
 Array.prototype.forEach.call(p,function(item){
