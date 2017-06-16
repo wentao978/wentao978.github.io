@@ -397,6 +397,11 @@ audio.addEventListener("play",function(){
 	console.log("可以播放了,关闭loading");
 },false);
 
+audio.addEventListener("playing",function(){
+	loading.addClass('hide').removeClass('show');
+	wave.addClass('show').removeClass('paused');
+	console.log("播放中,关闭loading");
+},false);
 
 
 
