@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>里客云音乐-告白气球-周杰伦</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection"> 
+<script>
+function fontSize() {
+	var a = document.documentElement.clientWidth;
+	a = a > 640 ? 640 : a;
+	document.getElementsByTagName("html")[0].style.fontSize = a / 16 + "px"
+}
+fontSize();
+
+function hengshuping() {
+	if (window.orientation == 180 || window.orientation == 0) {
+		setTimeout(function() {
+			fontSize()
+		}, 100)
+	};
+	if (window.orientation == 90 || window.orientation == -90) {
+		setTimeout(function() {
+			fontSize()
+		}, 100)
+	}
+}
+var orientation = 0;
+
+function screenOrientationEvent() {
+	hengshuping()
+}
+var innerWidthTmp = window.innerWidth;
+
+function screenOrientationListener() {
+	try {
+		var a = window.innerWidth;
+		if (a != innerWidthTmp) {
+			if (a > window.innerHeight) {
+				orientation = 90
+			} else {
+				orientation = 0
+			}
+			screenOrientationEvent();
+			innerWidthTmp = a
+		}
+	} catch (e) {
+		throw new Error('转屏时发生错误');
+	};
+	setTimeout("screenOrientationListener()", 100)
+}
+screenOrientationListener();
+document.addEventListener('DOMContentLoaded', function() {;
+	!
+	function() {
+		var c = document.createElement('span');
+		c.id = 'span1span';
+		c.style.fontSize = '1em';
+		document.body.appendChild(c);
+		if (Math.abs(parseFloat(getStyle(document.getElementById('span1span'), 'fontSize')) - parseFloat(document.getElementsByTagName('html')[0].style.fontSize)) > 1) {
+			var n = parseFloat(getStyle(document.getElementById('span1span'), 'fontSize')) / parseFloat(document.getElementsByTagName('html')[0].style.fontSize);
+			document.getElementsByTagName("html")[0].style.fontSize = parseFloat(document.getElementsByTagName('html')[0].style.fontSize) / n + "px"
+		};
+
+		function getStyle(a, b) {
+			if (a.currentStyle) {
+				return a.currentStyle[b]
+			} else {
+				return getComputedStyle(a, false)[b]
+			}
+		}
+	}()
+}, !1);
+</script>
+<style type="text/css">
+body,html{ width:100%; height:100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+body { margin:0; padding:0;	overflow: hidden; max-width: 640px;	height:100%; margin: 0 auto; position: relative;}
+
+/*背景图片样式*/
+div#div1 {
+	position: fixed;
+	top: -100px;
+	left: -150px;
+	bottom: -100px;
+	right: -100px;
+	z-index: -1;
+}
+
+div#div1>img {
+	height: 100%;
+	width: 100%;
+	border: 0;
+	-webkit-filter: blur(45px);
+}
+/*顶部*/
+#top-bar {width: 100%;max-width: 640px;	height: 4rem; background: rgba(0, 0, 0, 0.4); overflow:hidden;}
+#top-bar .music_con { width: 14.24rem;	height: 3rem; margin: 0.5rem auto;}
+#top-bar .music_con .singer_img { width: 3rem; height: 3rem; display: block; float: left;}
+#top-bar .music_con .singer_img img { width: 100%; height: 100%;}
+#top-bar .music_con .music_msg { width: 8.3rem; height: 3rem; display: block; float:left;}
+
+#top-bar .music_con .music_msg p { width:7.5rem; width: 100%; font-family: "微软雅黑"; margin-left: 0.8rem; margin-top:0; margin-bottom:0;}
+#top-bar .music_con .music_msg .sname {width:7.5rem; height:1rem; font-size:0.8rem; line-height:1rem; color:rgba(255,255,255,.9)}
+#top-bar .music_con .music_msg .artist {width:7.5rem; height:1rem; line-height:1.1rem; font-size:0.6rem; color:rgba(255,255,255,.7)}
+#top-bar .music_con .music_msg .xiami { width:7.5rem; height:1rem; line-height:1.2rem; font-size:0.5rem;}
+#top-bar .music_con .music_msg .icon { display:inline-block; width:0.8rem; height:0.8rem; margin:0.1rem 0 0 0 ; float:left; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAMAAAC7m5rvAAABa1BMVEUAAAD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XwD/XwD/XgD/XgD/XgD/XgD/XgD/XgD/XwD/XgD/XgD/XgD/XgD/XgD/XwD/XwD/XgD/XwD/XgD/XgD+////RwD/XAD/QgD/YQD/RAD/SgD/k1P/TAD/n2j/x6j/WgD/07j/z7T/UAD/hj/++PT/aA//ei3/VQD+9vH/eSv/dCP/OgD/uZL/TgD/WAD/UgD/w6H/cB3/OAD+8+7+6Nr/1r7/Zg3/PgD/NAD++vj/mF3/h0L/fjP/Ywv/4c3/yq3/xaT/sYv/pnf/o3T/m2L/jFD/i0v/i0T/fD7/hDz/Zx7/bRf/YQb/KAD+//r++/L+7d/+08b/v5r/vJb+p4z/r3//dj//fDD/WAv/UQv/PwD/LgD+9+3+7+f+7OH+2cj+x6j/to3/roT/bCr/eyn/axX/YxP/XBH/Tw7/TQ7/JAD/FgDulKqHAAAAIHRSTlMA8vDtxejZnZeR3b9qJuHMurKrcmRSS0U9AdGHdzQuHZGl65wAAALISURBVEjHpdZ3W9pAHMBxlOHeWu2+3yWXmDYSwERp2FPBvUfVurV7j5ffC8KTSQL6hb8gn+fyXC7J+R7YwHh3Xyjo72ySPxgKdPW/sKDnI6il+iaN6hlquR5d9aA2Gm2oMaRHVMwQd9dVnwxkSJ6LYNnDPaqxYaTHcGH4eqO6u0FNvURGxi8DpATO3U1R1m9mrwFgaa/oOZtdJoY1Bkc72G28AGUBK1M+ULiFGYYR7z53X0Y/qpeykJVF02sAsxwvmONFgur5KQtaGewfbmyWvs+Yy68cJFC9Dsr8tim55Dme3QBracHIOnWUSErxFP2/mJTxrhKNRpUyQFmJ1spVZUdGhGS1er0MULkuICzHaH/WARZ+x2oRETkxwu/ls9lsGUDJKh/XsCpJUmkBYLsk1ZKRI0vIOTC0wNLf2FcA0xzSszMcAYh+OskCLJ3kAGYw0xLjtgFOMxltSg7TlAlMy6OtxtkVgPnSPkCYb529YbXLPZuZNzMi4gRpn4mFLZknnixuYfwlhJMsaZvNAeS+xRnSHhMog7ebRcadZexMa11l2j5JbTwhcQ92tKMiZ/alxuYyaYeTPN4rEgfGLQKs/j18B1D9d0CZYB4tf8WSZmvyePUsB5A6W6aH8QZWgRTGztct+ROMnRtuHDG2q0pNVgnhNqO6Cl/JOiMJLNrXZCP8IxK5yANsXCxWJInoTM+JEQlzt3RKCrdYeyh6MNtzcpZHtHswhvFkfhursLzqyYI2dlA6PWeJB+u1MmX3M8AidmF+pxeVdvXe7/CIdrNWe2BaG2zyWlz6dfcaxtOKQse1NkTZmJ2l1MYCFAsFEdnqpmzAzMIA60WhrgiTTDLEeYcxZGIr5a14giC3On1aU8iQGNv33AaN+2p1Iz0iS8ijYV+9UdRGgcdUWMbzbkRTjSaetIZ6+33mJp/SPW+HS/5QoGfC97D+AyloaeEuzOK6AAAAAElFTkSuQmCC) no-repeat center center; background-size:cover;}
+#top-bar .music_con .music_msg .xtext { color:#ff5f00; float: left; margin-left:0.1rem;}
+#top-bar .music_con .play_pause_con { width: 1.8rem; height: 1.8rem; display: block; float: right; margin-top:.5rem; margin-right: 0.3rem; border: 0.1rem solid #c1c1c1; border-radius: 50%; cursor:pointer;}
+
+
+.play {	width: 0px;	height: 0px; border-left: 0.5rem solid #FFF; border-top: 0.4rem solid rgba(255, 255, 255, 0); border-bottom: 0.4rem solid rgba(255, 255, 255, 0); float: left; margin: 0.5rem 0.75rem; cursor: pointer;}
+.pause { width: 0.18rem; height: 0.66rem; margin: 0.58rem 0.68rem; border-left: 0.16rem solid #FFF;	border-right: 0.16rem solid #FFF; float: left; cursor: pointer;}
+/*歌词CSS*/
+.box { margin: 1.8rem auto; cursor: -webkit-grab;	width: 12.5rem;	height:330px; position:relative; border:1px dashed #ccc;}
+.ctime{	position:absolute; top:50%;	left:-1.2rem; height:1rem; line-height:1rem; color:#ff5f00; margin-top:-0.5rem; font-size:0.5rem; display:none;}
+.ccurrent {	position:absolute; top:50%;/* border:1px solid #f60;*/ border-radius:50%; left:12.8rem; width:0.6rem; height:0.6rem; margin-top:-0.3rem; display:none; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhAQMAAABtKlAsAAAABlBMVEUAAAD/XwAm3My5AAAAAXRSTlMAQObYZgAAAHlJREFUCNd1zrENwzAMRNFvqGBnbmAtIsQruVQRWBrNo2gElSoMMyKClGke7qo7kAGwm2tWIdzaQFrooJUBEd6wwQsSHjKrTsUEDnX7tNLUwnSVP0Z326f9LFI5niKQn9O9k0LK3yE3zvr7INfSIQxtsJhdQLEJOuADr9UxOV5KntYAAAAASUVORK5CYII=) no-repeat center center; background-size:cover;}
+/*.ccurrent:after{ position:absolute; content:'';width: 0px;	height: 0px; border-left: 0.25rem solid #F60; border-top: 0.16rem solid rgba(255, 255, 255, 0); border-bottom: 0.16rem solid rgba(255, 255, 255, 0); float: left; margin-left:0.15rem; margin-top:0.22rem; cursor: pointer;}*/
+.line-wrap {position:absolute; top:50%;	height:2px;	width:100%;	background:-webkit-linear-gradient(left, #b44a66 10%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%,#b44a66 90% ,#b44a66 100%); margin-top:-1px;	display:none;}
+.lrc-wrap{ position:absolute; width:100%; height:100%; left:0; top:0; overflow:hidden; -webkit-mask-image: linear-gradient(to bottom,rgba(255,255,255,0) 0,rgba(255,255,255,.6) 15%,rgba(255,255,255,1) 25%,rgba(255,255,255,1) 75%,rgba(255,255,255,.6) 85%,rgba(255,255,255,0) 100%);}
+.lrc { position: relative; text-align: center; font-family: "微软雅黑"; font-size: 0.68rem; color: #ccc;	margin:0; padding:0; transition:all 0.1s;}
+
+.lrc li {
+	display: block;
+	height:30px;
+	line-height:30px;
+	width: 100%;
+	text-align:center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.active {
+	color: #f44778;
+	font-weight:bold;
+	
+}
+#music_bar { width: 100%; max-width: 640px;	height: 1rem; position: fixed; bottom: 2.26rem;}
+#music_bar .music_bar_con { width: 11rem; height: 1rem;	margin: 0 auto;}
+#progress {	float: left; width: 100%; height: 2px; background: #8a8887;	position: relative;	cursor: pointer;}
+.buffer{ display:inline-block; position:absolute; height: 2px; background: #d1d0d0;}
+#bar { width: 0%; height: 100%;	background: #f44778; display: inline-block;	position: absolute;	top: 0;	left: 0; cursor: pointer;}
+#control { width: 10px;	height: 10px; position: absolute; left: -1px; top: -4px; border-radius: 100%; background: #f44778; cursor: pointer;}
+#control.down:after{ content:''; position:absolute;	width:20px;	height:20px; left:-5px;	top:-5px; background:#f44778;opacity:0.3;border-radius:50%;}
+#currtime{ position:absolute; left:0.5rem; width:2rem; height:1rem; top:-0.35rem; font-size:0.6rem; text-align:center;}
+#totaltime{ position:absolute; right:0.5rem; width:2rem; height:1rem; top:-0.35rem; font-size:0.6rem; text-align:center;}
+</style>
+</head>
+<body>
+	<!--src="apk/1.m4a"  autoplay="autoplay" -->
+	<audio
+		
+        src="orderPlay/apk/2.m4a"
+		id="audio" ></audio>
+	<!--背景图片-->
+	<div id="div1">
+		<!--<img src="images/bg.jpg" width="100%" height="100%" />-->
+	</div>
+
+	<!--歌曲信息区域-->
+	<div id="top-bar">
+		<div class="music_con">
+			<div class="singer_img"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003RMaRI1iFoYd.jpg?max_age=2592000"></div>
+			<div class="music_msg">
+				<p class="sname">告白气球</p>
+				<p class="artist">歌手：周杰伦</p>
+                <p class="xiami">
+                	<span class="icon"></span>
+                    <span class="xtext">虾米音乐</span>
+                </p>
+			</div> 
+            <div class="play_pause_con" id="play_pause_con"> <!--播放/暂停按钮-->
+				<div id="ctrl">
+					<div id="play" class="play"></div>
+                </div>    
+            </div>
+		</div>
+	</div>
+
+	<!--歌词-->
+	<div class="box" id="box">
+    	<div class="ctime">0:00</div>
+        <div class="ccurrent"></div>
+    	<div class="line-wrap"></div>
+		<div class="lrc-wrap">
+        	<ul class="lrc" id="lrc">
+			</ul>
+        </div>
+	</div>
+	
+    <!--进度条区域-->
+	<div id="music_bar">
+		<div class="music_bar_con">
+			<!--进度条-->
+			<div id="progress">
+				<!--进程显示-->
+                <span class="buffer"></span>
+				<span id="bar"> </span>
+				<div id="control" class=""></div>
+				<!--拖动点-->
+			</div>
+            <span id="currtime">00:00</span>
+            <span id="totaltime" style="float:right;"></span>
+		</div>
+	</div>
+	
+	<script>
+		
+		document.addEventListener("DOMContentLoaded",function(){
+			Number.prototype.toTime = function(){
+				if(this < 60){
+					if (this < 10) {
+						return '0:0'+this;
+					} else {
+						return '0:'+this;	
+					}
+				}
+				var n = ~~(this/60);
+				return n + ':' + ( this-60*n < 10 ? '0'+ (this-60*n) : this-60*n );	
+			}	
+			
+			
+			!function(){
+				var isMobile = /mobile/gi.test(navigator.userAgent.toLowerCase());
+				var events = isMobile ? { down: 'touchstart', move: 'touchmove', up: 'touchend'} : {down: 'mousedown', move: 'mousemove', up: 'mouseup'};
+				
+				//歌词
+				var lyrics_orign = "[00:00.98]告白气球 - 周杰伦\
+							[00:04.19]词：方文山\
+							[00:06.29]曲：周杰伦\
+							[00:07.78]\
+							[00:23.65]塞纳河畔 左岸的咖啡\
+							[00:26.45]我手一杯 品尝你的美\
+							[00:28.94]\
+							[00:29.49]留下唇印的嘴\
+							[00:31.89]\
+							[00:34.42]花店玫瑰 名字写错谁\
+							[00:37.18]告白气球 风吹到对街\
+							[00:40.18]微笑在天上飞\
+							[00:42.59]\
+							[00:44.27]你说你有点难追 想让我知难而退\
+							[00:49.40]礼物不需挑最贵 只要香榭的落叶\
+							[00:54.67]喔 营造浪漫的约会 不害怕搞砸一切\
+							[01:00.01]拥有你就拥有 全世界\
+							[01:04.15]\
+							[01:05.13]亲爱的 爱上你 从那天起\
+							[01:11.48]甜蜜的很轻易\
+							[01:14.59]\
+							[01:15.70]亲爱的 别任性 你的眼睛\
+							[01:21.36]\
+							[01:22.08]在说我愿意\
+							[01:25.42]\
+							[01:49.14]塞纳河畔 左岸的咖啡\
+							[01:51.72]我手一杯 品尝你的美\
+							[01:54.20]\
+							[01:54.87]留下唇印的嘴\
+							[01:57.31]\
+							[01:59.81]花店玫瑰 名字写错谁\
+							[02:02.39]告白气球 风吹到对街\
+							[02:04.70]\
+							[02:05.44]微笑在天上飞\
+							[02:07.99]\
+							[02:09.61]你说你有点难追 想让我知难而退\
+							[02:14.78]礼物不需挑最贵 只要香榭的落叶\
+							[02:19.65]\
+							[02:20.18]喔 营造浪漫的约会 不害怕搞砸一切\
+							[02:25.40]拥有你就拥有 全世界\
+							[02:29.42]\
+							[02:30.46]亲爱的 爱上你 从那天起\
+							[02:36.87]甜蜜的很轻易\
+							[02:39.98]\
+							[02:41.01]亲爱的 别任性 你的眼睛\
+							[02:46.74]\
+							[02:47.33]在说我愿意\
+							[02:51.16]\
+							[02:51.85]亲爱的 爱上你 恋爱日记\
+							[02:57.46]\
+							[02:58.06]飘香水的回忆\
+							[03:01.49]\
+							[03:02.42]一整瓶 的梦境 全都有你\
+							[03:08.11]\
+							[03:08.82]搅拌在一起\
+							[03:12.29]\
+							[03:13.16]亲爱的别任性 你的眼睛\
+							[03:20.01]\
+							[03:21.37]在说我愿意";
+		
+				//视频对象
+				var audio = $("#audio");
+				//播放按钮
+				var play = $("#play");
+				var play_btn = $("#play_pause_con");
+				//进度条
+				var progress = $("#progress");
+				//蓝色进度条
+				var bar = $("#bar");
+				//控制点
+				var control = $("#control");
+				var box = $("#box");
+				var lrc = $('#lrc');
+				var buffer = $('.buffer');
+				 
+				var boxOutTop = box.getBoundingClientRect().top;
+				var cTime = $(".ctime");
+				var cLineWrap = $(".line-wrap");
+				var cCurrent = $(".ccurrent");
+				
+				var currtime = $("#currtime");
+				var totaltime = $("#totaltime");
+				
+				//console.log($('#top-bar').offsetHeight);
+				//console.log(parseInt($('#music_bar').getStyle('bottom')));
+				//console.log(parseInt($('html').getStyle('fontSize'))*3.6)
+				//console.log($('body').offsetHeight)
+				//console.log($('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*3.6)
+				var linePer = 5/11;
+				var boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
+				box.style.height = boxHeight + 'px'; 
+								
+				var top = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? boxHeight * linePer : parseInt(lrc.style.transform.split(',')[1]) ;
+				
+				var timer;
+				var time;
+				var lineno;
+				
+				var fadeTimer = null;
+				var currentIndex = 0; //滑动时当前的索引，控制显示时间以及跳转的
+				var isBoxMove = false; // 在box的move过程中，不让自动滚动歌词
+				var downY; // box按下时的Y值 
+				var isLoadDuration = false;
+				var isMouseDown = false;
+				var bodyLeft = parseInt($('body').getStyle('margin').split(" ")[1]);				
+				
+				var lyrics_arr = lyrics_orign.split("							");
+			
+				var lyrics = [];
+				for (var i=0;i<lyrics_arr.length;i++) {
+					var obj = {};
+					obj.time = formatMs(lyrics_arr[i].split("]")[0].substring(1));
+					
+					obj.text = lyrics_arr[i].split("]")[1];
+					if(obj.text != ""){
+						lyrics.push(obj);	
+					}
+				}
+					
+				var html = "";
+				for (var i = 0; i < lyrics.length; i++) {
+					if(i == 0){
+						html += "<li data-time="+lyrics[i].time+" class=' active' >"+lyrics[i].text+"</li>";
+					}else{
+						html += "<li data-time="+lyrics[i].time+">"+lyrics[i].text+"</li>";	
+					}
+				}
+				lrc.innerHTML = html;
+				lrc.style.transition = "all 0s ease-out";
+				lrc.style.transform = "translate3d(0,"+( (boxHeight * linePer))+"px,0)";
+				var domList = $("#lrc li",true);
+				var oneHeight = boxHeight / 11;
+				Array.prototype.forEach.call(domList,function(item){
+					item.style.height = item.style.lineHeight = oneHeight + 'px';
+				});
+				
+				/*window.onresize = function(){
+					boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
+					box.style.height = boxHeight + 'px';
+					oneHeight = boxHeight / 11;	
+				}*/
+				
+				//新版本的兼容pc和移动端
+				box.addEventListener(events.down,boxDown);
+				
+				function boxDown(ev){
+					var ev = isMobile ? ev.changedTouches[0] : ev ;
+					downY = ev.clientY;
+					clearTimeout(fadeTimer);
+					isBoxMove = true;
+					
+					document.addEventListener(events.move,boxMove);
+					document.addEventListener(events.up,boxUp);
+					isMobile ? '' : ev.preventDefault() ;
+					return false;	
+				}
+				
+				function boxMove(ev){
+					var ev = isMobile ? ev.changedTouches[0] : ev ;	
+					//move时，显示
+					cTime.style.display = 'block';
+					cLineWrap.style.display = 'block';
+					cCurrent.style.display = 'block';
+					
+					//console.log(ev.clientX,ev.clientY,downY);
+					if(ev.clientY < downY){ //向上滑动，lrc上移
+						//console.log('up')
+						//向上滑动，lrc的transform的Y值减小对应的值
+						
+						var diff = downY - ev.clientY;
+						var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
+						lrc.style.transform = "translate3d(0,"+( oldTop - diff < (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) ? (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) : oldTop - diff )+"px,0)";
+						
+						downY = ev.clientY;
+						
+						//显示最中间的行对应的时间值 在move的时候，根据现在的Y值，显示对应的时间
+						//console.log(oldTop - diff < (30/2 + 330/2 - 30*37) ? (30/2 + 330/2 - 30*37) : oldTop - diff);
+						
+						//根据歌词数组长度进行判断
+						var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
+						currentIndex = 0;
+						for (var i=0;i<lyrics.length;i++) {
+							//150 - i * 30 
+							//console.log(currentY , 150 - i * 30);
+							//看看currentY离哪个值最近
+							if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
+								//console.log(i);
+								currentIndex = i;
+								
+								break;
+							}
+						}
+						console.log(lyrics[currentIndex].time.toTime())
+						cTime.innerHTML = lyrics[currentIndex].time.toTime()
+						
+						
+					}else if(ev.clientY > downY){ //向下滑动，lrc下移
+						//console.log('down')
+						//向下滑动，lrc的transform的Y值增加对应的值
+						//debugger;
+						var diff = ev.clientY - downY;
+						var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
+						
+						//选出离最近的30倍 + 15的值，放手的时候，调到对应的位置
+						
+						lrc.style.transform = "translate3d(0,"+( oldTop + diff  > (boxHeight * linePer)  ? (boxHeight * linePer) : oldTop + diff  )+"px,0)";
+						
+						downY = ev.clientY;
+						
+						//显示最中间的行对应的时间值
+						//console.log(oldTop + diff  > 150  ? 150 : oldTop + diff );
+						
+						var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
+						currentIndex = 0;
+						for (var i=0;i<lyrics.length;i++) {
+							//150 - i * 30 
+							//console.log(currentY , 150 - i * 30);
+							//看看currentY离哪个值最近
+							if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
+								//console.log(i);
+								currentIndex = i;
+								
+								break;
+							}
+						}
+						console.log(lyrics[currentIndex].time.toTime())
+						cTime.innerHTML = lyrics[currentIndex].time.toTime()
+						
+					}
+				}
+				
+				function boxUp(){
+					document.removeEventListener(events.move,boxMove);
+					document.removeEventListener(events.up,boxUp);
+					
+					//抬起来2s让线，时间，跳转按钮消失
+					fadeTimer = setTimeout(function(){
+						cTime.style.display = 'none';
+						cLineWrap.style.display = 'none';
+						cCurrent.style.display = 'none';
+						isBoxMove = false;
+					},2000)
+					
+				}
+				cCurrent.addEventListener("click",function(){
+					//当前的时间
+					audio.currentTime = lyrics[currentIndex].time;
+					lrcMove(audio.duration,lyrics[currentIndex].time);	
+					lrcAtuoMove(audio.currentTime)
+					//点了之后就跑到一个位置
+					lrc.style.transform = "translate3d(0,"+(-oneHeight*currentIndex + (boxHeight * linePer) )+"px,0)";
+					
+					cTime.style.display = 'none';
+					cLineWrap.style.display = 'none';
+					cCurrent.style.display = 'none';
+					
+					//让线，时间，跳转按钮消失
+					if (!audio.paused) {  //
+						//play.className = "play";
+						//audio.pause();
+					} else {
+						play.className = "pause";
+						audio.play();
+						
+					}
+					console.log(lyrics[currentIndex].time)	
+				},false);		
+						
+				//获取元数据
+				audio.addEventListener("loadedmetadata", function() {
+					try{
+						if(!isNaN(audio.duration)){
+	
+							totaltime.innerHTML = timeFormat(audio.duration);
+						}
+					} catch (e) {
+						console.log(e);	
+					} 
+					
+				}, false);
+				
+				//能够播放时
+				audio.addEventListener("canplay", function() {
+					
+				}, false);
+				
+				//缓冲
+				var startBuffer = function() {
+					var currentBuffer
+					try{
+						currentBuffer = audio.buffered.end(0);
+						if(!isLoadDuration){
+							isLoadDuration = true;
+							if(!isNaN(audio.duration)){
+								totaltime.innerHTML = timeFormat(audio.duration);
+							}
+						}
+					}catch (e) {
+						setTimeout(startBuffer, 500);
+					}
+					
+					var maxduration = audio.duration;
+					var perc = currentBuffer / maxduration;
+					if(!isNaN(perc)){
+						buffer.style.width = perc * 100 + "%";
+						console.log(perc);
+					}
+							
+					if(currentBuffer < maxduration) {
+						setTimeout(startBuffer, 500);
+					}
+				};
+			
+				startBuffer();
+						
+				function lrcMove (timeall,currenttime) {
+					var index,i,s;	
+				
+					for(var i=0;i<domList.length;i++){
+						//如果当前时间等于遍历的歌词的时间
+						var dataTimeLine = parseInt(domList[i].attr("data-time"));
+				
+						//等到唱第一句歌词的时候再滚动
+						if(dataTimeLine > 0 && dataTimeLine === parseInt(currenttime)){
+				
+							//当前歌词的下标
+							index = i;
+				
+							//当前下标值和上次记录的下标值不同才滚动，一个下标值只滚动一次
+							if(s != i){
+								//记录下标值
+								s = i;
+				
+								//歌词颜色变化
+								for(var j=0;j<domList.length;j++){
+									domList[j].removeClass("active");
+								}
+								if(index > 0){
+									//removeClass(domList[index-1],"active");
+									domList[index].addClass("active");
+								}
+				
+								//刚开始到结束一直在动
+								lrc.style.transition = "all 0.1s ease-out";
+								if(isBoxMove) {
+									
+								}else {
+									lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";	
+								}
+								
+							}
+						}
+					}	
+				}
+				
+				function lrcAtuoMove(time){
+					var dataArr = [],
+						songTime = parseInt(time),
+						MoveTime,
+						index,
+						e;
+				
+					//获取歌词时间数组
+					for(var i=0;i<domList.length;i++){
+						dataArr.push(domList[i].attr("data-time"));
+					}
+					console.info(dataArr);
+					//找到应该跳转的时间
+					for(var j=0;j<dataArr.length;j++){
+						//直接点到末尾处
+						if(dataArr[dataArr.length-1] < songTime){
+							index = dataArr.length-1;
+							break;	
+						}
+						//时间为数组里最后一个小于或等于它的数
+						if(dataArr[j] > songTime){
+							MoveTime = dataArr[j - 1];
+							index = j - 1;
+							break;
+						}
+					}
+				
+					//找到下标index,跳转
+					e = MoveTime ? dataArr.indexOf(MoveTime) : domList.length - 1;
+					
+					//刚开始到结束一直在动
+					lrc.style.transition = "all 0.1s ease-out";
+					
+					if(isBoxMove){
+						
+					}else{
+						lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";		
+					}
+					
+					
+					//歌曲颜色
+					for(var k=0;k<domList.length;k++){
+						domList[k].removeClass("active");
+					}
+					if(e >= 0){	
+						domList[e].addClass("active");
+					}
+				}
+	
+					
+				//获取当前动作
+				play_btn.addEventListener(events.down,function(){
+					if (!audio.paused) {  //这里判断好像还是有点小问题
+						play.className = "play";
+						audio.pause();
+					} else {
+						play.className = "pause";
+						audio.play();						
+					}	
+				},false);
+				
+				//播放完毕
+				audio.addEventListener("ended",function(){
+					play.className = "play";
+					audio.pause();
+					audio.currentTime = 0;
+					//计算歌词滚动
+					lrcAtuoMove(audio.currentTime)
+				},false);
+				
+				//progress事件 当浏览器正在取媒介数据时运行脚本
+				/*audio.addEventListener("progress",function(){
+					console.log("正在加载数据");
+				},false);*/
+				
+				//进度条跟踪事件start
+				audio.addEventListener("timeupdate", function() {
+					
+					var scales = audio.currentTime / audio.duration;
+					if(!isMouseDown){
+						currtime.innerHTML = timeFormat(audio.currentTime);
+						bar.style.width = (progress.offsetWidth-control.offsetWidth) * scales + "px";
+						control.style.left = (progress.offsetWidth-control.offsetWidth) * scales + "px";	
+					}
+					
+					
+					try{
+						if(!isNaN(audio.duration)){
+							totaltime.innerHTML = timeFormat(audio.duration);
+						}
+					}catch (e) {
+						console.log(e);	
+					}
+					console.log("timeupdate");
+					lrcMove(audio.duration,audio.currentTime);
+					
+				}, false);
+				//进度条跟踪事件end
+				
+					
+				//进度条拖拽-----播放时拖拽和暂停时拖拽
+				
+				//新版本的兼容pc和移动端
+				control.addEventListener(events.down,down);
+				function down(e){
+					var ev = isMobile ? e.changedTouches[0] : e ;
+					control.addClass('down');
+					document.addEventListener(events.move,move);
+					document.addEventListener(events.up,up);
+					console.log(events.down);	
+					isMobile ? '' : ev.preventDefault();
+					return false;
+				}
+				function move(e){
+					var ev = isMobile ? e.changedTouches[0] : e ;
+					isMouseDown = true;
+					var ev = isMobile ? e.changedTouches[0] : e ;
+	
+					   var leftv= (isMobile ? ev.clientX : ev.clientX - bodyLeft) -progress.offsetLeft;
+					   if(leftv<=0){
+							   leftv=0;
+					   }
+					   if(leftv>=(progress.offsetWidth-control.offsetWidth)){
+							 leftv=progress.offsetWidth-control.offsetWidth;
+					   }
+					 //console.log(e.clientX,progress.offsetLeft,ctrl.offsetLeft);
+					 control.style.left=leftv+"px"
+					 bar.style.width=leftv+"px";
+					 
+					 var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+					 //audio.currentTime = audio.duration*scales;
+					 currtime.innerHTML = timeFormat(audio.currentTime); 
+					console.log(events.move+""+ev.pageX);
+				}
+				function up(){
+					var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+							 audio.currentTime = audio.duration*scales;
+													
+							 isMouseDown = false;
+							 lrcAtuoMove(audio.currentTime)
+					control.removeClass('down');		 
+					document.removeEventListener(events.move,move);
+					document.removeEventListener(events.up,up);	
+					console.log(events.up);
+				}
+	
+				
+				
+				//点击progress
+				progress.addEventListener(events.down,function(e){
+					var ev = isMobile ? e.changedTouches[0] : e ;
+					
+					var leftv=(isMobile ? ev.clientX : ev.clientX - bodyLeft)-progress.offsetLeft;
+					control.style.left=leftv+"px"
+					bar.style.width=leftv+"px";	
+					
+					var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+					audio.currentTime = audio.duration*scales;
+					//计算歌词滚动
+					lrcAtuoMove(audio.currentTime)
+				},false);
+			}()	  
+						
+								
+			/**
+			 * 一些基础功能
+			 */
+			
+			//---------------------------------------------------
+			function formatMs(str){
+				var t = 0;
+				t += parseInt(str.split(":")[0])*60;
+				t += parseInt(str.split(":")[1].split(".")[0])*1;
+				return t;	
+			}  
+			 
+			//---------------------------------------------------
+			function timeFormat(seconds){
+				var m = Math.floor(seconds/60)<10 ? "0"+Math.floor(seconds/60) : Math.floor(seconds/60);
+				var s = Math.floor(seconds-(m*60))<10 ? "0"+Math.floor(seconds-(m*60)) : Math.floor(seconds-(m*60));
+				return m+":"+s;
+			}
+			
+			function $(query,isList){
+				var selectorAll = document.querySelectorAll(query);
+				var selector = document.querySelector(query);
+				var result = isList ? selectorAll : selector;
+				var methods = ['addClass','removeClass','hasClass','replaceClass','getStyle','attr'];
+				if(result){
+					result.length = isList ? selectorAll.length : (selector === null ? 0 : 1);
+					if(result.length){
+						if(isList){
+							for (var i=0,len=methods.length;i< len;i++) {
+								for (var j=0;j<result.length;j++) {
+									result[j][methods[i]] = eval( '('+methods[i]+')' );
+									continue;
+								}
+							}
+						}else{
+							for (var i=0,len=methods.length;i< len;i++) {
+								result[methods[i]] = eval( '('+methods[i]+')' );
+							}
+						}	
+					}	
+				}
+				return result;	
+			}
+			
+			function addClass(className){
+				if(!this.hasClass(className)){
+					this.className === '' ? this.className = className : this.className += " " + className;
+				}
+				return this;
+			}
+			
+			function removeClass(className){
+				if(this.hasClass(className)){
+					var classNum = this.className.split(" ");
+					for(var i=0;i<classNum.length;i++){
+						if(classNum[i] === className){
+							classNum.splice(i,1);
+							this.className = classNum.join(" ");
+							break;
+						}
+					}
+				}
+				return this;
+			}
+			
+			function replaceClass(hasClassName,replaceClassName){
+				if(this.hasClass(hasClassName)){
+					var classNum = this.className.split(" ");
+					for(var i=0;i<classNum.length;i++){
+						if(classNum[i] === hasClassName){
+							classNum[i] = replaceClassName;
+							this.className = classNum.join(" ");
+							break;
+						}
+					}
+				}
+				return this;
+			}
+			
+			function hasClass(className){
+				var classNum = this.className.split(" "),
+					result;
+				for(var i=0;i<classNum.length;i++){
+					if(classNum[i] === className){
+						result = true;
+						break;
+					}else{
+						result = false;
+					}
+				}
+				return result;
+				
+			}
+			
+			function getStyle(attr){
+				if(this.currentStyle){
+					return this.currentStyle[attr];
+				}else{
+					return getComputedStyle(this,false)[attr];
+				};
+			}
+			
+			function attr(attribute,value){
+				switch (arguments.length) {
+					case 0:
+						return this;
+					break;
+					case 1:
+						return this.getAttribute(attribute);		
+					break;
+					default:
+						this.setAttribute(attribute,value)
+						return this;	
+				}
+			}
+			
+		},false);
+		
+	</script>
+</body>
+</html>

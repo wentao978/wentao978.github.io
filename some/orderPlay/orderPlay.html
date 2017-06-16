@@ -1,63 +1,369 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>无标题文档</title>
+<title>歌单</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection"> 
+<script>
+function fontSize() {
+	var a = document.documentElement.clientWidth;
+	a = a > 640 ? 640 : a;
+	document.getElementsByTagName("html")[0].style.fontSize = a / 16 + "px"
+}
+fontSize();
+
+function hengshuping() {
+	if (window.orientation == 180 || window.orientation == 0) {
+		setTimeout(function() {
+			fontSize()
+		}, 100)
+	};
+	if (window.orientation == 90 || window.orientation == -90) {
+		setTimeout(function() {
+			fontSize()
+		}, 100)
+	}
+}
+var orientation = 0;
+
+function screenOrientationEvent() {
+	hengshuping()
+}
+var innerWidthTmp = window.innerWidth;
+
+function screenOrientationListener() {
+	try {
+		var a = window.innerWidth;
+		if (a != innerWidthTmp) {
+			if (a > window.innerHeight) {
+				orientation = 90
+			} else {
+				orientation = 0
+			}
+			screenOrientationEvent();
+			innerWidthTmp = a
+		}
+	} catch (e) {
+		throw new Error('转屏时发生错误');
+	};
+	setTimeout("screenOrientationListener()", 100)
+}
+screenOrientationListener();
+document.addEventListener('DOMContentLoaded', function() {;
+	!
+	function() {
+		var c = document.createElement('span');
+		c.id = 'span1span';
+		c.style.fontSize = '1em';
+		document.body.appendChild(c);
+		if (Math.abs(parseFloat(getStyle(document.getElementById('span1span'), 'fontSize')) - parseFloat(document.getElementsByTagName('html')[0].style.fontSize)) > 1) {
+			var n = parseFloat(getStyle(document.getElementById('span1span'), 'fontSize')) / parseFloat(document.getElementsByTagName('html')[0].style.fontSize);
+			document.getElementsByTagName("html")[0].style.fontSize = parseFloat(document.getElementsByTagName('html')[0].style.fontSize) / n + "px"
+		};
+
+		function getStyle(a, b) {
+			if (a.currentStyle) {
+				return a.currentStyle[b]
+			} else {
+				return getComputedStyle(a, false)[b]
+			}
+		}
+	}()
+}, !1);
+</script>
+<style type="text/css">
+body,html{ width:100%; height:100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+body { margin:0; padding:0; max-width: 640px;	height:100%; margin: 0 auto; position: relative;}
+.fl{ float:left;}
+.pr{ position:relative;}
+.pa{ position:absolute;}
+.db{ display:block;}
+.oh{ overflow:hidden;}
+.show{ display:block !important;}
+.hide{ display:none !important;}
+.img-wrap{ width:100%; height:15.5rem; position:relative; border-bottom:1px solid rgba(79,80,79,.3);}
+.img-wrap img { max-width:100%; position:absolute; left:0; top:0; height:100%;}
+.img-wrap .xia,.none .xia{ position:absolute; bottom:4rem; line-height:1rem; left:0.65rem;}
+.none .xia{ position:static; width:3.15rem; margin-left:50%; transform:translateX(-50%); margin-top:0.6rem;}
+.img-wrap .xicon,.none .xicon{ float:left; display:inline-block; width:0.8rem; height:0.8rem; margin:0.1rem 0 0 0 ; float:left; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAMAAAC7m5rvAAABa1BMVEUAAAD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XgD/XwD/XwD/XgD/XgD/XgD/XgD/XgD/XgD/XwD/XgD/XgD/XgD/XgD/XgD/XwD/XwD/XgD/XwD/XgD/XgD+////RwD/XAD/QgD/YQD/RAD/SgD/k1P/TAD/n2j/x6j/WgD/07j/z7T/UAD/hj/++PT/aA//ei3/VQD+9vH/eSv/dCP/OgD/uZL/TgD/WAD/UgD/w6H/cB3/OAD+8+7+6Nr/1r7/Zg3/PgD/NAD++vj/mF3/h0L/fjP/Ywv/4c3/yq3/xaT/sYv/pnf/o3T/m2L/jFD/i0v/i0T/fD7/hDz/Zx7/bRf/YQb/KAD+//r++/L+7d/+08b/v5r/vJb+p4z/r3//dj//fDD/WAv/UQv/PwD/LgD+9+3+7+f+7OH+2cj+x6j/to3/roT/bCr/eyn/axX/YxP/XBH/Tw7/TQ7/JAD/FgDulKqHAAAAIHRSTlMA8vDtxejZnZeR3b9qJuHMurKrcmRSS0U9AdGHdzQuHZGl65wAAALISURBVEjHpdZ3W9pAHMBxlOHeWu2+3yWXmDYSwERp2FPBvUfVurV7j5ffC8KTSQL6hb8gn+fyXC7J+R7YwHh3Xyjo72ySPxgKdPW/sKDnI6il+iaN6hlquR5d9aA2Gm2oMaRHVMwQd9dVnwxkSJ6LYNnDPaqxYaTHcGH4eqO6u0FNvURGxi8DpATO3U1R1m9mrwFgaa/oOZtdJoY1Bkc72G28AGUBK1M+ULiFGYYR7z53X0Y/qpeykJVF02sAsxwvmONFgur5KQtaGewfbmyWvs+Yy68cJFC9Dsr8tim55Dme3QBracHIOnWUSErxFP2/mJTxrhKNRpUyQFmJ1spVZUdGhGS1er0MULkuICzHaH/WARZ+x2oRETkxwu/ls9lsGUDJKh/XsCpJUmkBYLsk1ZKRI0vIOTC0wNLf2FcA0xzSszMcAYh+OskCLJ3kAGYw0xLjtgFOMxltSg7TlAlMy6OtxtkVgPnSPkCYb529YbXLPZuZNzMi4gRpn4mFLZknnixuYfwlhJMsaZvNAeS+xRnSHhMog7ebRcadZexMa11l2j5JbTwhcQ92tKMiZ/alxuYyaYeTPN4rEgfGLQKs/j18B1D9d0CZYB4tf8WSZmvyePUsB5A6W6aH8QZWgRTGztct+ROMnRtuHDG2q0pNVgnhNqO6Cl/JOiMJLNrXZCP8IxK5yANsXCxWJInoTM+JEQlzt3RKCrdYeyh6MNtzcpZHtHswhvFkfhursLzqyYI2dlA6PWeJB+u1MmX3M8AidmF+pxeVdvXe7/CIdrNWe2BaG2zyWlz6dfcaxtOKQse1NkTZmJ2l1MYCFAsFEdnqpmzAzMIA60WhrgiTTDLEeYcxZGIr5a14giC3On1aU8iQGNv33AaN+2p1Iz0iS8ijYV+9UdRGgcdUWMbzbkRTjSaetIZ6+33mJp/SPW+HS/5QoGfC97D+AyloaeEuzOK6AAAAAElFTkSuQmCC) no-repeat center center; background-size:cover;}
+.img-wrap .xtext,.none .xtext{ float:left; color:#f60; font-size:0.55rem; margin-left:0.15rem;}
+.gname{ position:absolute; bottom:3rem; font-size:0.8rem; color:#fff; left:0.65rem; width:9.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.g-tag-wrap{ position:absolute; bottom:2.1rem; left:0.65rem; font-size:0.6rem; color:rgba(255,255,255,.6);}
+.g-tag{ border:1px solid rgba(255,255,255,.6); padding:0.1rem 0.4rem; border-radius: 0.52rem; font-size:0.5rem;}
+.g-info{ left:0.65rem; bottom:0.5rem; font-size:0.5rem; width:12rem; color:#fff;}
+.g-count{ bottom:3.15rem; right:3rem; height:0.8rem; line-height:0.8rem; font-size:0.5rem; color:#fff; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAb1BMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8v0wLRAAAAJXRSTlMA5uGEGwkD49zZzVcR0L2gmYp6YlMrIBawqZ5COjIoI8d+cF5DBwps/QAAAMJJREFUOMvlkMsWgyAMRJ0IirS+39pqX///jd2gqGTRntNdZzVhLiHE+0bnMtVEOi0FH/sEI8pqN7/ECNOqkXI+DQQqgkN+InTrtTYP0ctdXgGPQ79+22NSKPcdG43CVkEC/zjTlcLJDoCbdKa+Y1h9gor5NlG7dIMOPFcZnsYVzgTm4cy4Di8OqJEYF2Nmd4/IOILkgAChcYDHCvgh0PpLaSNfbIAILoBoA4AD8G+AUDygmqUe2U2q0R6I3AVy4X2kN3YMBrgHd1pjAAAAAElFTkSuQmCC) no-repeat 0.15rem center #30302d; background-size:0.47rem; border-radius:0.16rem; padding-left:0.7rem; padding-right:0.2rem;}
+.play-wrap{width: 1.5rem; height: 1.5rem; display: block; right:1.2rem; bottom:1.2rem; border: 0.1rem solid #c1c1c1; border-radius: 50%; cursor: pointer;}
+.play{ width: 0px; height: 0px; border-left: 0.5rem solid #FFF; border-top: 0.4rem solid rgba(255, 255, 255, 0); border-bottom: 0.4rem solid rgba(255, 255, 255, 0); float: left; margin: 0.32rem 0.55rem; cursor: pointer;}
+.pause{ width: 0.18rem;  height: 0.66rem; margin: 0.4rem 0.52rem; border-left: 0.16rem solid #FFF; border-right: 0.16rem solid #FFF; float: left; cursor: pointer;}
+.list-wrap{ width:14.7rem; padding:0 0.65rem; background:#999;}
+.list{ margin:0; padding:0; list-style:none; }
+.list li{ width:100%; height:2.5rem; color:rgba(255,255,255,.9); border-bottom:1px solid rgba(79,80,79,.3); cursor:pointer;}
+.list li.active .list-name{ color:rgba(224,71,120,.9);}
+.list li.active .list-artist{ color:rgba(224,71,120,.75);}
+.list li .list-name,.list li .list-artist{ width:10rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.list li .list-name{ font-size:0.75rem; height:1.3rem; line-height:1.5rem;  color:rgba(255,255,255,.9);}
+.list li .list-artist{ font-size:0.65rem; height:1rem; line-height:1.1rem;  color:rgba(255,255,255,.65);}
+.list li p{ margin:0;}
+.loading {height: 0.6rem; width:0.6rem; right:1.3rem; top:0.95rem; display: none; border-radius: 100%; border-width: 2px; border-style: solid; border-color: #ff950e #ff950e transparent; animation: rotate 0.75s linear 0s infinite; }
+@-webkit-keyframes rotate {
+  0% { -webkit-transform: rotate(0deg);	transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+  100% { -webkit-transform: rotate(360deg);	transform: rotate(360deg); } 
+}
+
+
+div.wave { width:1.4rem; height:0.6rem; right:0.8rem; top:0.6rem; transform:rotateX(180deg); display:none;}
+div.wave span { display: inline-block; width: 2px; float:left; margin-bottom: 0; background-color: #f44778; margin-left:3px; border-radius: 40%;}
+
+.wave.paused .line1,.wave.paused .line2,.wave.paused .line3,.wave.paused .line4{
+	 -webkit-animation-play-state: paused;		
+}
+
+.wave .line1 {
+	animation: line 0.3s infinite ease-in-out alternate;
+}
+
+.wave  .line2 {
+	animation: line 0.3s -0.2s infinite ease-in-out alternate;
+}
+
+.wave  .line3 {
+	animation: line 0.3s -0.3s infinite ease-in-out alternate;
+}
+
+.wave  .line4 {
+	animation: line 0.3s -0.5s infinite ease-in-out alternate;
+}
+
+
+@-webkit-keyframes line {
+	from {
+		height: 2px;
+	}
+	to {
+		height: 12px;
+	}
+}
+</style>
 </head>
 <body>
 <audio src="" id="audio"></audio>
-<input type="button" value="开始" id="start">
+<div class="img-wrap">
+	<img src="huge.jpg" alt="歌单图">
+    <div class="xia">
+    	<span class="xicon"></span>
+        <span class="xtext">虾米音乐</span>
+    </div>
+    <div class="gname">
+    	撩妹示爱必备良单值发送到
+    </div>
+    <div class="g-count pa">
+    	13万
+    </div>
+    <div class="play-wrap pa">
+    	<div class="play" id="play"></div>
+    </div>
+    <div class="g-tag-wrap pa">
+    	<div class="g-tag-text fl">
+        	标签：
+        </div>
+        <div class="g-tag-group fl">
+        	<span class="g-tag">华语</span>
+            <span class="g-tag">小语种歌曲</span>
+            <span class="g-tag">情感</span>
+        </div>
+    </div>
+    <div class="g-info pa">
+    	这单小金哥真的把必胜绝学都拿出来了，只要唱功到位，没有撩不到的妹，颜值、才华...
+    </div>
+</div>
+<div class="list-wrap pr">
+	<div class="loading pa"></div>
+	<div class="wave paused pa">
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+        <span class="line4"></span>
+    </div>
+	<ul class="list">
+    	<!--<li class="active">
+        	<span class="list-name db">护花使者</span>
+            <span class="list-artist db">李克勤</span>
+        </li>
+        <li>
+        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li>
+        	<span class="list-name db">突然心动</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li class="active">
+        	<span class="list-name db">护花使者</span>
+            <span class="list-artist db">李克勤</span>
+        </li>
+        <li>
+        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li>
+        	<span class="list-name db">突然心动</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li class="active">
+        	<span class="list-name db">护花使者</span>
+            <span class="list-artist db">李克勤</span>
+        </li>
+        <li>
+        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li>
+        	<span class="list-name db">突然心动</span>
+            <span class="list-artist db">李晓东</span>
+        </li>
+        <li class="none oh">
+        	<div class="xia">
+                <p class="xicon"></p>
+                <p class="xtext">虾米音乐</p>
+            </div>
+        </li>-->
+    </ul>
+</div>
+<!--<input type="button" value="开始" id="start">
 <input type="button" value="暂停" id="pause">
-<ul id="ul"></ul>
+<ul id="ul"></ul>-->
 <script>
 var audio = document.getElementById("audio");
 var start = document.getElementById("start");
 var pause = document.getElementById("pause");
-var ul = document.getElementById("ul");
+var playBtn = $('.play-wrap');
+var play = $('#play');
+var loading = $('.loading');
+var wave = $('.wave');
+var ul = $(".list");
 var index = 0;
-var playList = ['apk/1.mp3','apk/1.m4a','apk/1.mp3','apk/2.m4a'];
+var playList = [
+				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
+				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
+				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'}
+			   ];
 var isShowLoad = true;
-
+var currentIndex = 0;
 var html = '';
 if(playList.length){
 	for (var i=0;i<playList.length;i++) {
-		html += '<li index="'+i+'">'+playList[i]+'</li>';
-	}
-}
-ul.innerHTML = html;
-
-ul.onclick = function(e){
-	console.log(e.target.getAttribute('index'));
-	isShowLoad = true;
-	console.log("正在加载数据,显示loading");
-	if(!audio.paused){
-		audio.pause();
-	}
-	index = e.target.getAttribute('index');
-	audio.src = playList[index];
-	audio.play();
-}
-
-start.onclick = function(){
-	if(audio.getAttribute('src') === ''){
-		audio.src = playList[index];		
-	}
-	audio.play();
-}
-
-pause.onclick = function(){
-	if(!audio.paused){
-		audio.pause();
+		html += '<li index="'+i+'" url="'+playList[i].url+'">\
+					<span class="list-name db">'+playList[i].name+'</span>\
+           			<span class="list-artist db">'+playList[i].atrist+'</span>\
+				</li>';
 	}	
 }
+html += '<li class="none oh"><div class="xia"><p class="xicon"></p><p class="xtext">虾米音乐</p></div></li>';
+ul.innerHTML = html;
+var domList = $('.list li',true);
+var oneHeight = domList[0].offsetHeight;
+var firstTop = parseInt(loading.getStyle('top'));
+console.log(oneHeight)
+ul.onclick = function(e){
+	var node = (e.target.nodeName.toLowerCase() === 'span' || e.target.nodeName.toLowerCase() === 'div') ? e.target.parentNode : ( e.target.nodeName.toLowerCase() === 'p' ? e.target.parentNode.parentNode : e.target);
+	if( !node.classList.contains('none') ){ //点击不在最后一行触发，在最后一行什么都不做
+		
+		if (node.classList.contains('active')) { //点了正在播放的那个
+			
+		} else {
+			Array.prototype.forEach.call(domList,function(item){
+				item.removeClass('active');
+			});
+			node.classList.add('active');	
+			
+			console.log(node.getAttribute('index'));
+			isShowLoad = true;
+			if(!audio.paused){
+				audio.pause();
+			}
+			audio.pause();
+			index = node.getAttribute('index');
+			currentIndex = index;
+			console.log(node.classList.contains('active'))
+			audio.src = node.getAttribute('url');
+			console.log("正在加载数据,显示loading");
+			loading.style.top = index * oneHeight + firstTop + 'px';
+			loading.addClass('show').removeClass('hide');
+			console.log(parseInt(loading.getStyle('top')))
+			audio.play();
+			
+		}
+	}
+	e.preventDefault();
+	return false;
+}
+
+
+playBtn.onclick = function(){
+	if(audio.getAttribute('src') === ''){
+		audio.src = playList[index].url;
+		domList[0].addClass('active');
+		console.log("正在加载数据,显示loading");
+		loading.style.top = index * oneHeight + firstTop + 'px';
+		audio.play();
+	}
+	if(play.hasClass('play')){ // 有此样式，处于暂停，点击处于播放
+		play.addClass('pause').removeClass('play');
+		wave.addClass('show').removeClass('paused');
+		if(audio.paused){
+			audio.play();
+		}
+	}else{ // 有此样式，处于播放，点击处于暂停
+		if(!audio.paused){
+			audio.pause();
+		}
+		play.addClass('play').removeClass('pause');
+		wave.addClass('paused');
+	}
+		
+}
+//start.onclick = function(){
+//	if(audio.getAttribute('src') === ''){
+//		audio.src = playList[index];		
+//	}
+//	audio.play();
+//}
+//
+//pause.onclick = function(){
+//	if(!audio.paused){
+//		audio.pause();
+//	}	
+//}
 
 audio.onended = function() {
 	index++;
 	if(index == playList.length){
 		index = 0;
 	}
-	audio.src = playList[index];
+	currentIndex = index;
+	audio.src = playList[index].url;
+	Array.prototype.forEach.call(domList,function(item){
+		item.removeClass('active');
+	});
+	domList[index].classList.add('active');
+	loading.style.top = index * oneHeight + firstTop + 'px';
+	loading.addClass('show').removeClass('hide');
+	console.log("正在加载数据,显示loading");
+	isShowLoad = true;	
 	audio.play();
     //alert("音频播放完成");
 }
@@ -81,8 +387,113 @@ audio.addEventListener("canplay",function(){
 //play	当媒介数据将要开始播放时运行脚本
 audio.addEventListener("play",function(){
 	isShowLoad = false;
+	wave.style.top = currentIndex * oneHeight + firstTop + 'px';
+	loading.addClass('hide').removeClass('show');
+	wave.addClass('show').removeClass('paused');
+	play.addClass('pause').removeClass('play');
 	console.log("可以播放了,关闭loading");
 },false);
+
+
+
+
+
+function $(query,isList){
+	var selectorAll = document.querySelectorAll(query);
+	var selector = document.querySelector(query);
+	var result = isList ? selectorAll : selector;
+	var methods = ['addClass','removeClass','hasClass','replaceClass','getStyle','attr'];
+	if(result){
+		result.length = isList ? selectorAll.length : (selector === null ? 0 : 1);
+		if(result.length){
+			if(isList){
+				for (var i=0,len=methods.length;i< len;i++) {
+					for (var j=0;j<result.length;j++) {
+						result[j][methods[i]] = eval( '('+methods[i]+')' );
+						continue;
+					}
+				}
+			}else{
+				for (var i=0,len=methods.length;i< len;i++) {
+					result[methods[i]] = eval( '('+methods[i]+')' );
+				}
+			}	
+		}	
+	}
+	return result;	
+}
+
+function addClass(className){
+	if(!this.hasClass(className)){
+		this.className === '' ? this.className = className : this.className += " " + className;
+	}
+	return this;
+}
+
+function removeClass(className){
+	if(this.hasClass(className)){
+		var classNum = this.className.split(" ");
+		for(var i=0;i<classNum.length;i++){
+			if(classNum[i] === className){
+				classNum.splice(i,1);
+				this.className = classNum.join(" ");
+				break;
+			}
+		}
+	}
+	return this;
+}
+
+function replaceClass(hasClassName,replaceClassName){
+	if(this.hasClass(hasClassName)){
+		var classNum = this.className.split(" ");
+		for(var i=0;i<classNum.length;i++){
+			if(classNum[i] === hasClassName){
+				classNum[i] = replaceClassName;
+				this.className = classNum.join(" ");
+				break;
+			}
+		}
+	}
+	return this;
+}
+
+function hasClass(className){
+	var classNum = this.className.split(" "),
+		result;
+	for(var i=0;i<classNum.length;i++){
+		if(classNum[i] === className){
+			result = true;
+			break;
+		}else{
+			result = false;
+		}
+	}
+	return result;
+	
+}
+
+function getStyle(attr){
+	if(this.currentStyle){
+		return this.currentStyle[attr];
+	}else{
+		return getComputedStyle(this,false)[attr];
+	};
+}
+
+function attr(attribute,value){
+	switch (arguments.length) {
+		case 0:
+			return this;
+		break;
+		case 1:
+			return this.getAttribute(attribute);		
+		break;
+		default:
+			this.setAttribute(attribute,value)
+			return this;	
+	}
+}
 </script>
 </body>
 </html>
