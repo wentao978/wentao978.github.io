@@ -392,14 +392,14 @@ audio.addEventListener("play",function(){
 	isShowLoad = false;
 	wave.style.top = currentIndex * oneHeight + firstTop + 'px';
 	loading.addClass('hide').removeClass('show');
-	wave.addClass('show').removeClass('paused');
+	wave.addClass('show').removeClass('paused').removeClass('hide');
 	play.addClass('pause').removeClass('play');
 	console.log("可以播放了,关闭loading");
 },false);
 
 audio.addEventListener("playing",function(){
 	loading.addClass('hide').removeClass('show');
-	wave.addClass('show').removeClass('paused');
+	wave.addClass('show').removeClass('paused').removeClass('hide');
 	console.log("播放中,关闭loading");
 },false);
 
