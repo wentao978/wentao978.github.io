@@ -251,15 +251,15 @@ var playList = [
 				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
 				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
 				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/2.m4a'},
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
 				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
 				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
 				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/2.m4a'},
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
 				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
 				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
 				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/2.m4a'}
+				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'}
 			   ];
 var isShowLoad = true;
 var currentIndex = 0;
@@ -370,18 +370,21 @@ audio.onended = function() {
 
 //每次切换src，audio绑定的事件都会执行，可以设置事件
 //progress事件 当浏览器正在取媒介数据时运行脚本
-audio.addEventListener("progress",function(){
-	if(isShowLoad){
-		console.log("正在加载数据,显示loading");	
-	}
-	
-},false);
+//audio.addEventListener("progress",function(){
+//	if(isShowLoad){
+//		console.log("正在加载数据,显示loading");	
+//	}
+//	
+//},false);
 
-//canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本
+//canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本 -- 就是需要缓冲
 audio.addEventListener("canplay",function(){
-	if(isShowLoad){
+	//if(isShowLoad){
+		loading.style.top = index * oneHeight + firstTop + 'px';
+		loading.addClass('show').removeClass('hide');
+		wave.addClass('hide').removeClass('paused').removeClass('show');
 		console.log("正在加载数据,显示loading");	
-	}
+	//}
 },false);
 
 //play	当媒介数据将要开始播放时运行脚本
