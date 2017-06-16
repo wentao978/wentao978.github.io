@@ -588,7 +588,7 @@ div#div1>img {
 				}, false);
 				
 				audio.addEventListener("progress", function() {
-					console.log('progress	当浏览器正在取媒介数据时运行脚本')
+					//console.log('progress	当浏览器正在取媒介数据时运行脚本')
 				}, false);
 				
 				audio.addEventListener("ratechange", function() {
@@ -616,7 +616,7 @@ div#div1>img {
 				}, false);
 				
 				audio.addEventListener("timeupdate", function() {
-					console.log('timeupdate	当媒介改变其播放位置时运行脚本')
+					//console.log('timeupdate	当媒介改变其播放位置时运行脚本')
 				}, false);
 				
 				audio.addEventListener("volumechange", function() {
@@ -646,7 +646,7 @@ div#div1>img {
 					var perc = currentBuffer / maxduration;
 					if(!isNaN(perc)){
 						buffer.style.width = perc * 100 + "%";
-						console.log(perc);
+						//console.log(perc);
 					}
 							
 					if(currentBuffer < maxduration) {
