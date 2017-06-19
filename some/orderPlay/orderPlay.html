@@ -390,7 +390,15 @@ audio.addEventListener("canplaythrough",function(){ // 可以播放时关闭load
 
 	loading.style.top = index * oneHeight + firstTop + 'px';
 	loading.addClass('hide').removeClass('show');
-	wave.addClass('show').removeClass('paused').removeClass('hide');
+	
+	wave.addClass('show').removeClass('hide');
+	
+	if(!audio.paused){ //如果在播放时
+		wave.removeClass('paused') 
+	}else{ // 如果在暂停时
+		wave.addClass('paused')
+	}
+	
 	console.log("可以播放了,关闭loading");
 	
 },false);
