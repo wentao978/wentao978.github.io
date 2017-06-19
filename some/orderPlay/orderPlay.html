@@ -293,9 +293,17 @@ ul.onclick = function(e){
 			console.log(node.getAttribute('index'));
 			isShowLoad = true;
 			if(!audio.paused){
-				audio.pause();
+				try{
+					audio.pause();
+				}catch(e){
+					console.log(e,'暂停出错')
+				}
 			}
-			audio.pause();
+			try{
+				audio.pause();
+			}catch(e){
+				console.log(e,'暂停出错')
+			}
 			index = node.getAttribute('index');
 			currentIndex = index;
 			console.log(node.classList.contains('active'))
@@ -304,7 +312,11 @@ ul.onclick = function(e){
 			loading.style.top = index * oneHeight + firstTop + 'px';
 			loading.addClass('show').removeClass('hide');
 			console.log(parseInt(loading.getStyle('top')))
-			audio.play();
+			try{
+				audio.play();
+			}catch(e){
+				console.log(e,'播放出错')
+			}
 			
 		}
 	}
@@ -319,7 +331,11 @@ playBtn.onclick = function(){
 		domList[0].addClass('active');
 		console.log("正在加载数据,显示loading");
 		loading.style.top = index * oneHeight + firstTop + 'px';
-		audio.play();
+		try{
+			audio.play();
+		}catch(e){
+			console.log(e,'播放出错')
+		}
 	}
 	if(play.hasClass('play')){ // 有此样式，处于暂停，点击处于播放
 		play.addClass('pause').removeClass('play');
@@ -372,7 +388,11 @@ audio.onended = function() {
 	loading.addClass('show').removeClass('hide');
 	console.log("正在加载数据,显示loading");
 	isShowLoad = true;	
-	audio.play();
+	try{
+		audio.play();
+	}catch(e){
+		console.log(e,'播放出错')
+	}
     //alert("音频播放完成");
 }
 
