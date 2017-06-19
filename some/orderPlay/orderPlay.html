@@ -325,11 +325,19 @@ playBtn.onclick = function(){
 		play.addClass('pause').removeClass('play');
 		wave.addClass('show').removeClass('paused').removeClass('hide');
 		if(audio.paused){
-			audio.play();
+			try{
+				audio.play();
+			}catch(e){
+				console.log(e,'播放出错')
+			}
 		}
 	}else{ // 有此样式，处于播放，点击处于暂停
 		if(!audio.paused){
-			audio.pause();
+			try{
+				audio.pause();
+			}catch(e){
+				console.log(e,'暂停出错')
+			}
 		}
 		play.addClass('play').removeClass('pause');
 		wave.addClass('paused');
@@ -383,7 +391,7 @@ audio.addEventListener("waiting",function(){ // 等待时显示loading
 	loading.style.top = index * oneHeight + firstTop + 'px';
 	loading.addClass('show').removeClass('hide');
 	wave.addClass('hide').removeClass('paused').removeClass('show');
-	console.log("正在加载数据,显示loading");	
+	console.log("waiting -- 正在加载数据,显示loading");	
 },false);
 
 audio.addEventListener("canplaythrough",function(){ // 可以播放时关闭loading
@@ -399,7 +407,7 @@ audio.addEventListener("canplaythrough",function(){ // 可以播放时关闭load
 		wave.addClass('paused')
 	}
 	
-	console.log("可以播放了,关闭loading");
+	console.log("canplaythrough -- 可以播放了,关闭loading");
 	
 },false);
 
