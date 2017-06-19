@@ -323,7 +323,7 @@ playBtn.onclick = function(){
 	}
 	if(play.hasClass('play')){ // 有此样式，处于暂停，点击处于播放
 		play.addClass('pause').removeClass('play');
-		wave.addClass('show').removeClass('paused');
+		wave.addClass('show').removeClass('paused').removeClass('hide');
 		if(audio.paused){
 			audio.play();
 		}
