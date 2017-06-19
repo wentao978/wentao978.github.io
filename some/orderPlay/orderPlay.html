@@ -279,6 +279,7 @@ var oneHeight = domList[0].offsetHeight;
 var firstTop = parseInt(loading.getStyle('top'));
 console.log(oneHeight)
 ul.onclick = function(e){
+	console.log(audio.readyState)
 	var node = (e.target.nodeName.toLowerCase() === 'span' || e.target.nodeName.toLowerCase() === 'div') ? e.target.parentNode : ( e.target.nodeName.toLowerCase() === 'p' ? e.target.parentNode.parentNode : e.target);
 	if( !node.classList.contains('none') ){ //点击不在最后一行触发，在最后一行什么都不做
 		
