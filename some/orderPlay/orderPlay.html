@@ -278,6 +278,7 @@ var domList = $('.list li',true);
 var oneHeight = domList[0].offsetHeight;
 var firstTop = parseInt(loading.getStyle('top'));
 console.log(oneHeight)
+var isPlaying = audio.currentTime > 0 && !audio.paused && !audio.ended && audio.readyState > 2;
 ul.onclick = function(e){
 	var node = (e.target.nodeName.toLowerCase() === 'span' || e.target.nodeName.toLowerCase() === 'div') ? e.target.parentNode : ( e.target.nodeName.toLowerCase() === 'p' ? e.target.parentNode.parentNode : e.target);
 	if( !node.classList.contains('none') ){ //点击不在最后一行触发，在最后一行什么都不做
@@ -294,13 +295,17 @@ ul.onclick = function(e){
 			isShowLoad = true;
 			if(!audio.paused){
 				try{
-					audio.pause();
+					if (isPlaying) {
+					  audio.pause();
+					}
 				}catch(e){
 					console.log(e,'暂停出错')
 				}
 			}
 			try{
-				audio.pause();
+				if (isPlaying) {
+				  audio.pause();
+				}
 			}catch(e){
 				console.log(e,'暂停出错')
 			}
@@ -313,7 +318,9 @@ ul.onclick = function(e){
 			loading.addClass('show').removeClass('hide');
 			console.log(parseInt(loading.getStyle('top')))
 			try{
-				audio.play();
+				if (!isPlaying) {
+				  audio.play();
+				}
 			}catch(e){
 				console.log(e,'播放出错')
 			}
@@ -332,7 +339,9 @@ playBtn.onclick = function(){
 		console.log("正在加载数据,显示loading");
 		loading.style.top = index * oneHeight + firstTop + 'px';
 		try{
-			audio.play();
+			if (!isPlaying) {
+			  audio.play();
+			}
 		}catch(e){
 			console.log(e,'播放出错')
 		}
@@ -342,7 +351,9 @@ playBtn.onclick = function(){
 		wave.addClass('show').removeClass('paused').removeClass('hide');
 		if(audio.paused){
 			try{
-				audio.play();
+				if (!isPlaying) {
+				  audio.play();
+				}
 			}catch(e){
 				console.log(e,'播放出错')
 			}
@@ -350,7 +361,9 @@ playBtn.onclick = function(){
 	}else{ // 有此样式，处于播放，点击处于暂停
 		if(!audio.paused){
 			try{
-				audio.pause();
+				if (isPlaying) {
+				  audio.pause();
+				}
 			}catch(e){
 				console.log(e,'暂停出错')
 			}
@@ -389,7 +402,9 @@ audio.onended = function() {
 	console.log("正在加载数据,显示loading");
 	isShowLoad = true;	
 	try{
-		audio.play();
+		if (!isPlaying) {
+		  audio.play();
+		}
 	}catch(e){
 		console.log(e,'播放出错')
 	}
