@@ -27,6 +27,7 @@ var timer = null;
 
 if(inner.offsetWidth > out.offsetWidth){
 	setTimeout(function(){
+		window.cancelAnimationFrame(timer);
 		timer = requestAnimationFrame(move);	
 	},1000);
 }
@@ -43,6 +44,7 @@ function move(){
 			console.log('到头了，停一会')
 			window.cancelAnimationFrame(timer);
 			setTimeout(function(){
+				window.cancelAnimationFrame(timer);
 				timer = requestAnimationFrame(move);	
 			},1000);
 			i = 0;			
