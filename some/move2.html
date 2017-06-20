@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>无标题文档</title>
+<style>
+#out{ overflow:hidden; width:100%; height:30px; line-height:30px; border:1px solid #000; position:relative;}
+#inner{ white-space:nowrap; position:absolute; left:0;}
+</style>
+</head>
+<a href="">aaa</a>
+
+<div id="out">
+	<span id="inner">阿斯蒂芬-是打发打发阿斯蒂芬-是打发打发阿斯蒂芬-的的</span>
+</div>
+
+<body>
+<script>
+
+var out = document.querySelector("#out");
+var inner = document.querySelector("#inner");
+var outWidth = out.offsetWidth;
+
+//解决办法二，运动有点快
+var timer = null;
+
+if(inner.offsetWidth > out.offsetWidth){
+	setTimeout(function(){
+		timer = requestAnimationFrame(move);	
+	},1000);
+}
+var i=0;
+var d = outWidth;
+function move(){
+	window.cancelAnimationFrame(timer);
+	if(i>=inner.offsetWidth){
+		inner.style.transform = "translate3d(100px,0,0)";
+		d--;		
+		inner.style.transform = "translate3d("+d+"px,0,0)";
+		timer = requestAnimationFrame(move);
+		if(d == 0){
+			console.log('到头了，停一会')
+			window.cancelAnimationFrame(timer);
+			setTimeout(function(){
+				timer = requestAnimationFrame(move);	
+			},1000);
+			i = 0;			
+			d = outWidth;
+		}
+	}else{
+		i++;
+		inner.style.transform = "translate3d(-"+i+"px,0,0)";
+		timer = requestAnimationFrame(move);	
+	}
+}
+
+(function() {
+	var lastTime = 0;
+	var vendors = ["ms", "moz", "webkit", "o"];
+	for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x){
+		window.requestAnimationFrame = window[vendors[x] + "RequestAnimationFrame"];
+		window.cancelAnimationFrame = window[vendors[x] + "CancelAnimationFrame"] || window[vendors[x] + "CancelRequestAnimationFrame"];
+	};
+	if(!window.requestAnimationFrame) window.requestAnimationFrame = function(callback, element){
+		var currTime = new Date().getTime();
+		var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+		var id = window.setTimeout(function(){
+			callback(currTime + timeToCall);
+		},timeToCall);
+		lastTime = currTime + timeToCall;
+		return id;
+	};
+	if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function(id) {
+		clearTimeout(id);
+	};
+}());
+
+
+/*var Slide = function (ele) {
+  this.wrap = document.querySelector(ele);
+  this.dirX = 0;
+  this.ul_wrap = this.wrap.querySelector('ul');
+  if (this.ul_wrap == null) return;
+  this.ul_wrap.innerHTML += this.ul_wrap.innerHTML;
+  this.oli = this.ul_wrap.querySelectorAll('li');
+  this.len = this.oli.length;
+  this.ul_wrap_width = 0;
+  this.init();
+};
+
+Slide.prototype.init = function () {
+  var _this = this;
+  var w = (this.oli[0].offsetWidth + .18 * rem) * this.len;
+  this.ul_wrap_width = w;
+  this.ul_wrap.style.width = w + 'px';
+  setInterval(function () {
+    _this.move();
+  }, 50)
+};
+
+Slide.prototype.move = function () {
+  this.dirX = this.dirX <= -this.ul_wrap_width / 2 ? this.dirX = 0 : this.dirX - 2;
+  this.ul_wrap.style.webkitTransform = 'translate3d(' + this.dirX + 'px,' + '0,0)';
+  this.ul_wrap.style.transform = 'translate3d(' + this.dirX + 'px,' + '0,0)';
+};
+
+new Slide('footer');*/
+
+//'use strict';
+
+(function(){
+    t = 8
+	console.log(t)
+})()
+
+console.log(t)
+/*var indexMap = ['a','b'].reduce(function(memo, item, index) {
+  memo[item] = index;
+  return memo;
+}, {});
+//console.log(indexMap);
+
+['a','b'].forEach(function(item,index,arr){
+	
+});
+
+/*var flag = true;
+if (flag) alert(1) 
+else alert(2)
+var foo = 1;
+switch (foo) {
+	
+    case 1:
+        let x = 1;
+		console.log(x,y,f);
+        break;
+    case 2:
+        const y = 2;
+        break;
+    case 3:
+        function f() {alert(1)}
+        break;
+    default:
+        
+}*/
+
+</script>
+</body>
+</html>
