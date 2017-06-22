@@ -36,7 +36,7 @@ var u = getQueryString('u');
 var s = getQueryString('s');
 var r = '无';
 try{
-	r = JSON.parse(window.story.getUserInfo(u,s)).v;	
+	r = JSON.parse(window.story.getUserInfo(u,s));	
 }catch(e){
 	
 }
