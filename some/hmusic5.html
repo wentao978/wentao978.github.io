@@ -16,43 +16,6 @@ function fontSize() {
 }
 fontSize();
 
-function hengshuping() {
-	if (window.orientation == 180 || window.orientation == 0) {
-		setTimeout(function() {
-			fontSize()
-		}, 100)
-	};
-	if (window.orientation == 90 || window.orientation == -90) {
-		setTimeout(function() {
-			fontSize()
-		}, 100)
-	}
-}
-var orientation = 0;
-
-function screenOrientationEvent() {
-	hengshuping()
-}
-var innerWidthTmp = window.innerWidth;
-
-function screenOrientationListener() {
-	try {
-		var a = window.innerWidth;
-		if (a != innerWidthTmp) {
-			if (a > window.innerHeight) {
-				orientation = 90
-			} else {
-				orientation = 0
-			}
-			screenOrientationEvent();
-			innerWidthTmp = a
-		}
-	} catch (e) {
-		throw new Error('转屏时发生错误');
-	};
-	setTimeout("screenOrientationListener()", 100)
-}
-screenOrientationListener();
 document.addEventListener('DOMContentLoaded', function() {;
 	!
 	function() {
@@ -147,66 +110,121 @@ div#div1>img {
 #control.down:after{ content:''; position:absolute;	width:20px;	height:20px; left:-5px;	top:-5px; background:#f44778;opacity:0.3;border-radius:50%;}
 #currtime{ position:absolute; left:0.5rem; width:2rem; height:1rem; top:-0.35rem; font-size:0.6rem; text-align:center;}
 #totaltime{ position:absolute; right:0.5rem; width:2rem; height:1rem; top:-0.35rem; font-size:0.6rem; text-align:center;}
+
+.fl{ float:left;}
+#t-load{ position:absolute; left:50%; top:50%; width:4rem; height:1.5rem; font-size:0.6rem; line-height:1.5rem;	transform: translate3d(-50%,-50%,0);}
+.ball-scale-multiple { width:1.5rem; height:1.5rem;}
+.ball-scale-multiple > div:nth-child(2) {-webkit-animation-delay: 0.2s;	animation-delay: 0.2s; }
+.ball-scale-multiple > div:nth-child(3) {-webkit-animation-delay: 0.4s;	animation-delay: 0.4s; }
+.ball-scale-multiple > div { background-color: #f60; width: 0.4rem; height: 0.4rem; border-radius: 100%; margin: 2px; -webkit-animation-fill-mode: both; animation-fill-mode: both; position: absolute; left: 0px; top: 0px; opacity: 0; margin: 0; width: 1.5rem; height: 1.5rem; -webkit-animation: ball-scale-multiple 0.6s 0s linear infinite; animation: ball-scale-multiple 0.6s 0s linear infinite; }
+
+@-webkit-keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0; 
+	 }
+
+  5% { opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; 
+	} 
+}
+
+@keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+	 }
+
+  5% { opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; 
+	} 
+}
 </style>
+
+
 </head>
 <body>
 	<!--src="apk/1.m4a"  autoplay="autoplay" -->
-	<audio
-		autoplay="autoplay"
-        src="orderPlay/apk/1.m4a"
-		id="audio" ></audio>
-	<!--背景图片-->
-	<div id="div1">
-		<!--<img src="images/bg.jpg" width="100%" height="100%" />-->
-	</div>
-
-	<!--歌曲信息区域-->
-	<div id="top-bar">
-		<div class="music_con">
-			<div class="singer_img"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003RMaRI1iFoYd.jpg?max_age=2592000"></div>
-			<div class="music_msg">
-				<p class="sname">告白气球</p>
-				<p class="artist">歌手：周杰伦</p>
-                <p class="xiami">
-                	<span class="icon"></span>
-                    <span class="xtext">虾米音乐</span>
-                </p>
-			</div> 
-            <div class="play_pause_con" id="play_pause_con"> <!--播放/暂停按钮-->
-				<div id="ctrl">
-					<div id="play" class="pause"></div>
-                </div>    
-            </div>
-		</div>
-	</div>
-
-	<!--歌词-->
-	<div class="box" id="box">
-    	<div class="ctime">0:00</div>
-        <div class="ccurrent"></div>
-    	<div class="line-wrap"></div>
-		<div class="lrc-wrap">
-        	<ul class="lrc" id="lrc">
-			</ul>
+	<div id="t-load">
+        <div class="ball-scale-multiple fl">
+          <div></div>
+          <div></div>
+          <div></div>
         </div>
-	</div>
-	
-    <!--进度条区域-->
-	<div id="music_bar">
-		<div class="music_bar_con">
-			<!--进度条-->
-			<div id="progress">
-				<!--进程显示-->
-                <span class="buffer"></span>
-				<span id="bar"> </span>
-				<div id="control" class=""></div>
-				<!--拖动点-->
-			</div>
-            <span id="currtime">00:00</span>
-            <span id="totaltime" style="float:right;"></span>
-		</div>
-	</div>
-	
+        <span class="fl">跳转中···</span>
+    </div>
+    <div id="music-wrap">
+    	<audio
+           
+            src="http://dl.stream.qqmusic.qq.com/C400003OUlho2HcRHC.m4a?vkey=AFB23908448D4FDFDEBEE84048089ED4A0064B66694E912D5C750B41A38DE5A7DA3710C4009E5334ECDC6BACCB8D5EF3669F725E0E15AD5A&guid=915172850&uin=476788978&fromtag=66"
+            id="audio" ></audio>
+        <!--背景图片-->
+        <div id="div1">
+            <!--<img src="images/bg.jpg" width="100%" height="100%" />-->
+        </div>
+    
+        <!--歌曲信息区域-->
+        <div id="top-bar">
+            <div class="music_con">
+                <div class="singer_img"><img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003RMaRI1iFoYd.jpg?max_age=2592000"></div>
+                <div class="music_msg">
+                    <p class="sname">告白气球</p>
+                    <p class="artist">歌手：周杰伦</p>
+                    <p class="xiami">
+                        <span class="icon"></span>
+                        <span class="xtext">虾米音乐</span>
+                    </p>
+                </div> 
+                <div class="play_pause_con" id="play_pause_con"> <!--播放/暂停按钮-->
+                    <div id="ctrl">
+                        <div id="play" class="play"></div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    
+        <!--歌词-->
+        <div class="box" id="box">
+            <div class="ctime">0:00</div>
+            <div class="ccurrent"></div>
+            <div class="line-wrap"></div>
+            <div class="lrc-wrap">
+                <ul class="lrc" id="lrc">
+                </ul>
+            </div>
+        </div>
+        
+        <!--进度条区域-->
+        <div id="music_bar">
+            <div class="music_bar_con">
+                <!--进度条-->
+                <div id="progress">
+                    <!--进程显示-->
+                    <span class="buffer"></span>
+                    <span id="bar"> </span>
+                    <div id="control" class=""></div>
+                    <!--拖动点-->
+                </div>
+                <span id="currtime">00:00</span>
+                <span id="totaltime" style="float:right;"></span>
+            </div>
+        </div>
+    </div>
+	<form name="m-form" id="m-form">
+    	<input type="hidden" name="m-type" id="m-type" value="weather">
+        <input type="hidden" name="m-id" id="m-id" value="1005">
+        <input type="hidden" name="m-orign" id="m-orign" value="music">        
+    </form>
 	<script>
 		
 		document.addEventListener("DOMContentLoaded",function(){
@@ -224,639 +242,599 @@ div#div1>img {
 			
 			
 			!function(){
-				var isMobile = /mobile/gi.test(navigator.userAgent.toLowerCase());
-				var events = isMobile ? { down: 'touchstart', move: 'touchmove', up: 'touchend'} : {down: 'mousedown', move: 'mousemove', up: 'mouseup'};
 				
-				//歌词
-				var lyrics_orign = "[00:00.98]告白气球 - 周杰伦\
-							[00:04.19]词：方文山\
-							[00:06.29]曲：周杰伦\
-							[00:07.78]\
-							[00:23.65]塞纳河畔 左岸的咖啡\
-							[00:26.45]我手一杯 品尝你的美\
-							[00:28.94]\
-							[00:29.49]留下唇印的嘴\
-							[00:31.89]\
-							[00:34.42]花店玫瑰 名字写错谁\
-							[00:37.18]告白气球 风吹到对街\
-							[00:40.18]微笑在天上飞\
-							[00:42.59]\
-							[00:44.27]你说你有点难追 想让我知难而退\
-							[00:49.40]礼物不需挑最贵 只要香榭的落叶\
-							[00:54.67]喔 营造浪漫的约会 不害怕搞砸一切\
-							[01:00.01]拥有你就拥有 全世界\
-							[01:04.15]\
-							[01:05.13]亲爱的 爱上你 从那天起\
-							[01:11.48]甜蜜的很轻易\
-							[01:14.59]\
-							[01:15.70]亲爱的 别任性 你的眼睛\
-							[01:21.36]\
-							[01:22.08]在说我愿意\
-							[01:25.42]\
-							[01:49.14]塞纳河畔 左岸的咖啡\
-							[01:51.72]我手一杯 品尝你的美\
-							[01:54.20]\
-							[01:54.87]留下唇印的嘴\
-							[01:57.31]\
-							[01:59.81]花店玫瑰 名字写错谁\
-							[02:02.39]告白气球 风吹到对街\
-							[02:04.70]\
-							[02:05.44]微笑在天上飞\
-							[02:07.99]\
-							[02:09.61]你说你有点难追 想让我知难而退\
-							[02:14.78]礼物不需挑最贵 只要香榭的落叶\
-							[02:19.65]\
-							[02:20.18]喔 营造浪漫的约会 不害怕搞砸一切\
-							[02:25.40]拥有你就拥有 全世界\
-							[02:29.42]\
-							[02:30.46]亲爱的 爱上你 从那天起\
-							[02:36.87]甜蜜的很轻易\
-							[02:39.98]\
-							[02:41.01]亲爱的 别任性 你的眼睛\
-							[02:46.74]\
-							[02:47.33]在说我愿意\
-							[02:51.16]\
-							[02:51.85]亲爱的 爱上你 恋爱日记\
-							[02:57.46]\
-							[02:58.06]飘香水的回忆\
-							[03:01.49]\
-							[03:02.42]一整瓶 的梦境 全都有你\
-							[03:08.11]\
-							[03:08.82]搅拌在一起\
-							[03:12.29]\
-							[03:13.16]亲爱的别任性 你的眼睛\
-							[03:20.01]\
-							[03:21.37]在说我愿意";
-		
-				//视频对象
-				var audio = $("#audio");
-				//播放按钮
-				var play = $("#play");
-				var play_btn = $("#play_pause_con");
-				//进度条
-				var progress = $("#progress");
-				//蓝色进度条
-				var bar = $("#bar");
-				//控制点
-				var control = $("#control");
-				var box = $("#box");
-				var lrc = $('#lrc');
-				var buffer = $('.buffer');
-				 
-				var boxOutTop = box.getBoundingClientRect().top;
-				var cTime = $(".ctime");
-				var cLineWrap = $(".line-wrap");
-				var cCurrent = $(".ccurrent");
-				
-				var currtime = $("#currtime");
-				var totaltime = $("#totaltime");
-				
-				//console.log($('#top-bar').offsetHeight);
-				//console.log(parseInt($('#music_bar').getStyle('bottom')));
-				//console.log(parseInt($('html').getStyle('fontSize'))*3.6)
-				//console.log($('body').offsetHeight)
-				//console.log($('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*3.6)
-				var linePer = 5/11;
-				var boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
-				box.style.height = boxHeight + 'px'; 
 								
-				var top = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? boxHeight * linePer : parseInt(lrc.style.transform.split(',')[1]) ;
+				var baseUrl = "gioneemusic://dddadfaf";
+				var json1 = {id:1,title:'111111',type:'one',url:'http://one.com'};
 				
-				var timer;
-				var time;
-				var lineno;
 				
-				var fadeTimer = null;
-				var currentIndex = 0; //滑动时当前的索引，控制显示时间以及跳转的
-				var isBoxMove = false; // 在box的move过程中，不让自动滚动歌词
-				var downY; // box按下时的Y值 
-				var isLoadDuration = false;
-				var isMouseDown = false;
-				var bodyLeft = parseInt($('body').getStyle('margin').split(" ")[1]);				
+				openApp(baseUrl,json1,callBack);
 				
-				var lyrics_arr = lyrics_orign.split("							");
+				function openApp(schemaUrl, json,fail) {
+					
+					document.getElementById("t-load").style.display = "block";
+					document.getElementById("music-wrap").style.display = "none";
+					
+					var ifr = document.createElement('iframe'), t = 500, t1, timeout;
+					ifr.style.display = 'none';
+					document.body.appendChild(ifr);
+					t1 = Date.now();
+					ifr.src = schemaUrl+"?"+formatParams(json);
+					timeout = setTimeout(function() {
+						var t2 = Date.now();
+						if (t2 - t1 < t + 100) {
+							if (typeof fail == 'function') {
+								fail();
+							} else {
+								location.href = fail;
+							}
+						}
+						document.body.removeChild(ifr);
+					}, t)
+				}
+				
+				
+				function callBack(){
+					document.getElementById("t-load").style.display = "none";
+					document.getElementById("music-wrap").style.display = "block";
+					
+					//上报信息
+					upInfo();
+					
+					doMusic();
+					
+				}
+				
+				function upInfo(){
+					var frm = document.forms["m-form"];
+					var ifm = document.createElement('iframe');
+					ifm.name = 'm-iframe';
+					ifm.style.display = 'none';
+					document.body.appendChild(ifm);
+					frm.action = "http://t-ads.gionee.com/ads/cddlick.do";
+    				frm.target = "m-iframe";
+					frm.submit();
+					return false;
+				}
+				
+				
+				function doMusic(){
+					var isMobile = /mobile/gi.test(navigator.userAgent.toLowerCase());
+					var events = isMobile ? { down: 'touchstart', move: 'touchmove', up: 'touchend'} : {down: 'mousedown', move: 'mousemove', up: 'mouseup'};
+					
+					//歌词
+					var lyrics_orign = "[00:00.98]告白气球 - 周杰伦\
+								[00:04.19]词：方文山\
+								[00:06.29]曲：周杰伦\
+								[00:07.78]\
+								[00:23.65]塞纳河畔 左岸的咖啡\
+								[00:26.45]我手一杯 品尝你的美\
+								[00:28.94]\
+								[00:29.49]留下唇印的嘴\
+								[00:31.89]\
+								[00:34.42]花店玫瑰 名字写错谁\
+								[00:37.18]告白气球 风吹到对街\
+								[00:40.18]微笑在天上飞\
+								[00:42.59]\
+								[00:44.27]你说你有点难追 想让我知难而退\
+								[00:49.40]礼物不需挑最贵 只要香榭的落叶\
+								[00:54.67]喔 营造浪漫的约会 不害怕搞砸一切\
+								[01:00.01]拥有你就拥有 全世界\
+								[01:04.15]\
+								[01:05.13]亲爱的 爱上你 从那天起\
+								[01:11.48]甜蜜的很轻易\
+								[01:14.59]\
+								[01:15.70]亲爱的 别任性 你的眼睛\
+								[01:21.36]\
+								[01:22.08]在说我愿意\
+								[01:25.42]\
+								[01:49.14]塞纳河畔 左岸的咖啡\
+								[01:51.72]我手一杯 品尝你的美\
+								[01:54.20]\
+								[01:54.87]留下唇印的嘴\
+								[01:57.31]\
+								[01:59.81]花店玫瑰 名字写错谁\
+								[02:02.39]告白气球 风吹到对街\
+								[02:04.70]\
+								[02:05.44]微笑在天上飞\
+								[02:07.99]\
+								[02:09.61]你说你有点难追 想让我知难而退\
+								[02:14.78]礼物不需挑最贵 只要香榭的落叶\
+								[02:19.65]\
+								[02:20.18]喔 营造浪漫的约会 不害怕搞砸一切\
+								[02:25.40]拥有你就拥有 全世界\
+								[02:29.42]\
+								[02:30.46]亲爱的 爱上你 从那天起\
+								[02:36.87]甜蜜的很轻易\
+								[02:39.98]\
+								[02:41.01]亲爱的 别任性 你的眼睛\
+								[02:46.74]\
+								[02:47.33]在说我愿意\
+								[02:51.16]\
+								[02:51.85]亲爱的 爱上你 恋爱日记\
+								[02:57.46]\
+								[02:58.06]飘香水的回忆\
+								[03:01.49]\
+								[03:02.42]一整瓶 的梦境 全都有你\
+								[03:08.11]\
+								[03:08.82]搅拌在一起\
+								[03:12.29]\
+								[03:13.16]亲爱的别任性 你的眼睛\
+								[03:20.01]\
+								[03:21.37]在说我愿意";
 			
-				var lyrics = [];
-				for (var i=0;i<lyrics_arr.length;i++) {
-					var obj = {};
-					obj.time = formatMs(lyrics_arr[i].split("]")[0].substring(1));
+					//视频对象
+					var audio = $("#audio");
+					//播放按钮
+					var play = $("#play");
+					var play_btn = $("#play_pause_con");
+					//进度条
+					var progress = $("#progress");
+					//蓝色进度条
+					var bar = $("#bar");
+					//控制点
+					var control = $("#control");
+					var box = $("#box");
+					var lrc = $('#lrc');
+					var buffer = $('.buffer');
+					 
+					var boxOutTop = box.getBoundingClientRect().top;
+					var cTime = $(".ctime");
+					var cLineWrap = $(".line-wrap");
+					var cCurrent = $(".ccurrent");
 					
-					obj.text = lyrics_arr[i].split("]")[1];
-					if(obj.text != ""){
-						lyrics.push(obj);	
-					}
-				}
+					var currtime = $("#currtime");
+					var totaltime = $("#totaltime");
 					
-				var html = "";
-				for (var i = 0; i < lyrics.length; i++) {
-					if(i == 0){
-						html += "<li data-time="+lyrics[i].time+" class=' active' >"+lyrics[i].text+"</li>";
-					}else{
-						html += "<li data-time="+lyrics[i].time+">"+lyrics[i].text+"</li>";	
-					}
-				}
-				lrc.innerHTML = html;
-				lrc.style.transition = "all 0s ease-out";
-				lrc.style.transform = "translate3d(0,"+( (boxHeight * linePer))+"px,0)";
-				var domList = $("#lrc li",true);
-				var oneHeight = boxHeight / 11;
-				Array.prototype.forEach.call(domList,function(item){
-					item.style.height = item.style.lineHeight = oneHeight + 'px';
-				});
-				
-				/*window.onresize = function(){
-					boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
-					box.style.height = boxHeight + 'px';
-					oneHeight = boxHeight / 11;	
-				}*/
-				
-				//新版本的兼容pc和移动端
-				box.addEventListener(events.down,boxDown);
-				
-				function boxDown(ev){
-					var ev = isMobile ? ev.changedTouches[0] : ev ;
-					downY = ev.clientY;
-					clearTimeout(fadeTimer);
-					isBoxMove = true;
+					//console.log($('#top-bar').offsetHeight);
+					//console.log(parseInt($('#music_bar').getStyle('bottom')));
+					//console.log(parseInt($('html').getStyle('fontSize'))*3.6)
+					//console.log($('body').offsetHeight)
+					//console.log($('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*3.6)
+					var linePer = 5/11;
+					var boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
+					box.style.height = boxHeight + 'px'; 
+									
+					var top = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? boxHeight * linePer : parseInt(lrc.style.transform.split(',')[1]) ;
 					
-					document.addEventListener(events.move,boxMove);
-					document.addEventListener(events.up,boxUp);
-					isMobile ? '' : ev.preventDefault() ;
-					return false;	
-				}
-				
-				function boxMove(ev){
-					var ev = isMobile ? ev.changedTouches[0] : ev ;	
-					//move时，显示
-					cTime.style.display = 'block';
-					cLineWrap.style.display = 'block';
-					cCurrent.style.display = 'block';
+					var timer;
+					var time;
+					var lineno;
 					
-					//console.log(ev.clientX,ev.clientY,downY);
-					if(ev.clientY < downY){ //向上滑动，lrc上移
-						//console.log('up')
-						//向上滑动，lrc的transform的Y值减小对应的值
+					var fadeTimer = null;
+					var currentIndex = 0; //滑动时当前的索引，控制显示时间以及跳转的
+					var isBoxMove = false; // 在box的move过程中，不让自动滚动歌词
+					var downY; // box按下时的Y值 
+					var isLoadDuration = false;
+					var isMouseDown = false;
+					var bodyLeft = parseInt($('body').getStyle('margin').split(" ")[1]);				
+					
+					var lyrics_arr = lyrics_orign.split("								");
+				
+					var lyrics = [];
+					for (var i=0;i<lyrics_arr.length;i++) {
+						var obj = {};
+						obj.time = formatMs(lyrics_arr[i].split("]")[0].substring(1));
 						
-						var diff = downY - ev.clientY;
-						var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
-						lrc.style.transform = "translate3d(0,"+( oldTop - diff < (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) ? (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) : oldTop - diff )+"px,0)";
-						
-						downY = ev.clientY;
-						
-						//显示最中间的行对应的时间值 在move的时候，根据现在的Y值，显示对应的时间
-						//console.log(oldTop - diff < (30/2 + 330/2 - 30*37) ? (30/2 + 330/2 - 30*37) : oldTop - diff);
-						
-						//根据歌词数组长度进行判断
-						var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
-						currentIndex = 0;
-						for (var i=0;i<lyrics.length;i++) {
-							//150 - i * 30 
-							//console.log(currentY , 150 - i * 30);
-							//看看currentY离哪个值最近
-							if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
-								//console.log(i);
-								currentIndex = i;
-								
-								break;
-							}
+						obj.text = lyrics_arr[i].split("]")[1];
+						if(obj.text != ""){
+							lyrics.push(obj);	
 						}
-						console.log(lyrics[currentIndex].time.toTime())
-						cTime.innerHTML = lyrics[currentIndex].time.toTime()
+					}
 						
-						
-					}else if(ev.clientY > downY){ //向下滑动，lrc下移
-						//console.log('down')
-						//向下滑动，lrc的transform的Y值增加对应的值
-						//debugger;
-						var diff = ev.clientY - downY;
-						var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
-						
-						//选出离最近的30倍 + 15的值，放手的时候，调到对应的位置
-						
-						lrc.style.transform = "translate3d(0,"+( oldTop + diff  > (boxHeight * linePer)  ? (boxHeight * linePer) : oldTop + diff  )+"px,0)";
-						
-						downY = ev.clientY;
-						
-						//显示最中间的行对应的时间值
-						//console.log(oldTop + diff  > 150  ? 150 : oldTop + diff );
-						
-						var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
-						currentIndex = 0;
-						for (var i=0;i<lyrics.length;i++) {
-							//150 - i * 30 
-							//console.log(currentY , 150 - i * 30);
-							//看看currentY离哪个值最近
-							if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
-								//console.log(i);
-								currentIndex = i;
-								
-								break;
-							}
+					var html = "";
+					for (var i = 0; i < lyrics.length; i++) {
+						if(i == 0){
+							html += "<li data-time="+lyrics[i].time+" class=' active' >"+lyrics[i].text+"</li>";
+						}else{
+							html += "<li data-time="+lyrics[i].time+">"+lyrics[i].text+"</li>";	
 						}
-						console.log(lyrics[currentIndex].time.toTime())
-						cTime.innerHTML = lyrics[currentIndex].time.toTime()
+					}
+					lrc.innerHTML = html;
+					lrc.style.transition = "all 0s ease-out";
+					lrc.style.transform = "translate3d(0,"+( (boxHeight * linePer))+"px,0)";
+					var domList = $("#lrc li",true);
+					var oneHeight = boxHeight / 11;
+					Array.prototype.forEach.call(domList,function(item){
+						item.style.height = item.style.lineHeight = oneHeight + 'px';
+					});
+					
+					/*window.onresize = function(){
+						boxHeight = $('body').offsetHeight - $('#top-bar').offsetHeight - parseInt($('#music_bar').getStyle('bottom')) - parseInt($('html').getStyle('fontSize'))*(1.8+1.8+1.2);
+						box.style.height = boxHeight + 'px';
+						oneHeight = boxHeight / 11;	
+					}*/
+					
+					//不支持跳转 -- 添加自动播放 和 控制按钮样式 -- 还要上报东西
+					audio.attr('autoplay','autoplay').play();
+					play.removeClass('play').addClass('pause');
+					
+					//新版本的兼容pc和移动端
+					box.addEventListener(events.down,boxDown);
+					
+					function boxDown(ev){
+						var ev = isMobile ? ev.changedTouches[0] : ev ;
+						downY = ev.clientY;
+						clearTimeout(fadeTimer);
+						isBoxMove = true;
+						
+						document.addEventListener(events.move,boxMove);
+						document.addEventListener(events.up,boxUp);
+						isMobile ? '' : ev.preventDefault() ;
+						return false;	
+					}
+					
+					function boxMove(ev){
+						var ev = isMobile ? ev.changedTouches[0] : ev ;	
+						//move时，显示
+						cTime.style.display = 'block';
+						cLineWrap.style.display = 'block';
+						cCurrent.style.display = 'block';
+						
+						//console.log(ev.clientX,ev.clientY,downY);
+						if(ev.clientY < downY){ //向上滑动，lrc上移
+							//console.log('up')
+							//向上滑动，lrc的transform的Y值减小对应的值
+							
+							var diff = downY - ev.clientY;
+							var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
+							lrc.style.transform = "translate3d(0,"+( oldTop - diff < (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) ? (oneHeight/2 + boxHeight/2 - oneHeight*lyrics.length) : oldTop - diff )+"px,0)";
+							
+							downY = ev.clientY;
+							
+							//显示最中间的行对应的时间值 在move的时候，根据现在的Y值，显示对应的时间
+							//console.log(oldTop - diff < (30/2 + 330/2 - 30*37) ? (30/2 + 330/2 - 30*37) : oldTop - diff);
+							
+							//根据歌词数组长度进行判断
+							var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
+							currentIndex = 0;
+							for (var i=0;i<lyrics.length;i++) {
+								//150 - i * 30 
+								//console.log(currentY , 150 - i * 30);
+								//看看currentY离哪个值最近
+								if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
+									//console.log(i);
+									currentIndex = i;
+									
+									break;
+								}
+							}
+							console.log(lyrics[currentIndex].time.toTime())
+							cTime.innerHTML = lyrics[currentIndex].time.toTime()
+							
+							
+						}else if(ev.clientY > downY){ //向下滑动，lrc下移
+							//console.log('down')
+							//向下滑动，lrc的transform的Y值增加对应的值
+							//debugger;
+							var diff = ev.clientY - downY;
+							var oldTop = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]) 
+							
+							//选出离最近的30倍 + 15的值，放手的时候，调到对应的位置
+							
+							lrc.style.transform = "translate3d(0,"+( oldTop + diff  > (boxHeight * linePer)  ? (boxHeight * linePer) : oldTop + diff  )+"px,0)";
+							
+							downY = ev.clientY;
+							
+							//显示最中间的行对应的时间值
+							//console.log(oldTop + diff  > 150  ? 150 : oldTop + diff );
+							
+							var currentY = isNaN(parseInt(lrc.style.transform.split(',')[1])) ? (boxHeight * linePer) : parseInt(lrc.style.transform.split(',')[1]);
+							currentIndex = 0;
+							for (var i=0;i<lyrics.length;i++) {
+								//150 - i * 30 
+								//console.log(currentY , 150 - i * 30);
+								//看看currentY离哪个值最近
+
+								if ( currentY > (boxHeight * linePer) - oneHeight/2 - i * oneHeight ) {
+									//console.log(i);
+									currentIndex = i;
+									
+									break;
+								}
+							}
+							console.log(lyrics[currentIndex].time.toTime())
+							cTime.innerHTML = lyrics[currentIndex].time.toTime()
+							
+						}
+					}
+					
+					function boxUp(){
+						document.removeEventListener(events.move,boxMove);
+						document.removeEventListener(events.up,boxUp);
+						
+						//抬起来2s让线，时间，跳转按钮消失
+						fadeTimer = setTimeout(function(){
+							cTime.style.display = 'none';
+							cLineWrap.style.display = 'none';
+							cCurrent.style.display = 'none';
+							isBoxMove = false;
+						},2000)
 						
 					}
-				}
-				
-				function boxUp(){
-					document.removeEventListener(events.move,boxMove);
-					document.removeEventListener(events.up,boxUp);
-					
-					//抬起来2s让线，时间，跳转按钮消失
-					fadeTimer = setTimeout(function(){
+					cCurrent.addEventListener("click",function(){
+						//当前的时间
+						audio.currentTime = lyrics[currentIndex].time;
+						lrcMove(audio.duration,lyrics[currentIndex].time);	
+						lrcAtuoMove(audio.currentTime)
+						//点了之后就跑到一个位置
+						lrc.style.transform = "translate3d(0,"+(-oneHeight*currentIndex + (boxHeight * linePer) )+"px,0)";
+						
 						cTime.style.display = 'none';
 						cLineWrap.style.display = 'none';
 						cCurrent.style.display = 'none';
-						isBoxMove = false;
-					},2000)
-					
-				}
-				cCurrent.addEventListener("click",function(){
-					//当前的时间
-					audio.currentTime = lyrics[currentIndex].time;
-					lrcMove(audio.duration,lyrics[currentIndex].time);	
-					lrcAtuoMove(audio.currentTime)
-					//点了之后就跑到一个位置
-					lrc.style.transform = "translate3d(0,"+(-oneHeight*currentIndex + (boxHeight * linePer) )+"px,0)";
-					
-					cTime.style.display = 'none';
-					cLineWrap.style.display = 'none';
-					cCurrent.style.display = 'none';
-					
-					//让线，时间，跳转按钮消失
-					if (!audio.paused) {  //
-						//play.className = "play";
-						//audio.pause();
-					} else {
-						play.className = "pause";
-						audio.play();
 						
-					}
-					console.log(lyrics[currentIndex].time)	
-				},false);		
-						
-				//获取元数据
-				audio.addEventListener("loadedmetadata", function() {
-					try{
-						if(!isNaN(audio.duration)){
-	
-							totaltime.innerHTML = timeFormat(audio.duration);
+						//让线，时间，跳转按钮消失
+						if (!audio.paused) {  //
+							//play.className = "play";
+							//audio.pause();
+						} else {
+							play.className = "pause";
+							audio.play();
+							
 						}
-					} catch (e) {
-						console.log(e);	
-					} 
+						console.log(lyrics[currentIndex].time)	
+					},false);		
+							
+					//获取元数据
+					audio.addEventListener("loadedmetadata", function() {
+						try{
+							if(!isNaN(audio.duration)){
+		
+								totaltime.innerHTML = timeFormat(audio.duration);
+							}
+						} catch (e) {
+							console.log(e);	
+						} 
+						
+					}, false);
 					
-				}, false);
+					//能够播放时
+					audio.addEventListener("canplay", function() {
+						
+					}, false);
+					
+					//缓冲
+					var startBuffer = function() {
+						var currentBuffer
+						try{
+							currentBuffer = audio.buffered.end(0);
+							if(!isLoadDuration){
+								isLoadDuration = true;
+								if(!isNaN(audio.duration)){
+									totaltime.innerHTML = timeFormat(audio.duration);
+								}
+							}
+						}catch (e) {
+							setTimeout(startBuffer, 500);
+						}
+						
+						var maxduration = audio.duration;
+						var perc = currentBuffer / maxduration;
+						if(!isNaN(perc)){
+							buffer.style.width = perc * 100 + "%";
+							console.log(perc);
+						}
+								
+						if(currentBuffer < maxduration) {
+							setTimeout(startBuffer, 500);
+						}
+					};
 				
-				
-				
-				/*canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本
-				canplaythrough	当媒介能够无需因缓冲而停止即可播放至结尾时运行脚本
-				durationchange	当媒介长度改变时运行脚本
-				emptied	当媒介资源元素突然为空时（网络错误、加载错误等）运行脚本
-				ended	当媒介已抵达结尾时运行脚本
-				error	当在元素加载期间发生错误时运行脚本
-				onloadeddata	当加载媒介数据时运行脚本
-				loadedmetadata	当媒介元素的持续时间以及其他媒介数据已加载时运行脚本
-				loadstart	当浏览器开始加载媒介数据时运行脚本
-				pause	当媒介数据暂停时运行脚本
-				play	当媒介数据将要开始播放时运行脚本
-				playing	当媒介数据已开始播放时运行脚本
-				progress	当浏览器正在取媒介数据时运行脚本
-				ratechange	当媒介数据的播放速率改变时运行脚本
-				readystatechange	当就绪状态（ready-state）改变时运行脚本
-				seeked	当媒介元素的定位属性 [1] 不再为真且定位已结束时运行脚本
-				seeking	当媒介元素的定位属性为真且定位已开始时运行脚本
-				stalled	当取回媒介数据过程中（延迟）存在错误时运行脚本
-				suspend	当浏览器已在取媒介数据但在取回整个媒介文件之前停止时运行脚本
-				timeupdate	当媒介改变其播放位置时运行脚本
-				volumechange	当媒介改变音量亦或当音量被设置为静音时运行脚本
-				waiting	当媒介已停止播放但打算继续播放时运行脚本*/
-				
-				//能够播放时
-				audio.addEventListener("canplay", function() {
-					console.log('canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本')
-				}, false);	
-				
-				audio.addEventListener("canplaythrough", function() { //等待再开始播放
-					console.log('canplaythrough	当媒介能够无需因缓冲而停止即可播放至结尾时运行脚本')
-				}, false);
-				
-				audio.addEventListener("durationchange", function() {
-					console.log('durationchange	当媒介长度改变时运行脚本')
-				}, false);
-				
-				audio.addEventListener("emptied", function() {
-					console.log('emptied	当媒介资源元素突然为空时（网络错误、加载错误等）运行脚本')
-				}, false);
-				
-				audio.addEventListener("ended", function() {
-					console.log('ended	当媒介已抵达结尾时运行脚本')
-				}, false);
-				
-				audio.addEventListener("error", function() {
-					console.log('当在元素加载期间发生错误时运行脚本')
-				}, false);
-				
-				audio.addEventListener("onloadeddata", function() {
-					console.log('onloadeddata	当加载媒介数据时运行脚本')
-				}, false);
-				
-				audio.addEventListener("loadeddata", function() {
-					console.log('loadeddata	当加载媒介数据时运行脚本')
-				}, false);
-				
-				audio.addEventListener("loadedmetadata", function() {
-					console.log('loadedmetadata	当媒介元素的持续时间以及其他媒介数据已加载时运行脚本')
-				}, false);
-				
-				audio.addEventListener("loadstart", function() {
-					console.log('loadstart	当浏览器开始加载媒介数据时运行脚本')
-				}, false);
-				
-				audio.addEventListener("pause", function() {
-					console.log('pause	当媒介数据暂停时运行脚本')
-				}, false);
-				
-				audio.addEventListener("play", function() {
-					console.log('play	当媒介数据将要开始播放时运行脚本')
-				}, false);
-				
-				audio.addEventListener("playing", function() {
-					console.log('playing	当媒介数据已开始播放时运行脚本')
-				}, false);
-				
-				audio.addEventListener("progress", function() {
-					//console.log('progress	当浏览器正在取媒介数据时运行脚本')
-				}, false);
-				
-				audio.addEventListener("ratechange", function() {
-					console.log('ratechange	当媒介数据的播放速率改变时运行脚本')
-				}, false);
-				
-				audio.addEventListener("readystatechange", function() {
-					console.log('readystatechange	当就绪状态（ready-state）改变时运行脚本')
-				}, false);
-				
-				audio.addEventListener("seeked", function() {
-					console.log('seeked	当媒介元素的定位属性 [1] 不再为真且定位已结束时运行脚本')
-				}, false);
-				
-				audio.addEventListener("seeking", function() {
-					console.log('seeking	当媒介元素的定位属性为真且定位已开始时运行脚本')
-				}, false);
-				
-				audio.addEventListener("stalled", function() {
-					console.log('stalled	当取回媒介数据过程中（延迟）存在错误时运行脚本')
-				}, false);
-				
-				audio.addEventListener("suspend", function() {
-					console.log('suspend	当浏览器已在取媒介数据但在取回整个媒介文件之前停止时运行脚本')
-				}, false);
-				
-				audio.addEventListener("timeupdate", function() {
-					//console.log('timeupdate	当媒介改变其播放位置时运行脚本')
-				}, false);
-				
-				audio.addEventListener("volumechange", function() {
-					console.log('volumechange	当媒介改变音量亦或当音量被设置为静音时运行脚本')
-				}, false);
-				
-				audio.addEventListener("waiting", function() { //等待
-					console.log('waiting	当媒介已停止播放但打算继续播放时运行脚本')
-				}, false);
-				
-				//缓冲
-				var startBuffer = function() {
-					var currentBuffer
-					try{
-						currentBuffer = audio.buffered.end(0);
-						if(!isLoadDuration){
-							isLoadDuration = true;
+					startBuffer();
+							
+					function lrcMove (timeall,currenttime) {
+						var index,i,s;	
+					
+						for(var i=0;i<domList.length;i++){
+							//如果当前时间等于遍历的歌词的时间
+							var dataTimeLine = parseInt(domList[i].attr("data-time"));
+					
+							//等到唱第一句歌词的时候再滚动
+							if(dataTimeLine > 0 && dataTimeLine === parseInt(currenttime)){
+					
+								//当前歌词的下标
+								index = i;
+					
+								//当前下标值和上次记录的下标值不同才滚动，一个下标值只滚动一次
+								if(s != i){
+									//记录下标值
+									s = i;
+					
+									//歌词颜色变化
+									for(var j=0;j<domList.length;j++){
+										domList[j].removeClass("active");
+									}
+									if(index > 0){
+										//removeClass(domList[index-1],"active");
+										domList[index].addClass("active");
+									}
+					
+									//刚开始到结束一直在动
+									lrc.style.transition = "all 0.1s ease-out";
+									if(isBoxMove) {
+										
+									}else {
+										lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";	
+									}
+									
+								}
+							}
+						}	
+					}
+					
+					function lrcAtuoMove(time){
+						var dataArr = [],
+							songTime = parseInt(time),
+							MoveTime,
+							index,
+							e;
+					
+						//获取歌词时间数组
+						for(var i=0;i<domList.length;i++){
+							dataArr.push(domList[i].attr("data-time"));
+						}
+						console.info(dataArr);
+						//找到应该跳转的时间
+						for(var j=0;j<dataArr.length;j++){
+							//直接点到末尾处
+							if(dataArr[dataArr.length-1] < songTime){
+								index = dataArr.length-1;
+								break;	
+							}
+							//时间为数组里最后一个小于或等于它的数
+							if(dataArr[j] > songTime){
+								MoveTime = dataArr[j - 1];
+								index = j - 1;
+								break;
+							}
+						}
+					
+						//找到下标index,跳转
+						e = MoveTime ? dataArr.indexOf(MoveTime) : domList.length - 1;
+						
+						//刚开始到结束一直在动
+						lrc.style.transition = "all 0.1s ease-out";
+						
+						if(isBoxMove){
+							
+						}else{
+							lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";		
+						}
+						
+						
+						//歌曲颜色
+						for(var k=0;k<domList.length;k++){
+							domList[k].removeClass("active");
+						}
+						if(e >= 0){	
+							domList[e].addClass("active");
+						}
+					}
+		
+						
+					//获取当前动作
+					play_btn.addEventListener(events.down,function(){
+						if (!audio.paused) {  //这里判断好像还是有点小问题
+							play.className = "play";
+							audio.pause();
+						} else {
+							play.className = "pause";
+							audio.play();						
+						}	
+					},false);
+					
+					//播放完毕
+					audio.addEventListener("ended",function(){
+						play.className = "play";
+						audio.pause();
+						audio.currentTime = 0;
+						//计算歌词滚动
+						lrcAtuoMove(audio.currentTime)
+					},false);
+					
+					//progress事件 当浏览器正在取媒介数据时运行脚本
+					/*audio.addEventListener("progress",function(){
+						console.log("正在加载数据");
+					},false);*/
+					
+					//进度条跟踪事件start
+					audio.addEventListener("timeupdate", function() {
+						
+						var scales = audio.currentTime / audio.duration;
+						if(!isMouseDown){
+							currtime.innerHTML = timeFormat(audio.currentTime);
+							bar.style.width = (progress.offsetWidth-control.offsetWidth) * scales + "px";
+							control.style.left = (progress.offsetWidth-control.offsetWidth) * scales + "px";	
+						}
+						
+						
+						try{
 							if(!isNaN(audio.duration)){
 								totaltime.innerHTML = timeFormat(audio.duration);
 							}
+						}catch (e) {
+							console.log(e);	
 						}
-					}catch (e) {
-						setTimeout(startBuffer, 500);
-					}
-					
-					var maxduration = audio.duration;
-					var perc = currentBuffer / maxduration;
-					if(!isNaN(perc)){
-						buffer.style.width = perc * 100 + "%";
-						//console.log(perc);
-					}
-							
-					if(currentBuffer < maxduration) {
-						setTimeout(startBuffer, 500);
-					}
-				};
-			
-				startBuffer();
+						console.log("timeupdate");
+						lrcMove(audio.duration,audio.currentTime);
 						
-				function lrcMove (timeall,currenttime) {
-					var index,i,s;	
-				
-					for(var i=0;i<domList.length;i++){
-						//如果当前时间等于遍历的歌词的时间
-						var dataTimeLine = parseInt(domList[i].attr("data-time"));
-				
-						//等到唱第一句歌词的时候再滚动
-						if(dataTimeLine > 0 && dataTimeLine === parseInt(currenttime)){
-				
-							//当前歌词的下标
-							index = i;
-				
-							//当前下标值和上次记录的下标值不同才滚动，一个下标值只滚动一次
-							if(s != i){
-								//记录下标值
-								s = i;
-				
-								//歌词颜色变化
-								for(var j=0;j<domList.length;j++){
-									domList[j].removeClass("active");
-								}
-								if(index > 0){
-									//removeClass(domList[index-1],"active");
-									domList[index].addClass("active");
-								}
-				
-								//刚开始到结束一直在动
-								lrc.style.transition = "all 0.1s ease-out";
-								if(isBoxMove) {
-									
-								}else {
-									lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";	
-								}
-								
-							}
-						}
-					}	
-				}
-				
-				function lrcAtuoMove(time){
-					var dataArr = [],
-						songTime = parseInt(time),
-						MoveTime,
-						index,
-						e;
-				
-					//获取歌词时间数组
-					for(var i=0;i<domList.length;i++){
-						dataArr.push(domList[i].attr("data-time"));
-					}
-					console.info(dataArr);
-					//找到应该跳转的时间
-					for(var j=0;j<dataArr.length;j++){
-						//直接点到末尾处
-						if(dataArr[dataArr.length-1] < songTime){
-							index = dataArr.length-1;
-							break;	
-						}
-						//时间为数组里最后一个小于或等于它的数
-						if(dataArr[j] > songTime){
-							MoveTime = dataArr[j - 1];
-							index = j - 1;
-							break;
-						}
-					}
-				
-					//找到下标index,跳转
-					e = MoveTime ? dataArr.indexOf(MoveTime) : domList.length - 1;
+					}, false);
+					//进度条跟踪事件end
 					
-					//刚开始到结束一直在动
-					lrc.style.transition = "all 0.1s ease-out";
-					
-					if(isBoxMove){
 						
-					}else{
-						lrc.style.transform = "translate3d(0,"+(-oneHeight*index + (boxHeight * linePer) )+"px,0)";		
+					//进度条拖拽-----播放时拖拽和暂停时拖拽
+					
+					//新版本的兼容pc和移动端
+					control.addEventListener(events.down,down);
+					function down(e){
+						var ev = isMobile ? e.changedTouches[0] : e ;
+						control.addClass('down');
+						document.addEventListener(events.move,move);
+						document.addEventListener(events.up,up);
+						console.log(events.down);	
+						isMobile ? '' : ev.preventDefault();
+						return false;
 					}
+					function move(e){
+						var ev = isMobile ? e.changedTouches[0] : e ;
+						isMouseDown = true;
+						var ev = isMobile ? e.changedTouches[0] : e ;
+		
+						   var leftv= (isMobile ? ev.clientX : ev.clientX - bodyLeft) -progress.offsetLeft;
+						   if(leftv<=0){
+								   leftv=0;
+						   }
+						   if(leftv>=(progress.offsetWidth-control.offsetWidth)){
+								 leftv=progress.offsetWidth-control.offsetWidth;
+						   }
+						 //console.log(e.clientX,progress.offsetLeft,ctrl.offsetLeft);
+						 control.style.left=leftv+"px"
+						 bar.style.width=leftv+"px";
+						 
+						 var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+						 //audio.currentTime = audio.duration*scales;
+						 currtime.innerHTML = timeFormat(audio.currentTime); 
+						console.log(events.move+""+ev.pageX);
+					}
+					function up(){
+						var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+								 audio.currentTime = audio.duration*scales;
+														
+								 isMouseDown = false;
+								 lrcAtuoMove(audio.currentTime)
+						control.removeClass('down');		 
+						document.removeEventListener(events.move,move);
+						document.removeEventListener(events.up,up);	
+						console.log(events.up);
+					}
+		
 					
 					
-					//歌曲颜色
-					for(var k=0;k<domList.length;k++){
-						domList[k].removeClass("active");
-					}
-					if(e >= 0){	
-						domList[e].addClass("active");
-					}
+					//点击progress
+					progress.addEventListener(events.down,function(e){
+						var ev = isMobile ? e.changedTouches[0] : e ;
+						
+						var leftv=(isMobile ? ev.clientX : ev.clientX - bodyLeft)-progress.offsetLeft;
+						control.style.left=leftv+"px"
+						bar.style.width=leftv+"px";	
+						
+						var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
+						audio.currentTime = audio.duration*scales;
+						//计算歌词滚动
+						lrcAtuoMove(audio.currentTime)
+					},false);
+					
+						
 				}
-	
-					
-				//获取当前动作
-				play_btn.addEventListener(events.down,function(){
-					if (!audio.paused) {  //这里判断好像还是有点小问题
-						play.className = "play";
-						audio.pause();
-					} else {
-						play.className = "pause";
-						audio.play();						
-					}	
-				},false);
-				
-				//播放完毕
-				audio.addEventListener("ended",function(){
-					play.className = "play";
-					audio.pause();
-					audio.currentTime = 0;
-					//计算歌词滚动
-					lrcAtuoMove(audio.currentTime)
-				},false);
-				
-				//progress事件 当浏览器正在取媒介数据时运行脚本
-				/*audio.addEventListener("progress",function(){
-					console.log("正在加载数据");
-				},false);*/
-				
-				//进度条跟踪事件start
-				audio.addEventListener("timeupdate", function() {
-					
-					var scales = audio.currentTime / audio.duration;
-					if(!isMouseDown){
-						currtime.innerHTML = timeFormat(audio.currentTime);
-						bar.style.width = (progress.offsetWidth-control.offsetWidth) * scales + "px";
-						control.style.left = (progress.offsetWidth-control.offsetWidth) * scales + "px";	
-					}
-					
-					
-					try{
-						if(!isNaN(audio.duration)){
-							totaltime.innerHTML = timeFormat(audio.duration);
-						}
-					}catch (e) {
-						console.log(e);	
-					}
-					//console.log("timeupdate");
-					lrcMove(audio.duration,audio.currentTime);
-					
-				}, false);
-				//进度条跟踪事件end
-				
-					
-				//进度条拖拽-----播放时拖拽和暂停时拖拽
-				
-				//新版本的兼容pc和移动端
-				control.addEventListener(events.down,down);
-				function down(e){
-					var ev = isMobile ? e.changedTouches[0] : e ;
-					control.addClass('down');
-					document.addEventListener(events.move,move);
-					document.addEventListener(events.up,up);
-					console.log(events.down);	
-					isMobile ? '' : ev.preventDefault();
-					return false;
-				}
-				function move(e){
-					var ev = isMobile ? e.changedTouches[0] : e ;
-					isMouseDown = true;
-					var ev = isMobile ? e.changedTouches[0] : e ;
-	
-					   var leftv= (isMobile ? ev.clientX : ev.clientX - bodyLeft) -progress.offsetLeft;
-					   if(leftv<=0){
-							   leftv=0;
-					   }
-					   if(leftv>=(progress.offsetWidth-control.offsetWidth)){
-							 leftv=progress.offsetWidth-control.offsetWidth;
-					   }
-					 //console.log(e.clientX,progress.offsetLeft,ctrl.offsetLeft);
-					 control.style.left=leftv+"px"
-					 bar.style.width=leftv+"px";
-					 
-					 var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
-					 //audio.currentTime = audio.duration*scales;
-					 currtime.innerHTML = timeFormat(audio.currentTime); 
-					console.log(events.move+""+ev.pageX);
-				}
-				function up(){
-					var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
-							 audio.currentTime = audio.duration*scales;
-													
-							 isMouseDown = false;
-							 lrcAtuoMove(audio.currentTime)
-					control.removeClass('down');		 
-					document.removeEventListener(events.move,move);
-					document.removeEventListener(events.up,up);	
-					console.log(events.up);
-				}
-	
 				
 				
-				//点击progress
-				progress.addEventListener(events.down,function(e){
-					var ev = isMobile ? e.changedTouches[0] : e ;
-					
-					var leftv=(isMobile ? ev.clientX : ev.clientX - bodyLeft)-progress.offsetLeft;
-					control.style.left=leftv+"px"
-					bar.style.width=leftv+"px";	
-					
-					var scales=control.offsetLeft/(progress.offsetWidth-control.offsetWidth);
-					audio.currentTime = audio.duration*scales;
-					//计算歌词滚动
-					lrcAtuoMove(audio.currentTime)
-				},false);
+				
+				
+				
+				
+				
+				
 			}()	  
 						
 								
@@ -974,6 +952,14 @@ div#div1>img {
 						this.setAttribute(attribute,value)
 						return this;	
 				}
+			}
+			
+			function formatParams(data) {
+				var arr = [];
+				for (var name in data) {
+					arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+				}
+				return arr.join("&");
 			}
 			
 		},false);

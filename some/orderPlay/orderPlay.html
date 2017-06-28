@@ -16,43 +16,6 @@ function fontSize() {
 }
 fontSize();
 
-/*function hengshuping() {
-	if (window.orientation == 180 || window.orientation == 0) {
-		setTimeout(function() {
-			fontSize()
-		}, 100)
-	};
-	if (window.orientation == 90 || window.orientation == -90) {
-		setTimeout(function() {
-			fontSize()
-		}, 100)
-	}
-}
-var orientation = 0;
-
-function screenOrientationEvent() {
-	hengshuping()
-}
-var innerWidthTmp = window.innerWidth;
-
-function screenOrientationListener() {
-	try {
-		var a = window.innerWidth;
-		if (a != innerWidthTmp) {
-			if (a > window.innerHeight) {
-				orientation = 90
-			} else {
-				orientation = 0
-			}
-			screenOrientationEvent();
-			innerWidthTmp = a
-		}
-	} catch (e) {
-		throw new Error('转屏时发生错误');
-	};
-	setTimeout("screenOrientationListener()", 100)
-}
-screenOrientationListener();*/
 document.addEventListener('DOMContentLoaded', function() {;
 	!
 	function() {
@@ -110,12 +73,6 @@ body { margin:0; padding:0; max-width: 640px;	height:100%; margin: 0 auto; posit
 .list li .list-artist{ font-size:0.65rem; height:1rem; line-height:1.1rem;  color:rgba(255,255,255,.65);}
 .list li p{ margin:0;}
 .loading {height: 0.6rem; width:0.6rem; right:1.3rem; top:0.95rem; display: none; border-radius: 100%; border-width: 2px; border-style: solid; border-color: #ff950e #ff950e transparent; animation: rotate 0.75s linear 0s infinite; }
-@-webkit-keyframes rotate {
-  0% { -webkit-transform: rotate(0deg);	transform: rotate(0deg); }
-  50% { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
-  100% { -webkit-transform: rotate(360deg);	transform: rotate(360deg); } 
-}
-
 
 div.wave { width:1.4rem; height:0.6rem; right:0.8rem; top:0.6rem; transform:rotateX(180deg); display:none;}
 div.wave span { display: inline-block; width: 2px; float:left; margin-bottom: 0; background-color: #f44778; margin-left:2px; border-radius: 2px;}
@@ -140,6 +97,44 @@ div.wave span { display: inline-block; width: 2px; float:left; margin-bottom: 0;
 	animation: line 0.3s -0.5s infinite ease-in-out alternate;
 }
 
+.fl{ float:left;}
+#t-load{ position:absolute; left:50%; top:50%; width:4rem; height:1.5rem; font-size:0.6rem; line-height:1.5rem;	transform: translate3d(-50%,-50%,0);}
+.ball-scale-multiple { width:1.5rem; height:1.5rem;}
+.ball-scale-multiple > div:nth-child(2) {-webkit-animation-delay: 0.2s;	animation-delay: 0.2s; }
+.ball-scale-multiple > div:nth-child(3) {-webkit-animation-delay: 0.4s;	animation-delay: 0.4s; }
+.ball-scale-multiple > div { background-color: #f60; width: 0.4rem; height: 0.4rem; border-radius: 100%; margin: 2px; -webkit-animation-fill-mode: both; animation-fill-mode: both; position: absolute; left: 0px; top: 0px; opacity: 0; margin: 0; width: 1.5rem; height: 1.5rem; -webkit-animation: ball-scale-multiple 0.6s 0s linear infinite; animation: ball-scale-multiple 0.6s 0s linear infinite; }
+
+@-webkit-keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0; 
+	 }
+
+  5% { opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; 
+	} 
+}
+
+@keyframes ball-scale-multiple {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+	 }
+
+  5% { opacity: 1; }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; 
+	} 
+}
 
 @-webkit-keyframes line {
 	from {
@@ -149,349 +144,436 @@ div.wave span { display: inline-block; width: 2px; float:left; margin-bottom: 0;
 		height: 10px;
 	}
 }
+
+@-webkit-keyframes rotate {
+  0% { -webkit-transform: rotate(0deg);	transform: rotate(0deg); }
+  50% { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+  100% { -webkit-transform: rotate(360deg);	transform: rotate(360deg); } 
+}
 </style>
 </head>
 <body>
-<audio src="" id="audio"></audio>
-<div class="img-wrap">
-	<img src="huge.jpg" alt="歌单图">
-    <div class="xia">
-    	<span class="xicon"></span>
-        <span class="xtext">虾米音乐</span>
+<div id="t-load">
+    <div class="ball-scale-multiple fl">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <div class="gname">
-    	<span id="inner">撩妹示爱必备良单值发单值发送到</span>
-    </div>
-    <div class="g-count pa">
-    	13万
-    </div>
-    <div class="play-wrap pa">
-    	<div class="play" id="play"></div>
-    </div>
-    <div class="g-tag-wrap pa">
-    	<div class="g-tag-text fl">
-        	标签：
-        </div>
-        <div class="g-tag-group fl">
-        	<span class="g-tag">华语</span>
-            <span class="g-tag">小语种歌曲</span>
-            <span class="g-tag">情感</span>
-        </div>
-    </div>
-    <div class="g-info pa">
-    	这单小金哥真的把必胜绝学都拿出来了，只要唱功到位，没有撩不到的妹没有撩不到的妹没有撩不到的妹，颜值、才华...
-    </div>
+    <span class="fl">跳转中···</span>
 </div>
-<div class="list-wrap pr">
-	<div class="loading pa"></div>
-	<div class="wave paused pa">
-        <span class="line1"></span>
-        <span class="line2"></span>
-        <span class="line3"></span>
-        <span class="line4"></span>
-    </div>
-	<ul class="list">
-    	<!--<li class="active">
-        	<span class="list-name db">护花使者</span>
-            <span class="list-artist db">李克勤</span>
-        </li>
-        <li>
-        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li>
-        	<span class="list-name db">突然心动</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li class="active">
-        	<span class="list-name db">护花使者</span>
-            <span class="list-artist db">李克勤</span>
-        </li>
-        <li>
-        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li>
-        	<span class="list-name db">突然心动</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li class="active">
-        	<span class="list-name db">护花使者</span>
-            <span class="list-artist db">李克勤</span>
-        </li>
-        <li>
-        	<span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li>
-        	<span class="list-name db">突然心动</span>
-            <span class="list-artist db">李晓东</span>
-        </li>
-        <li class="none oh">
-        	<div class="xia">
-                <p class="xicon"></p>
-                <p class="xtext">虾米音乐</p>
+<div id="music-wrap">
+	<audio src="" id="audio"></audio>
+    <div class="img-wrap">
+        <img src="huge.jpg" alt="歌单图">
+        <div class="xia">
+            <span class="xicon"></span>
+            <span class="xtext">虾米音乐</span>
+        </div>
+        <div class="gname">
+            <span id="inner">撩妹示爱必备良单值发单值发送到</span>
+        </div>
+        <div class="g-count pa">
+            13万
+        </div>
+        <div class="play-wrap pa">
+            <div class="play" id="play"></div>
+        </div>
+        <div class="g-tag-wrap pa">
+            <div class="g-tag-text fl">
+                标签：
             </div>
-        </li>-->
-    </ul>
+            <div class="g-tag-group fl">
+                <span class="g-tag">华语</span>
+                <span class="g-tag">小语种歌曲</span>
+                <span class="g-tag">情感</span>
+            </div>
+        </div>
+        <div class="g-info pa">
+            这单小金哥真的把必胜绝学都拿出来了，只要唱功到位，没有撩不到的妹没有撩不到的妹没有撩不到的妹，颜值、才华...
+        </div>
+    </div>
+    <div class="list-wrap pr">
+        <div class="loading pa"></div>
+        <div class="wave paused pa">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+            <span class="line4"></span>
+        </div>
+        <ul class="list">
+            <!--<li class="active">
+                <span class="list-name db">护花使者</span>
+                <span class="list-artist db">李克勤</span>
+            </li>
+            <li>
+                <span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li>
+                <span class="list-name db">突然心动</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li class="active">
+                <span class="list-name db">护花使者</span>
+                <span class="list-artist db">李克勤</span>
+            </li>
+            <li>
+                <span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li>
+                <span class="list-name db">突然心动</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li class="active">
+                <span class="list-name db">护花使者</span>
+                <span class="list-artist db">李克勤</span>
+            </li>
+            <li>
+                <span class="list-name db">我们好像在哪见过（电视剧我们相爱吧）</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li>
+                <span class="list-name db">突然心动</span>
+                <span class="list-artist db">李晓东</span>
+            </li>
+            <li class="none oh">
+                <div class="xia">
+                    <p class="xicon"></p>
+                    <p class="xtext">虾米音乐</p>
+                </div>
+            </li>-->
+        </ul>
+    </div>
 </div>
+<form name="m-form" id="m-form">
+    <input type="hidden" name="m-type" id="m-type" value="weather">
+    <input type="hidden" name="m-id" id="m-id" value="1005">
+    <input type="hidden" name="m-orign" id="m-orign" value="music">        
+</form>
 <!--<input type="button" value="开始" id="start">
 <input type="button" value="暂停" id="pause">
 <ul id="ul"></ul>-->
 <script>
-var audio = document.getElementById("audio");
-var start = document.getElementById("start");
-var pause = document.getElementById("pause");
-var playBtn = $('.play-wrap');
-var play = $('#play');
-var loading = $('.loading');
-var wave = $('.wave');
-var ul = $(".list");
-var index = 0;
-var playList = [
-				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
-				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
-				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
-				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
-				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
-				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
-				{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
-				{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
-				{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
-				{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'}
-			   ];
-var isShowLoad = true;
-var currentIndex = 0;
-var html = '';
-if(playList.length){
-	for (var i=0;i<playList.length;i++) {
-		html += '<li index="'+i+'" url="'+playList[i].url+'">\
-					<span class="list-name db">'+playList[i].name+'</span>\
-           			<span class="list-artist db">'+playList[i].atrist+'</span>\
-				</li>';
-	}	
-}
-html += '<li class="none oh"><div class="xia"><p class="xicon"></p><p class="xtext">虾米音乐</p></div></li>';
-ul.innerHTML = html;
-var domList = $('.list li',true);
-var oneHeight = domList[0].offsetHeight;
-var firstTop = parseInt(loading.getStyle('top'));
-console.log(oneHeight)
-ul.onclick = function(e){
-	console.log(audio.readyState)
-	var node = (e.target.nodeName.toLowerCase() === 'span' || e.target.nodeName.toLowerCase() === 'div') ? e.target.parentNode : ( e.target.nodeName.toLowerCase() === 'p' ? e.target.parentNode.parentNode : e.target);
-	if( !node.classList.contains('none') ){ //点击不在最后一行触发，在最后一行什么都不做
+
+document.addEventListener("DOMContentLoaded",function(){
+	!function(){
 		
-		if (node.classList.contains('active')) { //点了正在播放的那个
+		
+		
+		
+		
+		var baseUrl = "gioneemusic://dddadfaf";
+		var json1 = {id:1,title:'111111',type:'one',url:'http://one.com'};
+		
+		
+		openApp(baseUrl,json1,callBack);
+		
+		function openApp(schemaUrl, json,fail) {
 			
-		} else {
-			Array.prototype.forEach.call(domList,function(item){
-				item.removeClass('active');
-			});
-			node.classList.add('active');	
+			document.getElementById("t-load").style.display = "block";
+			document.getElementById("music-wrap").style.display = "none";
 			
-			console.log(node.getAttribute('index'),'index');
-			isShowLoad = true;
-			if(!audio.paused){
-				try{
-					audio.pause();
-				}catch(e){
-					console.log(e,'暂停出错')
+			var ifr = document.createElement('iframe'), t = 500, t1, timeout;
+			ifr.style.display = 'none';
+			document.body.appendChild(ifr);
+			t1 = Date.now();
+			ifr.src = schemaUrl+"?"+formatParams(json);
+			timeout = setTimeout(function() {
+				var t2 = Date.now();
+				if (t2 - t1 < t + 100) {
+					if (typeof fail == 'function') {
+						fail();
+					} else {
+						location.href = fail;
+					}
 				}
-			}
-			try{
-				audio.pause();
-			}catch(e){
-				console.log(e,'暂停出错')
-			}
-			index = node.getAttribute('index');
-			currentIndex = index;
-			console.log(node.classList.contains('active'))
-			audio.src = node.getAttribute('url');
-			console.log("正在加载数据,显示loading");
-			loading.style.top = index * oneHeight + firstTop + 'px';
-			//console.log(index * oneHeight,111);
-			//console.log(domList[index].getBoundingClientRect().top - parseInt($('.img-wrap').getStyle('height')),222);
-			loading.addClass('show').removeClass('hide');
-			console.log(parseInt(loading.getStyle('top')))
-			try{
-				audio.play();
-			}catch(e){
-				console.log(e,'播放出错')
-			}
+				document.body.removeChild(ifr);
+			}, t)
+		}
+		
+		
+		function callBack(){
+			document.getElementById("t-load").style.display = "none";
+			document.getElementById("music-wrap").style.display = "block";
+			//上报信息
+			upInfo();
+			
+			doMusicList();
 			
 		}
-	}
-	e.preventDefault();
-	return false;
-}
-
-
-playBtn.onclick = function(){
-	if(audio.getAttribute('src') === ''){
-		audio.src = playList[index].url;
-		domList[0].addClass('active');
-		console.log("正在加载数据,显示loading");
-		loading.style.top = index * oneHeight + firstTop + 'px';
-		try{
-			audio.play();
-		}catch(e){
-			console.log(e,'播放出错')
-		}
-	}
-	if(play.hasClass('play')){ // 有此样式，处于暂停，点击处于播放
-		play.addClass('pause').removeClass('play');
-		wave.addClass('show').removeClass('paused').removeClass('hide');
-		if(audio.paused){
-			try{
-				audio.play();
-			}catch(e){
-				console.log(e,'播放出错')
-			}
-		}
-	}else{ // 有此样式，处于播放，点击处于暂停
-		if(!audio.paused){
-			try{
-				audio.pause();
-			}catch(e){
-				console.log(e,'暂停出错')
-			}
-		}
-		play.addClass('play').removeClass('pause');
-		wave.addClass('paused');
-	}
 		
-}
-//start.onclick = function(){
-//	if(audio.getAttribute('src') === ''){
-//		audio.src = playList[index];		
-//	}
-//	audio.play();
-//}
-//
-//pause.onclick = function(){
-//	if(!audio.paused){
-//		audio.pause();
-//	}	
-//}
-
-audio.onended = function() {
-	index++;
-	if(index == playList.length){
-		index = 0;
-	}
-	currentIndex = index;
-	audio.src = playList[index].url;
-	Array.prototype.forEach.call(domList,function(item){
-		item.removeClass('active');
-	});
-	domList[index].classList.add('active');
-	loading.style.top = index * oneHeight + firstTop + 'px';
-	loading.addClass('show').removeClass('hide');
-	console.log("正在加载数据,显示loading");
-	isShowLoad = true;	
-	try{
-		audio.play();
-	}catch(e){
-		console.log(e,'播放出错')
-	}
-    //alert("音频播放完成");
-}
-
-//每次切换src，audio绑定的事件都会执行，可以设置事件
-//progress事件 当浏览器正在取媒介数据时运行脚本
-//audio.addEventListener("progress",function(){
-//	if(isShowLoad){
-//		console.log("正在加载数据,显示loading");	
-//	}
-//	
-//},false);
-
-//canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本 -- 就是需要缓冲
-//waiting	当媒介已停止播放但打算继续播放时运行脚本
-audio.addEventListener("waiting",function(){ // 等待时显示loading
-	loading.style.top = index * oneHeight + firstTop + 'px';
-	loading.addClass('show').removeClass('hide');
-	wave.addClass('hide').removeClass('paused').removeClass('show');
-	console.log("waiting -- 正在加载数据,显示loading");	
-},false);
-
-audio.addEventListener("canplaythrough",function(){ // 可以播放时关闭loading
-
-	loading.style.top = index * oneHeight + firstTop + 'px';
-	loading.addClass('hide').removeClass('show');
-	
-	wave.addClass('show').removeClass('hide');
-	
-	if(!audio.paused){ //如果在播放时
-		wave.removeClass('paused') 
-	}else{ // 如果在暂停时
-		wave.addClass('paused')
-	}
-	
-	console.log("canplaythrough -- 可以播放了,关闭loading");
-	
-},false);
-
-//play	当媒介数据将要开始播放时运行脚本
-audio.addEventListener("play",function(){
-	isShowLoad = false;
-	wave.style.top = currentIndex * oneHeight + firstTop + 'px';
-	loading.addClass('hide').removeClass('show');
-	wave.addClass('show').removeClass('paused').removeClass('hide');
-	play.addClass('pause').removeClass('play');
-	console.log("可以播放了,关闭loading");
-},false);
-
-audio.addEventListener("playing",function(){
-	loading.addClass('hide').removeClass('show');
-	wave.addClass('show').removeClass('paused').removeClass('hide');
-	console.log("播放中,关闭loading");
-},false);
-
-//滚动歌单名
-var mout = $(".gname");
-var minner = $("#inner");
-var moutWidth = mout.offsetWidth;
-
-//解决办法二，运动有点快
-var mtimer = null;
-
-if(minner.offsetWidth > mout.offsetWidth){
-	setTimeout(function(){
-		window.cancelAnimationFrame(mtimer);
-		mtimer = requestAnimationFrame(move);	
-	},2000);
-}
-var mi=0;
-var md = moutWidth;
-function move(){
-	window.cancelAnimationFrame(mtimer);
-	if(mi>=minner.offsetWidth){
-		md--;		
-		minner.style.transform = "translate3d("+md+"px,0,0)";
-		window.cancelAnimationFrame(mtimer);
-		mtimer = requestAnimationFrame(move);
-		if(md == 0){
-			console.log('到头了，停一会')
-			window.cancelAnimationFrame(mtimer);
-			setTimeout(function(){
+		function upInfo(){
+			var frm = document.forms["m-form"];
+			var ifm = document.createElement('iframe');
+			ifm.name = 'm-iframe';
+			ifm.style.display = 'none';
+			document.body.appendChild(ifm);
+			frm.action = "http://t-ads.gionee.com/ads/cddlick.do";
+			frm.target = "m-iframe";
+			frm.submit();
+			return false;
+		}		
+		
+		function doMusicList(){
+			var audio = document.getElementById("audio");
+			var start = document.getElementById("start");
+			var pause = document.getElementById("pause");
+			var playBtn = $('.play-wrap');
+			var play = $('#play');
+			var loading = $('.loading');
+			var wave = $('.wave');
+			var ul = $(".list");
+			var index = 0;
+			var playList = [
+							{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+							{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+							{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+							{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
+							{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+							{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+							{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+							{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'},
+							{atrist:'李克勤',name:'护花使者',url:'apk/1.mp3'},
+							{atrist:'李晓东',name:'突然心动',url:'apk/1.m4a'},
+							{atrist:'杨宗纬；叶蓓',name:'我们好像在哪见过（电视剧我们相爱吧）',url:'apk/1.mp3'},
+							{atrist:'刘涛',name:'遇到爱',url:'apk/1.m4a'}
+						   ];
+			var isShowLoad = true;
+			var currentIndex = 0;
+			var html = '';
+			if(playList.length){
+				for (var i=0;i<playList.length;i++) {
+					html += '<li index="'+i+'" url="'+playList[i].url+'">\
+								<span class="list-name db">'+playList[i].name+'</span>\
+								<span class="list-artist db">'+playList[i].atrist+'</span>\
+							</li>';
+				}	
+			}
+			html += '<li class="none oh"><div class="xia"><p class="xicon"></p><p class="xtext">虾米音乐</p></div></li>';
+			ul.innerHTML = html;
+			var domList = $('.list li',true);
+			var oneHeight = domList[0].offsetHeight;
+			var firstTop = parseInt(loading.getStyle('top'));
+			console.log(oneHeight)
+			ul.onclick = function(e){
+				console.log(audio.readyState)
+				var node = (e.target.nodeName.toLowerCase() === 'span' || e.target.nodeName.toLowerCase() === 'div') ? e.target.parentNode : ( e.target.nodeName.toLowerCase() === 'p' ? e.target.parentNode.parentNode : e.target);
+				if( !node.classList.contains('none') ){ //点击不在最后一行触发，在最后一行什么都不做
+					
+					if (node.classList.contains('active')) { //点了正在播放的那个
+						
+					} else {
+						Array.prototype.forEach.call(domList,function(item){
+							item.removeClass('active');
+						});
+						node.classList.add('active');	
+						
+						console.log(node.getAttribute('index'),'index');
+						isShowLoad = true;
+						if(!audio.paused){
+							try{
+								audio.pause();
+							}catch(e){
+								console.log(e,'暂停出错')
+							}
+						}
+						try{
+							audio.pause();
+						}catch(e){
+							console.log(e,'暂停出错')
+						}
+						index = node.getAttribute('index');
+						currentIndex = index;
+						console.log(node.classList.contains('active'))
+						audio.src = node.getAttribute('url');
+						console.log("正在加载数据,显示loading");
+						loading.style.top = index * oneHeight + firstTop + 'px';
+						//console.log(index * oneHeight,111);
+						//console.log(domList[index].getBoundingClientRect().top - parseInt($('.img-wrap').getStyle('height')),222);
+						loading.addClass('show').removeClass('hide');
+						console.log(parseInt(loading.getStyle('top')))
+						try{
+							audio.play();
+						}catch(e){
+							console.log(e,'播放出错')
+						}
+						
+					}
+				}
+				e.preventDefault();
+				return false;
+			}
+			
+			
+			playBtn.onclick = function(){
+				if(audio.getAttribute('src') === ''){
+					audio.src = playList[index].url;
+					domList[0].addClass('active');
+					console.log("正在加载数据,显示loading");
+					loading.style.top = index * oneHeight + firstTop + 'px';
+					try{
+						audio.play();
+					}catch(e){
+						console.log(e,'播放出错')
+					}
+				}
+				if(play.hasClass('play')){ // 有此样式，处于暂停，点击处于播放
+					play.addClass('pause').removeClass('play');
+					wave.addClass('show').removeClass('paused').removeClass('hide');
+					if(audio.paused){
+						try{
+							audio.play();
+						}catch(e){
+							console.log(e,'播放出错')
+						}
+					}
+				}else{ // 有此样式，处于播放，点击处于暂停
+					if(!audio.paused){
+						try{
+							audio.pause();
+						}catch(e){
+							console.log(e,'暂停出错')
+						}
+					}
+					play.addClass('play').removeClass('pause');
+					wave.addClass('paused');
+				}
+					
+			}
+			playBtn.onclick();
+			//start.onclick = function(){
+			//	if(audio.getAttribute('src') === ''){
+			//		audio.src = playList[index];		
+			//	}
+			//	audio.play();
+			//}
+			//
+			//pause.onclick = function(){
+			//	if(!audio.paused){
+			//		audio.pause();
+			//	}	
+			//}
+			
+			audio.onended = function() {
+				index++;
+				if(index == playList.length){
+					index = 0;
+				}
+				currentIndex = index;
+				audio.src = playList[index].url;
+				Array.prototype.forEach.call(domList,function(item){
+					item.removeClass('active');
+				});
+				domList[index].classList.add('active');
+				loading.style.top = index * oneHeight + firstTop + 'px';
+				loading.addClass('show').removeClass('hide');
+				console.log("正在加载数据,显示loading");
+				isShowLoad = true;	
+				try{
+					audio.play();
+				}catch(e){
+					console.log(e,'播放出错')
+				}
+				//alert("音频播放完成");
+			}
+			
+			//每次切换src，audio绑定的事件都会执行，可以设置事件
+			//progress事件 当浏览器正在取媒介数据时运行脚本
+			//audio.addEventListener("progress",function(){
+			//	if(isShowLoad){
+			//		console.log("正在加载数据,显示loading");	
+			//	}
+			//	
+			//},false);
+			
+			//canplay	当媒介能够开始播放但可能因缓冲而需要停止时运行脚本 -- 就是需要缓冲
+			//waiting	当媒介已停止播放但打算继续播放时运行脚本
+			audio.addEventListener("waiting",function(){ // 等待时显示loading
+				loading.style.top = index * oneHeight + firstTop + 'px';
+				loading.addClass('show').removeClass('hide');
+				wave.addClass('hide').removeClass('paused').removeClass('show');
+				console.log("waiting -- 正在加载数据,显示loading");	
+			},false);
+			
+			audio.addEventListener("canplaythrough",function(){ // 可以播放时关闭loading
+			
+				loading.style.top = index * oneHeight + firstTop + 'px';
+				loading.addClass('hide').removeClass('show');
+				
+				wave.addClass('show').removeClass('hide');
+				
+				if(!audio.paused){ //如果在播放时
+					wave.removeClass('paused') 
+				}else{ // 如果在暂停时
+					wave.addClass('paused')
+				}
+				
+				console.log("canplaythrough -- 可以播放了,关闭loading");
+				
+			},false);
+			
+			//play	当媒介数据将要开始播放时运行脚本
+			audio.addEventListener("play",function(){
+				isShowLoad = false;
+				wave.style.top = currentIndex * oneHeight + firstTop + 'px';
+				loading.addClass('hide').removeClass('show');
+				wave.addClass('show').removeClass('paused').removeClass('hide');
+				play.addClass('pause').removeClass('play');
+				console.log("可以播放了,关闭loading");
+			},false);
+			
+			audio.addEventListener("playing",function(){
+				loading.addClass('hide').removeClass('show');
+				wave.addClass('show').removeClass('paused').removeClass('hide');
+				console.log("播放中,关闭loading");
+			},false);
+			
+			//滚动歌单名
+			var mout = $(".gname");
+			var minner = $("#inner");
+			var moutWidth = mout.offsetWidth;
+			
+			//解决办法二，运动有点快
+			var mtimer = null;
+			
+			if(minner.offsetWidth > mout.offsetWidth){
+				setTimeout(function(){
+					window.cancelAnimationFrame(mtimer);
+					mtimer = requestAnimationFrame(move);	
+				},2000);
+			}
+			var mi=0;
+			var md = moutWidth;
+			function move(){
 				window.cancelAnimationFrame(mtimer);
-				mtimer = requestAnimationFrame(move);
-				mi = 0;			
-				md = moutWidth;	
-			},2000);
+				if(mi>=minner.offsetWidth){
+					md--;		
+					minner.style.transform = "translate3d("+md+"px,0,0)";
+					window.cancelAnimationFrame(mtimer);
+					mtimer = requestAnimationFrame(move);
+					if(md == 0){
+						console.log('到头了，停一会')
+						window.cancelAnimationFrame(mtimer);
+						setTimeout(function(){
+							window.cancelAnimationFrame(mtimer);
+							mtimer = requestAnimationFrame(move);
+							mi = 0;			
+							md = moutWidth;	
+						},2000);
+					}
+				}else{
+					mi++;
+					minner.style.transform = "translate3d(-"+mi+"px,0,0)";
+					window.cancelAnimationFrame(mtimer);
+					mtimer = requestAnimationFrame(move);	
+				}
+			}	
 		}
-	}else{
-		mi++;
-		minner.style.transform = "translate3d(-"+mi+"px,0,0)";
-		window.cancelAnimationFrame(mtimer);
-		mtimer = requestAnimationFrame(move);	
-	}
-}
+		
 
+	}();	
+},!1);
 
 function $(query,isList){
 	var selectorAll = document.querySelectorAll(query);
@@ -588,6 +670,14 @@ function attr(attribute,value){
 			this.setAttribute(attribute,value)
 			return this;	
 	}
+}
+
+function formatParams(data) {
+	var arr = [];
+	for (var name in data) {
+		arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+	}
+	return arr.join("&");
 }
 
 (function() {
