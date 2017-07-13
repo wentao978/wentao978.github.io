@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>vue-tree</title>
+    <style>
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    
+    .tree-menu {
+        width: 360px;
+        height: 100%;
+        padding: 0px 12px;
+        border-right: 1px solid #e6e9f0;
+    }
+    
+    .tree-menu-comm span {
+        display: block;
+        font-size: 12px;
+        position: relative;
+    }
+    
+    .tree-contro .ico {
+        background-position: 3px -92px;
+    }
+    
+    .tree-title .ico {
+        position: absolute;
+        left: -13px;
+        top: 0;
+        width: 15px;
+        height: 26px;
+        background: url(./folder-tree.png) no-repeat 4px -43px;
+        opacity: 0.8;
+    }
+    
+    .tree-menu-comm span strong {
+        display: block;
+        width: 82%;
+        position: relative;
+        line-height: 22px;
+        padding: 2px 0;
+        padding-left: 5px;
+        color: #161719;
+        font-weight: normal;
+    }
+    
+    .tree-nav {
+        background: #e7f2fe;
+        border: 1px solid #bfdaf4;
+        padding-left: 14px;
+        margin-left: 0px;
+    }
+    
+    .tree-title {
+        border: 1px solid #fff;
+        margin-top: 1px;
+    }
+   
+    </style>
+    <script src="vue.js"></script>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <m-tree :data="treeList"></m-tree>
+    </div>
+    <script>
+    
+    Vue.component('m-tree-list',{
+        computed:{
+            count(){
+               var c = this.increment;
+               return ++c; 
+            },
+            stylePadding(){
+                return {
+                    'padding-left':this.count * 20 + 'px'
+                }
+            }
+        },
+        props:{
+            data:{
+                type:Array,
+                default:[]
+            },
+            increment:{
+                type:Number,
+                default:0
+            }
+        },
+        template:`
+            <ul>
+                <li v-for="item of data">
+                    <div class="tree-title" :style="[stylePadding]">
+                        <span><strong>{{item.text}}</strong> <i class="ico"></i></span>
+                    </div>
+                    <m-tree-list 
+                        :increment="count"
+                        v-if='item.children' 
+                        :data="item.children"
+                    ></m-tree-list>
+                </li>
+            </ul>
+        `
+    })
+
+    Vue.component('m-tree',{
+        props:{
+            data:{
+                type:Array,
+                default:[]
+            }
+        },
+        template:`
+        <div class="tree-menu-comm tree-menu">
+            <m-tree-list :data="data"></m-tree-list>    
+        </div>
+        `
+    })
+
+    new Vue({
+        el:"#app",
+        computed:{
+            treeList(){
+				return this.formatData();	
+			}
+        },
+		methods:{
+			formatData(){
+				const json = [
+					{id: 1, pid: 0, text: '1(一级)'},
+					{id: 2, pid: 4, text: '2.1.1(三级)'},
+					{id: 3, pid: 0, text: '2(一级)'},
+					{id: 4, pid: 3, text: '2.1(二级)'},
+					{id: 5, pid: 0, text: '3(一级)'},
+					{id: 6, pid: 5, text: '3.1(二级)'},
+					{id: 7, pid: 0, text: '4(一级)'},
+					{id: 8, pid: 7, text: '4.1(二级)'},
+					{id: 9, pid: 4, text: '2.1.2(三级)'},
+					{id: 11, pid: 2, text: '2.1.1.1(四级)'},
+					{id: 17, pid: 11, text: '2.1.1.1.1(五级)'},
+					{id: 18, pid: 11, text: '2.1.1.1.2(五级)'},
+					{id: 12, pid: 2, text: '2.1.1.2(四级)'},
+					{id: 13, pid: 5, text: '3.2(二级)'},
+					{id: 19, pid: 5, text: '3.3(二级)'}
+				];
+				
+				var json2 = json.slice(0);
+			
+				var base = [];
+				
+				for (var i=0;i<json2.length;i++) {
+					if(json2[i].pid == 0){
+						base.push(json2[i]);
+					}
+				}
+				
+				Array.prototype.hasContain = function(id){
+					var flag = false;
+					for (var i=0;i<this.length;i++) {
+						if(this[i].id === id){
+							flag = true;
+						}
+					}
+					return flag;	
+				}	
+				
+				function getChildren(target,targetList){
+					for (var i=0;i<targetList.length;i++) {
+						for (var j=0;j<target.length;j++) {
+							if(targetList[i].pid == target[j].id){
+								if(!target[j].children){
+									target[j].children = [];	
+								}
+								if(!target[j].children.hasContain(targetList[i].id)){
+									target[j].children.push(targetList[i]);	
+								}
+								getChildren(target[j].children,targetList);
+							}
+						}
+					}
+				}
+				
+				getChildren(base,json2);
+				return base;	
+			}	
+		}
+    })
+
+    </script>
+</body>
+</html>
