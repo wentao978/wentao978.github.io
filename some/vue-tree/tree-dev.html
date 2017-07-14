@@ -256,6 +256,8 @@
 								// 根据id判断是否添加过了
 								if(!target[j].children.hasContain(targetList[i].id)){
 									target[j].children.push(targetList[i]);	
+									targetList.splice(i,1);
+									i--;
 								}
 								getChildren(target[j].children,targetList);
 							}
