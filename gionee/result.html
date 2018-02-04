@@ -16,7 +16,7 @@
             return null;
         }
 
-        window[getQueryString('callback')](getQueryString('err'));
+        window.parent[getQueryString('callback')](getQueryString('err'));
     </script>
 
 </body>
