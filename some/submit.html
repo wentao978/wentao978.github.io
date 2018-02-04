@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function abc (type, name, password) {
+            switch (type) {
+                case '1':
+                    alert('登录成功:'+name+'---'+password);
+                break;
+                default:
+                    alert('登录失败:'+name+'---'+password);
+            }
+        }
+    </script>
+    <form action="http://zf.baidu.com/submit/1.php" method="post" target="frame">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit">
+    </form>
+    <iframe name="frame" style="display: none;"></iframe>
+</body>
+</html>
