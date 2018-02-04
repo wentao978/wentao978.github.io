@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="file" id="file">
+    <input type="button" id="button" value="上传">
+    <script type="text/javascript">
+        var data = null;
+        document.getElementById('file').onchange = function (e) {
+            var file = e.target.files[0];
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                data = this.result;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('post', 'http://zf.baidu.com/sendBinary/re.php', true);
+                console.log();
+                // xhr.overrideMimeType('application/octet-stream');
+                xhr.send(data);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            console.log(xhr.responseText)
+                        }
+                    }
+                }
+
+
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+
+    </script>
+</body>
+</html>
