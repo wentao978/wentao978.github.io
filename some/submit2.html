@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function abc (type) {
+            switch (type) {
+                case '1':
+                    alert('登录成功');
+                break;
+                default:
+                    alert('登录失败');
+            }
+        }
+    </script>
+    <form action="http://172.24.188.97/submit/2.php" method="post" target="frame">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit">
+    </form>
+    <iframe name="frame" style="display: none;"></iframe>
+</body>
+</html>
