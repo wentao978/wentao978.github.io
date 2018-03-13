@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不同尺寸的二维码分别在55px和80px下的展示</title>
+    <style type="text/css">
+        #img span {
+            display: inline-block;
+            width: 500px;
+            text-align: center;
+        }
+        #img img{
+            vertical-align: text-top;
+            margin-bottom: 500px;
+        }
+        .red {
+            color: #f13;
+        }
+    </style>
+</head>
+<body>
+    <h1>二维码码是1994年由日本DW公司发明。QR来自英文「Quick Response」的缩写，即快速反应的意思</h1>
+    <h3>常见的是：矩阵式二维码</h3>
+    <h4>优点：</h4>
+    <ul>
+        <li>二维码存储的数据量更大；可以包含数字、字符，及中文文本等混合内容</li>
+        <li>有一定的容错性（在部分损坏以后可以正常读取）</li>
+    </ul>
+    <h4>以下是30, 50, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1280共16种尺寸尺寸的正方形二维码分别在55px和80px下的展示</h4>
+    <h4 class="red">展示基本没有问题，也说明了其容错性，但是一些带了logo图标的二维码，在尺寸较小时，容错率就稍微低了一点</h4>
+    <div id="img">
+
+    </div>
+    <script type="text/javascript">
+        var arr = ['qa', 30, 50, 80, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1280];
+
+        var size = [55, 80];
+
+
+        var r = [];
+
+        for (var i=0;i<size.length;i++) {
+            for (var j=0;j<arr.length;j++) {
+                r.push('<span>'+size[i]+'show-'+arr[j]+'nature</span><img src="'+arr[j]+'.png" style="width:'+size[i]+'px; height:'+size[i]+'px"><br>')
+            }
+            r.push('<hr>')
+        }
+
+        r.push('<h4>以下是微信公众号430*430尺寸的二维码在55-80px尺寸下的展示</h4>')
+        for (var i=55; i<= 80; i++) {
+            r.push('<span>'+i+'show-430nature</span><img src="qa.png" style="width:'+i+'px; height:'+i+'px"><br>')
+        }
+        document.getElementById('img').innerHTML = r.join('');
+    </script>
+</body>
+</html>
