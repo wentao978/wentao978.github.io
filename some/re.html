@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h6>receive</h6>
+    <div id="message"></div>
+    <script type="text/javascript">
+       var eleBox = document.querySelector("#message");
+        var messageHandle = function(e) {
+            eleBox.innerHTML = '接受到的信息是：' + e.data;
+        };
+        if (window.addEventListener) {
+            // 接受信息
+            window.addEventListener("message", messageHandle, false);
+        } else if (window.attachEvent) {
+            // 接受信息，兼顾IE8之流
+            window.attachEvent('onmessage', messageHandle);
+        }
+    </script>
+
+</body>
+</html>
