@@ -19,6 +19,10 @@
             // 接受信息，兼顾IE8之流
             window.attachEvent('onmessage', messageHandle);
         }
+        setInterval(function () {
+            window.parent.postMessage(Math.floor(Math.random() * 1000), '*')
+        },5000);
+
     </script>
 
 </body>
