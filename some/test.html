@@ -19,7 +19,17 @@ img {
 <body>
 <div>
     <span>234234</span><a href="dd">fadsf</a>阿斯蒂芬大师傅阿发阿道夫阿道夫撒地方阿斯达1123
-    <div class="recommend-item-box " data-track-view="{&quot;mod&quot;:&quot;popu_614&quot;,&quot;con&quot;:&quot;,https://blog.csdn.net/a564239493/article/details/51790728?locationNum=9&amp;fps=1,searchFromBaidu1&quot;}" data-track-click="{&quot;mod&quot;:&quot;popu_614&quot;,&quot;con&quot;:&quot;,https://blog.csdn.net/a564239493/article/details/51790728?locationNum=9&amp;fps=1,searchFromBaidu1&quot;}">        <h4 class="text-truncate">          <a href="https://blog.csdn.net/a564239493/article/details/51790728?locationNum=9&amp;fps=1" target="_blank">前台JS 实现<em>截图</em>保存功能 - CSDN博客</a>     </h4>       <p class="content">         <a href="https://blog.csdn.net/a564239493/article/details/51790728?locationNum=9&amp;fps=1" target="_blank">html5 实现网页截屏 页面生成图片(图文)  html2canvas通过获取页面的DOM和元素...前台JS 实现截图保存功能 阅读量:4759  nodejs 导出数据和文件压缩包 阅读量:...</a>       </p>        <div class="info-box d-flex align-content-center">          <p>             <span class="date">2018-6-13</span>         </p>        </div>  </div>
+    <div style="color: red;">
+        分别列举了高度不同的图片，测试是否被截断
+        <ul>
+            <li>现有大图和超长图，均没有被截断</li>
+            <li>页眉页脚的标签之间不要存在空行或者缩进</li>
+            <li>页眉页脚的标签最好是行内的样式</li>
+            <li>A4纸高度297mm，对应网页高度842px</li>
+            <li>根据高度换算，控制页眉页脚高度时也要控制图片的最大高度</li>
+            <li>约定页眉页脚的dom节点对应的id《pdf-header》《pdf-footer》</li>
+        </ul>
+    </div>
 </div>
 <p>阿斯蒂芬大师傅阿发阿道夫阿道夫撒地方阿斯达</p>
 <img width='100' height='30' src='https://wkstatic.bdimg.com/static/wkcommon/widget/header/search_box/images/logo-wk-135-44_0113321.jpg' style="display: none;">
@@ -66,6 +76,11 @@ img {
 <p>阿斯蒂芬大师傅阿发阿道夫阿道夫撒地方阿斯达</p>
 <p>阿斯蒂芬大师傅阿发阿道夫阿道夫撒地方阿斯达</p>
 <p>阿斯蒂芬大师傅阿发阿道夫阿道夫撒地方阿斯达</p>
+
+
+<div id="pdf-header" style="display: none;"><div style='width:100%; height: 34px; padding-bottom:2px; overflow:hidden;'><div style='border-bottom: 1px solid #ccc; width:100%; overflow:hidden; height:32px; line-height:32px;'><img style='display:block; width:100px; height:30px;float:left;' src='https://wkstatic.bdimg.com/static/wkcommon/widget/header/search_box/images/logo-wk-135-44_0113321.jpg'><span style='float:right;font-family: 微软雅黑'>百度文库</span></div></div></div>
+
+<div id="pdf-footer" style="display: none;"><div style='text-align:center; font-family: 微软雅黑;font-size:12px; color:#ccc;'><span style='float:left; font-size:12px; color:#ccc;'>北京百度网讯科技公司</span><span>pageNum / numPages</span><a style='float:right; font-size:12px; color:#ccc;' target='_blank' href='https://wenku.baidu.com'>https://wenku.baidu.com</a></div></div>
 
 </body>
 </html>
