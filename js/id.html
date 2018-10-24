@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>json-query</title>
+    <script type="text/javascript">
+    var json = [
+            {
+                id: 1,
+                label: '浙江',
+                children: [
+                    {
+                        id: 2,
+                        label: '杭州',
+                        children: [
+                            {
+                                id: 3,
+                                label: '西湖'
+                            },
+                            {
+                                id: 4,
+                                label: '余杭'
+                            }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        label: '温州',
+                        children: [
+                            {
+                                id: 6,
+                                label: '舟山'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                label: '河南',
+                children: [
+                    {
+                        id: 8,
+                        label: '郑州',
+                        children: [
+                            {
+                                id: 9,
+                                label: '金水'
+                            },
+                            {
+                                id: 10,
+                                label: '二七'
+                            }
+                        ]
+                    },
+                    {
+                        id: 11,
+                        label: '焦作',
+                        children: [
+                            {
+                                id: 12,
+                                label: '解放'
+                            },
+                            {
+                                id: 13,
+                                label: '马村'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+    var parentNode = null;
+    var node = null;
+    var aa = null;
+    var resultarr = [];
+
+    function getNode(json, nodeId) {
+
+        //1.第一层 root 深度遍历整个JSON
+        for (var i = 0; i < json.length; i++) {
+            if (node) {
+                break;
+            }
+            var obj = json[i];
+            //没有就下一个
+            if (!obj || !obj.id) {
+                continue;
+            }
+
+            //2.有节点就开始找，一直递归下去
+            if (obj.id == nodeId) {
+                //找到了与nodeId匹配的节点，结束递归
+                node = obj;
+                parentNode = getNode(json, node.id).parentNode;
+                break;
+            } else {
+                //3.如果有子节点就开始找
+                if (obj.children) {
+                    //4.递归前，记录当前节点，作为parent 父亲
+                    parentNode = obj;
+                    //递归往下找
+                    getNode(obj.children, nodeId);
+                } else {
+                    //跳出当前递归，返回上层递归
+                    continue;
+                }
+            }
+        }
+
+        //5.如果木有找到父节点，置为null，因为没有父亲
+        if (!node) {
+            parentNode = null;
+        }
+
+        //6.返回结果obj
+        return {
+            parentNode: parentNode,
+            node: node
+        };
+    }
+
+    console.log(getNode(json, 5))
+
+    // function recrusive (data, id) {
+    //     node = null;
+    //     parentNode = 1;
+    //     aa = getNode(data, id);
+    //     if (aa.parentNode == null) {
+    //         return aa;
+    //     }
+    //     if (aa.parentNode) {
+    //         resultarr.unshift(id);
+    //         recrusive(data, aa.parentNode.id)
+    //     }
+    // }
+
+    function searchInit(json) {
+        var newJson = json.concat([]);
+        var len = newJson.length;   //长度
+        var parentNode = [];
+        console.log('newJson', newJson);
+        for (var i = 0; i < len; i++) {
+            var item = newJson[i];
+            if (item.children && item.children.length != 0) {
+                var child = item.children;
+                for (var j = 0; j < child.length; j++) {
+                    if (item.parentNode) {
+                        child[j].parentNode = item.parentNode.concat([item.id]);
+                    }
+                    else {
+                        child[j].parentNode = [item.id]
+                    }
+                    console.log(item.parentNode, item.id);
+                    newJson[len + j] = child[j];
+                }
+                len = newJson.length;
+            }
+        }
+        return newJson;
+
+    }
+
+    console.log(searchInit(json))
+
+    function searchTree(json, id) {
+        console.log("tree",json);
+        var newJson = json.concat([]);
+        var len = newJson.length;   //长度
+        console.log("json",len);
+        var parentNode = [];
+        //查找id
+        for (var s = 0; s < len; s++) {
+            if (newJson[s].id == id) {
+                if (newJson[s].parentNode == null || newJson[s].parentNode.length == 0) {
+                    parentNode = [];
+                }
+                else {
+                    parentNode = newJson[s].parentNode;
+                }
+            }
+            else {
+                continue;
+            }
+        }
+        return parentNode;
+    }
+
+    console.log(searchTree(json, 5));
+
+    // recrusive(json, 6);
+    // console.log(resultarr);
+    //批量查询
+    // var query = [
+    //     '7', '8', '6'
+    // ];
+
+    // //打印结果
+    // for (var i = 0; i < query.length; i++) {
+    //     node = null;
+    //     parentNode = null;
+    //     var r = [];
+    //     var g = '';
+    //     var obj = getNode(json, query[i]);
+    //     r.push(obj);
+    //     console.log("查询nodeId:" + query[i] + ", 结果:" + obj.node.id + ",name:" + obj.node.label + " -> 父级:" + (obj.parentNode ? obj.parentNode.label : '木有父级!'));
+    //     node = null;
+    //     // parentNode = null;
+    //     if (obj.parentNode) {
+    //         g = getNode(json, obj.parentNode.id)
+    //     }
+    //     r.push(g);
+    //     console.log(r);
+    // }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

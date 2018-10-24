@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery.js"></script>
+    <style>
+    	*{ margin: 0; padding: 0; }
+    	#img{ width: 400px; height: 200px; margin: 20px auto; display: block; cursor: pointer;}
+
+    	.img-wrap{
+    		position: fixed;
+    		left: 0;
+    		top: 0;
+    		width: 100%;
+    		height: 100%;
+    	}
+    	.img-wrap .img-mask{
+    		position: absolute;
+    		left: 0;
+    		top: 0;
+    		width: 100%;
+    		height: 100%;
+    		background: #000;
+    		opacity: .6;
+    	}
+    	.img-wrap .img-close{
+    		position: absolute;
+    		cursor: pointer; 
+    		z-index: 101;
+    		font-size: 50px;
+    		background: #bcb7ae;
+    		width: 50px;
+    		height: 50px;
+    		line-height: 42px;
+    		text-align: center;
+    		border-radius: 50%;
+    		right: 10px;
+    		top: 10px;
+    	}
+    	.img-wrap .img-close:hover{
+    		color: #00aa7d;
+    	}
+    	.img-wrap img{
+			position: relative;
+			z-index: 100;
+			max-width: 100%;
+    	}
+    </style>
+</head>
+<body>
+   <img src="x.png" alt="" id="img">
+   
+   		
+		
+		
+   
+   <script type="text/javascript">
+   	/**
+	*	el: 元素
+	*   frame: 是否在iframe中，默认false，为true时，表上在iframe中
+	*/	
+   	function ImageView (opt) {
+   		this.el = opt.el;
+   		this.frame = opt.frame;
+   		this.oldParam = {};
+   		this.init();
+   	}
+   	ImageView.prototype = {
+   		constructor: ImageView,
+   		init: function () {
+   			this.bindEvents();
+   		},
+   		bindEvents: function () {
+   			var self = this;
+   			$('body').on('click', this.el, $.proxy(this.showFun, this));
+   			$('body').on('click', '[data-fun="img-close"]', $.proxy(this.hideFun, this));
+   		},
+   		showFun: function () {
+   			this.createDom().animate();
+   		},
+   		hideFun: function () {
+   			$('.img-wrap').find('img').animate(this.oldParam, 300, function () {
+				$('.img-wrap').remove();
+			});
+   		},
+   		createDom: function () {
+   			var $el = $(this.el);
+   			var domString = [
+   				'<div class="img-wrap">',
+   					'<div class="img-mask"></div>',
+   					'<div class="img-close" data-fun="img-close">&times;</div>',
+   					'<img src="'+ $el.attr('src') +'" alt="">',
+   				'</div>'		
+   			].join('');
+   			this.frame ? $('body', window.top.document).append($(domString))
+   						:$('body').append($(domString));
+   			this.oldParam = {
+   				left: this.frame 
+   						? $('body',window.top.document).find('#main-content').get(0).getBoundingClientRect().left + $el.get(0).getBoundingClientRect().left
+   						: $el.get(0).getBoundingClientRect().left,
+   				top: this.frame 
+   						? $('body',window.top.document).find('#main-content').get(0).getBoundingClientRect().top + $el.get(0).getBoundingClientRect().top 
+   						: $el.get(0).getBoundingClientRect().top,
+   				width: $el.css('width'),
+   				height: $el.css('height')
+   			}
+   			$('.img-wrap').find('img').css(this.oldParam);
+   			return this;
+   		},
+   		animate: function () {
+   			var $width = $(window).width();
+   			var $height = $(window).height();
+   			var oImg = new Image();
+   			oImg.onload = function () {
+   				var innerWidth = oImg.width;
+   				var innerHeight = oImg.height;
+   				$('.img-wrap').find('img').animate({
+   					width: $width > innerWidth ? innerWidth : $width,
+   					height: $height > innerHeight ? innerHeight : $height,
+   					left: $width > innerWidth ? ($width - innerWidth) / 2 : 0,
+   					top: $height > innerHeight ? ($height - innerHeight) / 2 : 0	
+   				}, 300);
+   			};
+   			oImg.src = $(this.el).attr('src');
+   		}
+   	}
+   	new ImageView({el: '#img', frame: true});
+   </script>
+</body>
+</html>

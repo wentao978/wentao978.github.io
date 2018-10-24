@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add</title>
+
+</head>
+<body>
+    <div id="div1"></div>
+    <img src="http://cp01-wkqa-test02.epc.baidu.com:8085/wisdom/download/wise-education-crm/attachment/showconfirmpic?t=1535440852900&pay_id=1">
+    <script type="text/javascript">
+        String.prototype.html = function(encode) {
+            var replace =["&#39;", "'", "&quot;", '"', "&nbsp;", " ", "&gt;", ">", "&lt;", "<", "&amp;", "&", "&yen;", "¥", "<br>", "<br>"];
+            if (encode) {
+                replace.reverse();
+            }
+            for (var i=0,str=this;i< replace.length;i+= 2) {
+                // if (replace[i] == '<br>') {
+                //     continue;
+                // };
+                 str=str.replace(new RegExp(replace[i],'g'),replace[i+1]);
+
+            }
+            return str;
+        };
+        // var html = '<h1>标题</h1>';
+        // document.write(html.html(true));
+        var html2 = '<h1>标<br>题</h1>';
+        document.getElementById('div1').innerHTML = html2.html(true);
+
+    </script>
+    <div contenteditable="false" readonly>
+        \n
+        <img src="1" onerror="">
+    </div>
+    <script type="text/javascript">
+        var numObj = {
+            13: [100, 200],
+            14: [2, 5]
+        };
+        var g = "'13' * '14'";
+
+        var s = g.match(/\d+/g);
+        console.log(s);
+        var k = Object.keys(numObj); // 13, 14
+        for (var i=0; i<s.length; i++) {
+            if (numObj[s[i]] && numObj[s[i]].length) {
+                console.log(numObj[s[i]]);
+            }
+        }
+        var data = [
+            {
+                13: 100,
+                14: 2
+            },
+            {
+                13: 200,
+                14: 5
+            }
+        ]
+
+        function so (obj) {
+            var r = 0;
+            Object.keys(obj).forEach(function (item) {
+
+            });
+        }
+
+        var data = [
+            [100, 2],
+            [200, 5]
+        ];
+
+        function ca (arr) {
+            return arr.reduceRight(function (prev, c) {
+                return prev * c;
+            })
+        }
+
+        var last = data.pop();
+        var end = data.reduceRight(function (prev, c) {
+            return prev + ca(c);
+        }, ca(last));
+
+        console.log(end);
+        // sum(100*2+200*5) / sum('13')
+        // Object.keys(numObj).forEach(function (item, index) {
+
+        // });
+
+        // if (s && s.length && numObj[s[0]] && numObj[s[0]].length) {
+        //     for (var i=0, len = numObj[s[0]].length; i<len;i++) {
+        //         var item = numObj[s[0]][i];
+        //         console.log(item);
+        //     }
+        // }
+
+        // s.forEach(function (item, index) {
+        //     console.log(item);
+        //     numObj[item]
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript">
+        var traceID = '6939DE03';
+        var histroyRecordList = ["yuedutest2"];
+        var adapter = '0';
+        var overseas = '';
+    </script>
+
+</head>
+<body style="font-size: 100px;">
+    <span style="color: green;">&#9851;</span>
+    <br>
+    &#169;
+    <br>
+    &#9831;
+    <br>
+    &#10041;
+    <br>
+    &#9834;
+    <br>
+    <span style="color: #f90">&#8532;</span>
+    <!-- <script type="text/javascript">
+        var res ;
+        function r () {
+            res = prompt('');
+            if (res) {
+                alert(res)
+            } else {
+                r()
+            }
+        }
+        r();
+
+
+    </script> -->
+    <script type="text/javascript">
+        function checkUrl (str) {
+            if (/^(http|https):\/\//.test(str)) {
+                return str;
+            } else {
+                return 'http://' + str;
+            }
+        }
+        var arr1 = [{'link':'111'},{'link':'222'}];
+        var arr2 = [{'link':'333'},{'link':'444'}]
+        g(arr1, arr2);
+        function g() {
+            $.each(arguments, function (index, item) {
+                console.log(index, item);
+            });
+        }
+
+
+        var arr = ['西城区', '高三'];
+        var str = '西城区2017年高三第三次模拟高三考试';
+
+        for (var i=0;i<arr.length;i++) {
+            str = str.replace(new RegExp(arr[i], 'gi'), '<span class="aa">'+arr[i]+'</span>');
+        }
+        console.log(str);
+    </script>
+</body>
+</html>

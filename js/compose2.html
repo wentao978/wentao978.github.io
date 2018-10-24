@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function compose (...fns) {
+            return function (...args) {
+                var last = fns.pop();
+                return fns.reduceRight((prev, fn) => {
+                    return fn(prev);
+                }, last(...args))
+            }
+        }
+
+        var greeting = function(firstName, lastName) {
+            return 'hello, ' + firstName + ' ' + lastName;
+        }
+        var toUpper = function (str) {
+            return str.toUpperCase();
+        }
+
+        console.log(compose(toUpper, greeting)('a', 'b'));
+    </script>
+</body>
+</html>

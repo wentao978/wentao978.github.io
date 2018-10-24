@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        ::selection{background:#f90; color:blue;}
+        ::-moz-selection{background:#f90; color:blue;}
+        ::-webkit-selection{background:#f90; color:blue;}
+
+    </style>
+</head>
+<body>
+    12331发顺丰
+    <script type="text/javascript">
+        var json = [
+            {
+                id: 1,
+                label: '浙江',
+                children: [
+                    {
+                        id: 2,
+                        label: '杭州',
+                        children: [
+                            {
+                                id: 3,
+                                label: '西湖'
+                            },
+                            {
+                                id: 4,
+                                label: '余杭'
+                            }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        label: '温州',
+                        children: [
+                            {
+                                id: 6,
+                                label: '舟山'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                label: '河南',
+                children: [
+                    {
+                        id: 8,
+                        label: '郑州',
+                        children: [
+                            {
+                                id: 9,
+                                label: '金水'
+                            },
+                            {
+                                id: 10,
+                                label: '二七'
+                            }
+                        ]
+                    },
+                    {
+                        id: 11,
+                        label: '焦作',
+                        children: [
+                            {
+                                id: 12,
+                                label: '解放'
+                            },
+                            {
+                                id: 13,
+                                label: '马村'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        function searchInit(json) {
+            var newJson = json.concat([]);
+            var len = newJson.length;   //长度
+            var parentNode = [];
+            // console.log('newJson', newJson);
+            for (var i = 0; i < len; i++) {
+                var item = newJson[i];
+                if (item.children && item.children.length != 0) {
+                    var child = item.children;
+                    for (var j = 0; j < child.length; j++) {
+                        if (item.parentNode) {
+                            child[j].parentNode = item.parentNode.concat([item.id]);
+                        }
+                        else {
+                            child[j].parentNode = [item.id]
+                        }
+                        // console.log(item.parentNode, item.id);
+                        newJson[len + j] = child[j];
+                    }
+                    len = newJson.length;
+                }
+            }
+            return newJson;
+
+        }
+
+        console.log(searchInit(json))
+
+        var newarr = searchInit(json);
+
+        function getPid(arr, id) {
+            for (var i=0;i<arr.length;i++) {
+                var item = arr[i];
+                if (item.id === id) {
+                    if (item.parentNode) {
+                        return item.parentNode.concat(item.id);
+                    } else {
+                        return [item.id];
+                    }
+                }
+            }
+        }
+
+        console.log(getPid(newarr, 9));
+
+        var menu = [
+                {
+                    name: '业务管理',
+                    icon: 'contacts',
+                    key: 'business',
+                    hidden: false,
+                    children: [
+                        {
+                            name: '战区管理',
+                            route: '/zone',
+                            key: 'zone',
+                            hidden: false,
+                            power: ['zone.download']
+                        },
+                        {
+                            name: 'BD管理',
+                            route: '/bd',
+                            key: 'bd',
+                            hidden: false,
+                            power: ['bd.add', 'bd.download', 'bd.delete']
+                        }
+                    ]
+                },
+                {
+                    name: '代理商管理',
+                    icon: 'user',
+                    key: 'agent',
+                    hidden: false,
+                    children: [
+                        {
+                            name: '代理商列表',
+                            route: '/agent',
+                            key: 'agent',
+                            hidden: false
+                        }
+                    ]
+                },
+                {
+                    name: '合同管理',
+                    icon: 'book',
+                    key: 'contract',
+                    hidden: false,
+                    children: [
+                        {
+                            name: '合同列表',
+                            route: '/contract',
+                            key: 'contract',
+                            hidden: false
+                        },
+                        {
+                            name: '学校列表',
+                            route: '/school',
+                            key: 'school',
+                            hidden: false
+                        }
+                    ]
+                },
+                {
+                    name: '财务管理',
+                    icon: 'appstore',
+                    key: 'finance',
+                    hidden: false,
+                    children: [
+                        {
+                            name: '认款列表',
+                            route: '/finance',
+                            key: 'finance',
+                            hidden: false,
+                        }
+                    ]
+                },
+                {
+                    name: '用户注册',
+                    icon: 'plus',
+                    key: 'invitate',
+                    hidden: true,
+                    role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101],
+                    children: [
+                        {
+                            name: 'invitate',
+                            route: '/invitate',
+                            key: 'invitate',
+                            hidden: true,
+                            role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101]
+                        }
+                    ]
+                },
+                {
+                    name: '提示页',
+                    icon: 'info-circle-o',
+                    key: 'prompt',
+                    hidden: true,
+                    role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101],
+                    children: [
+                        {
+                            name: 'prompt',
+                            route: '/prompt',
+                            key: 'prompt',
+                            hidden: true,
+                            role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101]
+                        }
+                    ]
+                },
+                {
+                    name: '错误页',
+                    icon: 'exclamation-circle',
+                    key: '404',
+                    hidden: true,
+                    role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101],
+                    children: [
+                        {
+                            name: '404',
+                            route: '/404',
+                            key: '404',
+                            hidden: true,
+                            role: [-1, 0, 1, 2, 3, 4, 5, 6, 100, 101]
+                        }
+                    ]
+                }
+            ];
+
+            console.log(menu);
+            // 查找第一项
+            var re = [];
+            menu.map ( (item) => {
+                if (item.children && item.children.length) {
+                    re.push(...item.children)
+                }
+            })
+            console.log(re);
+
+            var list = [ "contract"];
+            var index = -1;
+            var key = '';
+            for (var i=0; i<re.length;i++) {
+                var isFind = false;
+                for (var j=0; j<list.length;j++) {
+                    if (re[i].key === list[j]) {
+                        isFind = true;
+                        key = re[i].key;
+                        index = i;
+                        break;
+                    }
+                }
+                if (isFind) {
+                    break;
+                }
+            }
+            console.log(i, key); // i === re.length 就是没有找到，没有权限，跳转prompt
+
+
+        //     var pre = [
+        //       "warzone.list", //战区列表查看
+        //       "bd.list",    //BD列表查看
+        //       "bd.add",  //添加BD
+        //       "bd.del",   //删除BD
+        //       "agent.list",  //代理商列表查看
+        //       "agent.add",   //代理商添加
+        //       "agent.modify", //代理商修改
+        //       "contract.list",  //合同列表查看
+        //       "contract.add",  //合同添加
+        //       "contract.export",  //合同导出
+        //       "contract.detail",  //合同详情查看
+        //       "payconfirm.apply", //合同认款申请
+        //       "school.list", //合同学校列表查看
+        //       "payconfirmapply.list",  //合同认款列表查看
+        //       "payconfirmapply.confirm",   //合同认款
+        //       "payconfirmapply.detail"    //合同认款详情
+        // ];
+
+        // var rs = pre.filter((item) => {
+        //     return /(\.list)|(\.detail)$/.test(item);
+        // });
+        // console.log(rs);
+    </script>
+</body>
+</html>

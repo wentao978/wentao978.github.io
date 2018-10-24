@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style type="text/css">
+    .number-animate{line-height:45px; height: 45px;font-size: 40px;overflow: hidden; display: inline-block; position: relative; }
+    .number-animate .number-animate-dot{ width: 21px; float: left; text-align: center;}
+    .number-animate .number-animate-dom{ width: 27px;  text-align: center; float: left; position: relative; top: 0;}
+    .number-animate .number-animate-dom span,.number-animate .number-animate-dot span{float: left;width: 100%;height: 45px;line-height: 1;}
+
+    </style>
+</head>
+<body>
+    <div class="Odometer"></div>
+<script type="text/javascript">
+
+function Odometer (x, y) {
+    this.setting = {
+        speed : 1000,//动画速度
+        num : "", //初始化值
+        symbol : '',//默认的分割符号，千，万，千万
+        dot : 0 ,//保留几位小数点
+        zero : true
+    }
+    this.$parent = document.querySelector(x);
+    this.html = ['<div class="number-animate-dom" data-num="{{num}}">',
+                    '<span class="number-animate-span">0</span>',
+                    '<span class="number-animate-span">1</span>',
+                    '<span class="number-animate-span">2</span>',
+                    '<span class="number-animate-span">3</span>',
+                    '<span class="number-animate-span">4</span>',
+                    '<span class="number-animate-span">5</span>',
+                    '<span class="number-animate-span">6</span>',
+                    '<span class="number-animate-span">7</span>',
+                    '<span class="number-animate-span">8</span>',
+                    '<span class="number-animate-span">9</span>',
+                    '<span class="number-animate-span">0</span>',
+                    '<span class="number-animate-span">.</span>',
+                '</div>'
+              ].join('');
+    this.extend( this.setting, y );
+    this.init(this.$parent,y)
+}
+
+Odometer.prototype = {
+    init: function (x,y){
+        x.innerHTML =  this.setNumDom(this.numToArr(this.setting.num))
+        this.animate(x);
+    },
+    animate: function ($parent, flag){//执行动画
+        var $dom = $parent.querySelectorAll('.number-animate-dom' );
+        var i = 0;
+
+        for(var o of $dom ){
+            var num = o.getAttribute('data-num');
+            //if(this.setting.zero) num = (num==0?10:num);
+            this._height = o.offsetHeight/12;
+            // ;
+            if (flag) {
+                num = num == 0 ? 10 : num
+            }
+            o.style['transform'] = o.style['-webkit-transform'] = 'translateY(' + (num=="." ? -11 * this._height  : -num * this._height)+'px)';
+            o.style['transition'] = o.style['-webkit-transition'] = (num=="." ?  0 : this.setting.speed/1000)+'s'
+            // o.style['transition-delay'] = o.style['-webkit-transition-delay'] = (num=="." ?  0 : ++i*100)+'s'
+        }
+
+    },
+    setNumDom: function (arrStr){//分割符号
+        var shtml = '<div class="number-animate">';
+        var that = this;
+        arrStr.forEach(function(o,i){
+            if(i != 0 && (arrStr.length-i)%3 == 0 && that.setting.symbol != "" && o!="."){
+                shtml += '<div class="number-animate-dot"><span>'+that.setting.symbol+'</span></div>'+that.html.replace("{{num}}",o);
+            }else{
+                shtml += that.html.replace("{{num}}",o);
+            }
+        });
+        shtml += '</div>';
+        return shtml;
+    },
+    update: function (num){
+        var newArr = this.numToArr(num),$dom = this.$parent.querySelectorAll(".number-animate-dom");
+        if($dom.length != newArr.length){
+            this.$parent.innerHTML = this.setNumDom(this.numToArr(num))
+        }else{
+            ;[].forEach.call($dom,function(o,i){
+                o.setAttribute('data-num',newArr[i]);
+            });
+        }
+        this.animate(this.$parent, true);
+    },
+    numToArr: function (num){
+        if (this.setting.dot) {
+            num =  parseFloat(num).toFixed(this.setting.dot);
+        }
+
+        var arrStr = typeof(num) == 'number' ? num.toString().split("") : num.split("")
+        return arrStr;
+    },
+    extend: function (n,n1){
+        for(var i in n1){n[i] = n1[i]};
+    }
+};
+
+var odo1 = new Odometer('.Odometer',{
+    num : "00000", //初始化值
+    speed : 2000, //动画速度
+    symbol : '', //分割符
+    dot : 0 //保留几位小数点
+});
+setTimeout(function(){
+    odo1.update(49608);
+},500)
+</script>
+
+</body>
+</html>

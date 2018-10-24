@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>ody style="height: 2000px;">
+	<style type="text/css">
+		.box {
+			width: 200px;
+			height: 200px;
+			background: #f00;
+			border-radius: 50%;
+			position: absolute;
+			left: 200px;
+		}
+		.move {
+			animation: disappear 1s forwards !important;
+		}
+		@keyframes disappear {
+		    0% {
+		        transform: scale(1);
+		        opacity: 1
+		    }
+
+		    50% {
+		        transform: scale(0);
+		        opacity: .5
+		    }
+
+		    100% {
+		        transform:
+		         scale(1);
+		        opacity: 1
+		    }
+		}
+	</style>
+	<div class="box">v 图标的HTML代码  <span>&#xe602;</span>
+底部下载的图标html代码  <span>&#xe62d;</span></div>
+<script>
+	$('.box').animate({left: 0, opacity: 0}, 500, function () {
+		$('.box').animate({left: 200, opacity: 1});
+	})
+//    var dtd = $.Deferred(); // 新建一个deferred对象
+// 　　var wait = function(dtd){
+// 　　　　var tasks = function(){
+// 　　　　　　alert("执行完毕！");
+// 　　　　　　dtd.resolve('aaaa'); // 改变deferred对象的执行状态
+// 　　　　};
+// 　　　　setTimeout(tasks,5000);
+// 　　　　return dtd.promise();
+// 　　};
+// 	　$.when(wait(dtd))
+// 　　.done(function(a){ alert(a+"哈哈，成功了！"); })
+// 　　.fail(function(){ alert("出错啦！"); });
+// 　dtd.resolve();
+
+// $(window).on('scroll.topbar', function () {
+//     console.log(1)
+// });
+// var wait = function () {
+// 	var dtd = $.Deferred(); // 在函数内部，新建一个Deferred对象
+// 	var tasks = function () {
+// 		console.log('执行完毕');
+// 		dtd.resolve('wwwkkk'); // 改变Deferred对象的执行状态
+// 	};
+// 	setTimeout(tasks, 5000);
+// 	return dtd.promise(); // 返回promise对象
+// };
+
+// var wait2 = function () {
+// 	var dtd = $.Deferred(); // 在函数内部，新建一个Deferred对象
+// 	var tasks = function () {
+// 		console.log('执行完毕22222');
+// 		dtd.resolve('wwwkkk22222'); // 改变Deferred对象的执行状态
+// 	};
+// 	setTimeout(tasks, 10000);
+// 	return dtd.promise(); // 返回promise对象
+// };
+
+// $.when(wait(), wait2())
+// .done(function (a, b) {
+// 	// alert(a+',,,,'+b)
+// })
+// .fail(function () {
+// 	// alert('xxxx')
+// })
+
+// var data = '百度&%$#@baidu';
+// console.log(encodeURI(data));
+
+// let a = 10;
+// (function (){
+// 	alert(a);
+// 	a = 5;
+// 	alert(a);
+// 	alert(window.a);
+// 	var a = 20;
+// 	alert(a);
+// })()
+
+// (function () {
+// 	var i = 0,
+// 		arr = [];
+// 	for (i; i<3 ;i++) {
+// 		arr.push(function () {
+// 			alert(i)
+// 		})
+// 	}
+// 	arr[0]();
+// 	arr[1]();
+// 	arr[2]();
+// })();
+
+// var arr = [1, [[2,3],4], [5,6]];
+// var flat = function * (a) {
+// 	var length = a.length;
+// 	for (var i=0;i<length;i++) {
+// 		var item = a[i];
+// 		if (typeof item !== 'number') {
+// 			yield* flat(item)
+// 		} else {
+// 			yield item;
+// 		}
+// 	}
+// }
+// for (var f of flat(arr)) {
+// 	console.log(f);
+// }
+
+var sleep = (second, index) => new Promise((resolve) => {
+	console.log(index);
+	setTimeout(resolve, second * 1000);
+});
+
+(async () => {
+	for (let i=0;i<5;i++) {
+		await sleep(1,i);
+		console.log(i);
+	}
+	await sleep(1,i);
+	console.log(i);
+})();
+console.log(6);
+window.onbeforeunload = function(e){
+    // Do something
+    var dialogText = '即将关闭当前编辑页面，请确认当前所有编辑都已保存！';
+    e.returnValue = dialogText;
+    return dialogText;
+}
+</script>
+</body>
+</html>

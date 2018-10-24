@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <script src="../js/jquery.js"></script>
+    <style type="text/css">
+        .boxwrap{
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .box {
+            width: 200px; height: 200px; border: 2px solid #000; border-radius: 50%;
+        }
+        .cc {
+            width: 100px; height: 100px;
+        }
+    </style>
+</head>
+<body style="height: 200px;">
+    stroke-dashoffset从282.783减小到0，就是12点方向开始画圆
+    <div class="cc">
+        <svg viewBox="0 0 100 100">
+            <path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="rgba(255,255,255,0.2)" stroke-width="5" fill-opacity="1" fill="transparent"></path>
+            <path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#3296fa" stroke-width="5" fill-opacity="0" style="stroke-dasharray: 282.783, 282.783; stroke-dashoffset: 340;"></path>
+
+        </svg>
+    </div>
+
+    <div class="boxwrap">
+
+    <div class="box"></div>
+    </div>
+    <svg width="1200" height="520" class="circle-lines">
+
+        <defs>
+            <radialGradient id="grad">
+                <stop stop-color="#6D6DE2" offset="0"></stop>
+                <stop stop-color="#3B3BC2" offset="1"></stop>
+            </radialGradient>
+        </defs>
+    <path d="m138.5,143c0,-37.01657 72.04972,-67 161,-67c88.95028,0 161,29.98343 161,67c0,37.01657 -72.04972,67 -161,67c-88.95028,0 -161,-29.98343 -161,-67z"
+      stroke="lightgrey" stroke-width="1"
+      fill="none" id="theMotionPath"/>
+  <!-- Red circle which will be moved along the motion path. -->
+  <g>
+      <circle cx="0" cy="0" r="8" fill="url(#grad)"></circle>
+      <text dy="24" dx="-30">研究机构</text>
+      <animateMotion dur="20s" repeatCount="indefinite">
+          <mpath xlink:href="#theMotionPath"/>
+        </animateMotion>
+      </circle>
+  </g>
+
+</svg>
+
+<!-- <svg width="580" height="400" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>background</title>
+  <rect fill="#fff" id="canvas_background" height="402" width="582" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+
+  <path id="svg_9" d="m138.5,143c0,-37.01657 72.04972,-67 161,-67c88.95028,0 161,29.98343 161,67c0,37.01657 -72.04972,67 -161,67c-88.95028,0 -161,-29.98343 -161,-67z" stroke-opacity="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="1.5" stroke="#000" fill-opacity="null" fill="none" id="theMotionPath2"/>
+ </g>
+ <circle cx="" cy="" r="5" fill="red">
+
+    <animateMotion dur="6s" repeatCount="indefinite">
+      <mpath xlink:href="#theMotionPath2"/>
+    </animateMotion>
+  </circle>
+</svg> -->
+</body>
+</html>

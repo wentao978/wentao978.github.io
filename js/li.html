@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <script src="js/jquery.js"></script>
+    <title>Document.  http://styleguide.baidu.com/style/js/index.html</title>
+    <style type="text/css">
+    	.div1{
+    		width: 100%;
+    		overflow-x: auto;
+    	}
+
+    	.div1 ul{ list-style: none;  width: 800%; margin: 0; padding: 0;}
+    	.div1 li{ width: 400px; text-align: center; border: 1px solid #ccc; height: 30px; line-height: 30px; float: left; }
+    	.div1 li:not(:last-child){ border-right-width:0;  }
+
+
+
+
+		[flex]{
+			display: flex;
+		}
+		[shrink="0"]{
+			-webkit-flex-shrink:0;
+		}
+    	.iScrollWrap,.iScrollWrap *{box-sizing: border-box}
+		.iScrollWrap{width: 100%;height: 260px;overflow: hidden;  position: relative;margin:10px 0;border-radius: 1px;box-shadow:0px 0px 0px 1px #ccc}
+		.iScrollWrap p{display: block;height: 90px; line-height: 90px;padding: 0 10px; border-top: 1px solid #fff;margin:0 0!important;background: #ccc}
+	.iScrollWrap p:first-child{border-top:none}
+		div.relave{width: 100%; font-size: 13px; text-align: center;display: block; position: absolute; left: 0px; top: 0px; z-index: 1;padding: 10px 0}
+		div.relave2{ top: auto;bottom: 0px;}
+		.touchBox{ position: relative; z-index: 2}.showPopWrap .iScrollWrap4{width: 80%;height: 50%;position: absolute; left: 10%;top: 20%;background: #fff;border-radius: 5px; overflow: hidden;}
+		.closeBtn{ color: #000;position: absolute; width: 100px; text-align: center;left: 50%;margin-left: -50px; bottom:20px; padding: 10px 0;border-radius: 30px; background: rgba(255,255,255,.8);}
+		#clickShowPop{display: block;width: 100px;background: #444;color: #fff;border:none;padding: 15px 0;font-size: 14px;}
+	.iScrollWrap5{height: auto}
+		.iScrollWrap5 p{display: block;  height: 120px;width: 100px; line-height: 120px;padding: 0 10px; border-top:none; border-left: 1px solid #fff; margin:0px!important;background: #ccc;text-align: center;}.iScrollWrap5 p:first-child{border-left:none}
+	.iScrollWrap7 *{margin:0;padding: 0;box-sizing: border-box}
+		.iScrollWrap_left{ float: left;width: 82px;height: 100%;overflow: hidden;}
+	.iScrollWrap_left .scroll-bar {opacity: 0;
+	}.iScrollWrap_left ul li{list-style: none; line-height: 38px;padding-left: 12px;border-bottom: 1px solid #fff}
+		.iScrollWrap_left ul li:active{ opacity: 0.8;}
+		.iScrollWrap_left ul li.active{background: #fff}
+		.iScrollWrap_left ul{background: #e1e1e1;width: 100%;font-size: 13px;}
+		.iScrollWrap7{max-width: 640px;margin: 0 auto;height: 400px;background: #fff;box-shadow: 1px 1px 5px #bbb;moz-user-select: -moz-none;-moz-user-select: none;-o-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-ms-user-select:none;user-select:none;}
+		.iScrollWrap7 p{display: none!important}
+		.iScrollWrap_right{overflow: hidden;position:relative; padding: 10px; text-align: center;height: 100%}
+		.iScrollWrap_right .list{width: 29.2%;padding-bottom: 10px; display: inline-block;background: #e1e1e1;overflow: hidden;font-size: 13px; color: #222;margin:0 2px 8px 2px; }
+		.iScrollWrap_right .list span{display: block;width: 50px;height: 50px;border-radius: 50%;background: #777;margin:10px auto;}
+		/*滚动条样式*/
+		.scroll-bar{width: 2px;height: 0px; position: absolute; right:2px; top: 0px; z-index: 100  }
+		.scroll-bar span{display: block;width: 100%;height: 96%;position: absolute; left: 0;top: 2%;background: rgba(0,0,0,.8);border-radius: 15px;-webkit-transition: all .3s  ease;transition: all .3s  ease;opacity: 1}
+	.showPopWrap{width: 100%;height: 100%; position: fixed; left: 0px; top: 0px;background: rgba(0,0,0,.8); z-index: 10100;display: none;}
+	.scroll-bar2{width: auto;height: 2px; position: absolute; left:0px; right: auto; top: auto; bottom: 2px; z-index: 100;padding:0 3px;  }
+		.scroll-bar2 span{display: block;width: 100%;height: 100%;position: relative; left: 0%;top: 0;background: rgba(0,0,0,.8);border-radius: 15px;-webkit-transition: all .3s  ease;transition: all .3s  ease;opacity: 1}
+
+    </style>
+</head>
+<body>
+	<div class="div1">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<div class="iScrollWrap iScrollWrap5" x="">
+		<div class="touchBox" flex="">
+			<p shrink="0">1</p>
+			<p shrink="0">2</p>
+			<p shrink="0">3</p>
+			<p shrink="0">4</p>
+			<p shrink="0">5</p>
+			<p shrink="0">6</p>
+			<p shrink="0">7</p>
+			<p shrink="0">8</p>
+			<p shrink="0">9</p>
+			<p shrink="0">10</p>
+			<p shrink="0">11</p>
+			<p shrink="0">12</p>
+			<p shrink="0">13</p>
+			<p shrink="0">14</p>
+			<p shrink="0">15</p>
+			<p shrink="0">16</p>
+		</div>
+		<div class="scroll-bar scroll-bar2" style="width: 174px; transform: translate3d(0px, 0px, 0px);"><span></span></div>
+	</div>
+	<script type="text/javascript">
+		window.iScroll = (function(w,d){
+	    var isMobile = /mobile/gi.test(navigator.userAgent.toLowerCase());
+	    var events = isMobile ? {
+	        down: 'touchstart',
+	        move: 'touchmove',
+	        up: 'touchend'
+	    } : {
+	        down: 'mousedown',
+	        move: 'mousemove',
+	        up: 'mouseup'
+	    },x,y,x2,y2 = 0;
+	    function Scroll(o){
+	        this.d = (typeof o=='object') ? o : d.querySelector(o);
+	        this.mold = this.d.getAttribute('x') || this.d.getAttribute('x')=="";
+	        this.pSize = this.mold ? 'offsetWidth' : 'offsetHeight'
+	        this.t = this.mold ? 'scrollWidth' : 'scrollHeight';
+	        this.page = this.mold ? 'pageX' : 'pageY';
+	        this.child = this.d.children[0];
+	        this.view = this.d[this.pSize];
+	        this.bp =this.mold ? (parseInt(this.getst(this.d,'borderLeftWidth'))+parseInt(this.getst(this.d,'borderRightWidth'))) : (parseInt(this.getst(this.d,'borderTopWidth'))+parseInt(this.getst(this.d,'borderBottomWidth')));
+	        if(this.child[this.t] > this.view) this.init();
+	    };
+	    Scroll.prototype={
+	        init : function(){
+	            if( !this.d.querySelector('.scroll-bar') ) this.d.insertAdjacentHTML("beforeend", '<div class="'+(this.mold ? 'scroll-bar scroll-bar2' : 'scroll-bar')+'"><span></span></div>');
+	            this.bind();
+	        },
+	        top : function(fn){
+	            this.topFn  = fn;
+	        },
+	        bottom : function(fn){
+	            this.bottomFn = fn;
+	        },
+	        resize : function(){
+	            //设置滚动条位置，高度
+	            this.childSize = this.child[this.t]
+	            this.scrollSize = this.childSize - this.view + this.bp;
+	            this.bar = this.d.querySelector('.scroll-bar')
+	            this.barSize = this.view * this.view / this.child[this.t];
+	            this.bar.style[this.mold ? 'width' : 'height'] = parseInt(this.barSize)+'px';
+	            var scale = +this.getT2(this.child)/(this.view - this.child[this.t])*(this.view - this.bar[this.pSize]);
+	            this.bar.style['transform'] =  this.bar.style['-webkit-transform'] = this.mold ?  'translate3d('+( scale )+'px,0px,0)' : 'translate3d(0,'+( scale )+'px,0)';
+	        },
+	        bind : function(){
+	            var that = this,off,late,speed,endPage,moveLate = false,endFlag = false,translate = 0,barLate;
+	            this.d.addEventListener(events.down,down)
+	            this.resize();
+	            function setTransInfo(s,b){
+	                if(b){
+	                    that.bar.style['transform'] =  that.bar.style['-webkit-transform'] = that.mold ? 'translate3d('+(b) +'px,0px,0)' : 'translate3d(0,'+(b)+'px,0)';
+	                };
+	                that.child.style['transform']  = that.child.style['-webkit-transform'] =that.mold  ? 'translate3d('+(s)+'px,0px,0)' : 'translate3d(0,'+(s)+'px,0)';
+	            }
+	            function down(e){
+	                if(!/^(?:INPUT|TEXTAREA|A)$/.test(e.target.tagName)) e.preventDefault();
+	                var ev = isMobile ? e.changedTouches[0] : e ;
+	                y = endPage = ev[that.page];
+	                that.child.style['transition'] = that.child.style['-webkit-transition'] = that.bar.style['transition'] = that.bar.style['-webkit-transition'] = 'all 0s ease';
+	                translate = +that.getT2(that.child);
+	                setTransInfo(translate,+that.getT2(that.bar))
+	                speed = 0;
+	                d.addEventListener(events.move,move);
+	                d.addEventListener(events.up,up);
+	            };
+	            function move(e){
+	                var ev = isMobile ? e.changedTouches[0] : e,_ts=0 ;
+	                e.preventDefault();
+	                y2 = ev[that.page];
+	                late = +that.getT2(that.child);
+	                speed = ev[that.page] - endPage;
+	                endPage = ev[that.page];
+	                moveLate = Math.abs( y2 - y) > 10 ? true : false;
+	                barLate = ( late/(that.view-that.bp - that.child[that.t])*(that.view-that.bp - that.bar[that.t]) );
+	                if(late >= 0){
+	                    if(off){
+	                        y = ev[that.page];
+	                        off = false;
+	                        translate = +that.getT2(that.child);
+	                    };
+	                    setTransInfo((y2-y)/3+translate,"0");
+	                    endFlag = true;
+	                }else if(-late>=that.scrollSize){
+	                    if(off){
+	                        y = ev[that.page];
+	                        off = false;
+	                        translate = +that.getT2(that.child);
+	                    };
+	                    setTransInfo( (y2-y)/3 + translate, that.view-that.bp -that.bar[that.pSize] );
+	                    endFlag = true;
+	                }else{
+	                    if(!off) {
+	                        translate = +that.getT2(that.child);
+	                        off = true;
+	                    };
+	                    endFlag = false;
+	                    setTransInfo( y2-y+translate,barLate );
+	                };
+	            };
+	            function up(e){
+	                off = true;
+	                var scales = +that.getT2(that.child);
+	                var endPx = speed*25 + scales;
+	                d.removeEventListener(events.move,move);
+	                d.removeEventListener(events.up,up);
+	                if(moveLate && endFlag){
+	                    moveLate = false
+	                    that.d.addEventListener('transitionend',fn,false);
+	                    that.d.addEventListener('webkitTransitionEnd',fn,false);
+	                };
+	                function fn(ev){
+	                    if(+that.getT2(that.child)==0){
+	                        that.topFn && that.topFn.call(that.d,scales,0);
+	                    }else{
+	                        that.bottomFn && that.bottomFn.call(that.d,scales,+that.getT2(that.child));
+	                    };
+	                    that.d.removeEventListener('transitionend',fn);
+	                    that.d.removeEventListener('webkitTransitionEnd',fn);
+	                };
+	                barLate = ( endPx/(that.view-that.bp - that.child[that.t])*(that.view-that.bp -  that.bar[that.t]) )
+	                that.child.style['transition'] =that.child.style['-webkit-transition'] =that.bar.style['transition'] =that.bar.style['-webkit-transition'] ='transform .7s cubic-bezier(0.33, 0.66, 0.66, 1)';
+	                if(endPx > 0){
+	                    setTransInfo(0,"0");
+	                }else if(-endPx>= that.scrollSize){
+	                    setTransInfo(-that.scrollSize,that.view-that.bp -that.bar[that.pSize]);
+	                }else{
+	                    setTransInfo(endPx,barLate);
+	                }
+	                e.stopImmediatePropagation();
+	            };
+	        },
+	        getT2 : function(obj) {
+	            var curStyle = window.getComputedStyle(obj, null),cur=0,matrix,tmx;
+	            if (window.WebKitCSSMatrix) {
+	                cur = curStyle.transform || curStyle.webkitTransform;
+	                if (cur.split(',').length > 6) {
+	                    cur = cur.split(', ').map(function(a){
+	                        return a.replace(',','.');
+	                    }).join(', ');
+	                }
+	                tmx = new window.WebKitCSSMatrix(cur === 'none' ? '' : cur);
+	            }
+	            else {
+	                tmx = curStyle.MozTransform || curStyle.OTransform || curStyle.MsTransform || curStyle.msTransform  || curStyle.transform || curStyle.getPropertyValue('transform').replace('translate(', 'matrix(1, 0, 0, 1,');
+	                matrix = tmx.toString().split(',');
+	            }
+	            if (this.mold) {
+	                if (window.WebKitCSSMatrix)
+	                    cur = tmx.m41;
+	                else if (matrix.length === 16)
+	                    cur = parseFloat(matrix[12]);
+	                else
+	                    cur = parseFloat(matrix[4]);
+	            }else{
+	                if (window.WebKitCSSMatrix)
+	                    cur = tmx.m42;
+	                else if (matrix.length === 16)
+	                    cur = parseFloat(matrix[13]);
+	                else
+	                    cur = parseFloat(matrix[5]);
+	            }
+	            return cur || 0;
+	        },
+	        getst : function (obj,attr){
+	            return getComputedStyle(obj,null)[attr];
+	        }
+	    };
+	    return Scroll;
+	})(window,document);
+	</script>
+	<script type="text/javascript">
+		var s = new iScroll('.iScrollWrap');
+	</script>
+</body>
+</html>

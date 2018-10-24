@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var p = [0, 1, 2, 3, 4].reduceRight(function(previousValue, currentValue, index, array) {
+            return previousValue + currentValue;
+        });
+        // console.log(p);
+
+        function front (a) {
+            return '<<' + a;
+        }
+        function end (a) {
+            return 'a' + '>>';
+        }
+        // var compose = function (...funcs) {
+        //     return function (str) {
+        //         if (funcs.lenght === 0) {
+        //             return str;
+        //         }
+        //         // var last = funcs[funcs.length - 1];
+        //         // console.log(funcs.length);
+        //         // funcs.push(function(){});
+        //         return funcs.reduceRight(function (res, cur) {
+        //             return res(str) + cur(str);
+        //         });
+        //     }
+        // }
+
+        // var t = compose(front, end)('aaa');
+        // console.log(t);
+        // console.log('=====================');
+
+
+        var compose = function (...args) {
+            var len = args.length;
+            var count = len - 1;
+            var result;
+            return function f1 (...args1) {
+                result = args[count].apply(this, args1);
+                if (count <= 0) {
+                    return result;
+                } else {
+                    count--;
+                    return f1.call(null, result);
+                }
+            }
+        }
+        var greeting = function(firstName, lastName) {
+            return 'hello, ' + firstName + ' ' + lastName;
+        }
+        var toUpper = function (str) {
+            return str.toUpperCase();
+        }
+        var trim = function (str) {
+            return str.replace(/\s+/g, '');
+        }
+        var fn = compose(toUpper, greeting);
+        fn = compose(trim, fn);
+        console.log(fn('    jack   ', 'smith'))
+    </script>
+</body>
+</html>

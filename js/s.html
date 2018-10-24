@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>不同尺寸的微信二维码在70px和80px下的展示</title>
+    <style type="text/css">
+        #img span {
+            display: inline-block;
+            width: 500px;
+            text-align: center;
+        }
+        #img img{
+            vertical-align: text-top;
+            margin-bottom: 500px;
+        }
+        .red {
+            color: #f13;
+        }
+    </style>
+</head>
+<body>
+    <h1>微信公众号的二维码尺寸分别为</h1>
+    <ul>
+        <li>8cm--258*258</li>
+        <li>12cm--344*344</li>
+        <li>15cm--430*430</li>
+        <li>30cm--860*860</li>
+        <li>50cm--1280*1280</li>
+    </ul>
+    <table class="table" cellspacing="0" border="1">
+        <thead class="thead">
+            <tr>
+                <th class="table_cell">二维码边长(cm)</th>
+                <th class="table_cell">建议扫描距离(米)</th>
+                <th class="table_cell no_extra">下载链接</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+
+            <tr>
+                <td class="table_cell"> 8cm </td>
+                <td class="table_cell"> 0.5m </td>
+                <td class="table_cell"> <a class="icon18_common download_gray" href="8-258.jpg">下载</a> </td>
+            </tr>
+
+            <tr>
+                <td class="table_cell"> 12cm </td>
+                <td class="table_cell"> 0.8m </td>
+                <td class="table_cell"> <a class="icon18_common download_gray" href="12-344.jpg">下载</a> </td>
+            </tr>
+
+            <tr>
+                <td class="table_cell"> 15cm </td>
+                <td class="table_cell"> 1m </td>
+                <td class="table_cell"> <a class="icon18_common download_gray" href="15-430.jpg">下载</a> </td>
+            </tr>
+
+            <tr>
+                <td class="table_cell"> 30cm </td>
+                <td class="table_cell"> 1.5m </td>
+                <td class="table_cell"> <a class="icon18_common download_gray" href="30-860.jpg">下载</a> </td>
+            </tr>
+
+            <tr>
+                <td class="table_cell"> 50cm </td>
+                <td class="table_cell"> 2.5m </td>
+                <td class="table_cell"> <a class="icon18_common download_gray" href="50-1280.jpg">下载</a> </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <h2 class="red">低于80*80扫描就会稍微费力，建议不要低于这个值</h2>
+    <h2>以下分别是微信五种二维码尺寸在70*70和80*80的实际大小下</h2>
+    <div id="img">
+
+    </div>
+    <script type="text/javascript">
+        var arr = ['8-258', '12-344', '15-430', '30-860', '50-1280'];
+
+        var size = [70, 80];
+
+
+        var r = [];
+
+        for (var i=0;i<size.length;i++) {
+            for (var j=0;j<arr.length;j++) {
+                r.push('<span>'+size[i]+'show-'+arr[j]+'nature</span><img src="'+arr[j]+'.jpg" style="width:'+size[i]+'px; height:'+size[i]+'px"><br>')
+            }
+            r.push('<hr>')
+        }
+
+        document.getElementById('img').innerHTML = r.join('');
+    </script>
+</body>
+</html>

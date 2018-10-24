@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var data = [
+            {
+                id: 1,
+                label: '浙江',
+                children: [
+                    {
+                        id: 2,
+                        label: '杭州',
+                        children: [
+                            {
+                                id: 3,
+                                label: '西湖'
+                            },
+                            {
+                                id: 4,
+                                label: '余杭'
+                            }
+                        ]
+                    },
+                    {
+                        id: 5,
+                        label: '温州',
+                        children: [
+                            {
+                                id: 6,
+                                label: '舟山'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 7,
+                label: '河南',
+                children: [
+                    {
+                        id: 8,
+                        label: '郑州',
+                        children: [
+                            {
+                                id: 9,
+                                label: '金水'
+                            },
+                            {
+                                id: 10,
+                                label: '二七'
+                            }
+                        ]
+                    },
+                    {
+                        id: 11,
+                        label: '焦作',
+                        children: [
+                            {
+                                id: 12,
+                                label: '解放'
+                            },
+                            {
+                                id: 13,
+                                label: '马村'
+                            }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        console.log(data);
+        // 1或者7 如果是一级id,就返回 [1]
+        // 2 5 8 11, 如果是二级id, 就返回[1,2] [1,5] [7,8] [7,11]
+        // 3 4 6 9 10 12 13 如果是三级id,就返回 [1, 2, 3] [1, 2, 4]
+
+        function getId(data, id) {
+            var result = [];
+            var r1 = '';
+            for (var i=0; i<data.length; i++) {
+                if (data[i].id == id) {
+                    r1 = id;
+                    break;
+                }
+            }
+            r1 && result.push(r1);
+            return result;
+        }
+
+        console.log(getId(data, 1));
+    </script>
+</body>
+</html>

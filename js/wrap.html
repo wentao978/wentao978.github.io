@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button id="click">下载</button>
+<iframe id="download"></iframe>
+<script>
+    var s = [{a: 1, b:0, c: 0},{a:2, b:2 ,c:2},{a:3, b:3, c:0}];
+    
+
+    var t = trans(s);
+
+    function trans (s) {
+        var t = [];
+        s.forEach(item => {
+            var i = {};
+            for (var attr in item) {
+                if (item.hasOwnProperty(attr)) {
+                    if (+item[attr] !== 0) {
+                        i[attr] = item[attr];
+                    }
+                }
+            };
+            t.push(i);
+        });
+        return t;
+    }
+    console.log(t);
+</script>
+</body>
+</html>

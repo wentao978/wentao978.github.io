@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0; padding: 0}
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="ueditor_0" width="100%" height="100%" frameborder="0" src="javascript:void(function(){document.open();document.write(&quot;<!DOCTYPE html><html xmlns='http://www.w3.org/1999/xhtml' class='view' ><head><style type='text/css'>.view{padding:0;word-wrap:break-word;cursor:text;height:90%;}
+body{margin:8px;font-family:sans-serif;font-size:16px;}p{margin:5px 0;}</style><link rel='stylesheet' type='text/css' href='http://localhost/ueditor/themes/iframe.css'/><style>p{line-height:26px; font-size:16px; font-family:微软雅黑}</style></head><body class='view' ></body><script type='text/javascript'  id='_initialScript'>setTimeout(function(){editor = window.parent.UE.instants['ueditorInstant0'];editor._setup(document);},0);var _tmpScript = document.getElementById('_initialScript');_tmpScript.parentNode.removeChild(_tmpScript);</script></html>&quot;);document.close();}())"></iframe>
+    <script type="text/javascript">
+        function getScrollbarWidth() {
+            var odiv = document.createElement('div'),//创建一个div
+                styles = {
+                    width: '10px',
+                    height: '1px',
+                    overflowY: 'scroll'//让他有滚动条
+                }, i, scrollbarWidth;
+            for (i in styles) odiv.style[i] = styles[i];
+            odiv.innerHTML = '法师打发发放阿萨发顺丰阿发阿发阿萨发顺丰阿发爱迪生';
+            document.body.appendChild(odiv);//把div添加到body中
+            scrollbarWidth = odiv.offsetWidth - odiv.clientWidth;//相减
+            odiv.remove();//移除创建的div
+            return scrollbarWidth;//返回滚动条宽度
+        }
+        console.log(getScrollbarWidth());
+        function parseURL(url) {
+         var a =  document.createElement('a');
+         a.href = url;
+         return {
+         source: url,
+         protocol: a.protocol.replace(':',''),
+         host: a.hostname,
+         port: a.port,
+         query: a.search,
+         params: (function(){
+             var ret = {},
+                 seg = a.search.replace(/^\?/,'').split('&'),
+                 len = seg.length, i = 0, s;
+             for (;i<len;i++) {
+                 if (!seg[i]) { continue; }
+                 s = seg[i].split('=');
+                 ret[s[0]] = s[1];
+             }
+             return ret;
+         })(),
+         file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])[1],
+         hash: a.hash.replace('#',''),
+         path: a.pathname.replace(/^([^\/])/,'/$1'),
+         relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])[1],
+         segments: a.pathname.replace(/^\//,'').split('/')
+         };
+        }
+
+        var myURL = parseURL('http://localhost:8080/test/mytest/toLogina.ction?m=123&pid=abc');
+        console.log(myURL.path);
+        console.log(myURL.params);
+        console.log(myURL.params.m);
+        console.log(myURL.params.pid);
+
+
+        var str = '?fedebug=1&collected='
+
+        var str = '?collected=&fedebug=1'
+
+        str = str.replace(/(&|\?)collected=/g, '');
+        console.log(str);
+    </script>
+</body>
+</html>

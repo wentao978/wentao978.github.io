@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="text">
+    {{text}}<br>
+    <input type="text" v-model="abc">
+    {{abc}}<br>
+    <input type="text" v-model="xyz">
+    {{xyz}} <br>
+    {{xyz}} <br>
+    {{abc}}
+</div>
+
+<script type="text/javascript">
+    // DocumentFragment文档片段可以看做节点容器，它可以包含多个
+    // 子节点，当我们将它插入到DOM中时，只有它的子节点会插入目标节点
+    // 所以把它看做一组节点的容器，使用DocumentFragment处理节点
+    // 速度和性能远远优于直接操作dom，vue进行编译时，就是将挂载目标
+    // 的所有子节点劫持（真的是劫持，通过append方法，DOM中的节点会被
+    // 自动删除）到DocumentFragment中，经过一番处理后，再将DocumentFragment整体返回插入挂载目标
+    // var app = document.getElementById('app');
+    // var dom = nodeToFragment(app);
+    // console.log(dom);
+
+    function nodeToFragment (node, vm) {
+        var flag = document.createDocumentFragment();
+        var child;
+        while (child = node.firstChild) {
+            compile(child, vm);
+            flag.appendChild(child); // 劫持node的所有子节点
+        }
+        return flag;
+    }
+
+    function compile (node, vm) {
+        var reg = /\{\{(.*)\}\}/;
+        // 节点类型为元素
+        if (node.nodeType === 1) {
+            var attr = node.attributes;
+            // 解析属性
+            for (var i=0;i<attr.length;i++) {
+                if (attr[i].nodeName == 'v-model') {
+                    var name = attr[i].nodeValue; // 获取v-model绑定的属性名
+                    node.value = vm.data[name]; // 只有编译的时候遍历执行一次，将data的对应属性的值赋给node
+                    node.addEventListener('input', function (e) {
+                        // 给相应的data属性赋值，进而触发属性的set方法
+                        vm[name] = e.target.value;
+                    });
+                    node.removeAttribute('v-model');
+                }
+            }
+        }
+        // 节点类型为text
+        if (node.nodeType === 3) {
+            if (reg.test(node.nodeValue)) {
+                var name = RegExp.$1;
+                name = name.trim();
+                // node.nodeValue = vm[name]; // 将data的值赋给该node
+                // 有多少个{{}}，就有多少个watcher
+                new Watcher(vm, node, name);
+            }
+        }
+    }
+
+    function Watcher (vm, node, name) {
+        Dep.target = this;
+        this.name = name;
+        this.node = node;
+        this.vm = vm;
+        // console.log(node);
+        this.update();
+        Dep.target = null;
+    }
+
+    Watcher.prototype = {
+        update: function () {
+            this.get();
+            this.node.nodeValue = this.value;
+        },
+        get: function () {
+            console.log('get');
+            this.value = this.vm[this.name]; // 这里会调用get方法，只有new的时候才添加，只调用方法不添加订阅者
+        }
+    }
+    // app.appendChild(dom);
+
+    function Dep () {
+        this.subs = [];
+    }
+
+    Dep.prototype = {
+        addSub: function (sub) {
+            this.subs.push(sub);
+        },
+        notify: function () {
+            this.subs.forEach(function (sub) {
+                sub.update();
+            })
+        }
+    }
+
+    function defineReactive (obj, key, val) {
+        var dep = new Dep();
+        console.log(1);
+        Object.defineProperty(obj, key, {
+            // 定义了get方法，真正得到获取值的时候才会触发
+            get: function () {
+                // 添加订阅者wathcer到主题对象Dep
+                if (Dep.target) {
+                    console.log(Dep.target);
+                    dep.addSub(Dep.target);
+                    console.log(dep);
+                }
+                return val;
+            },
+            set: function (newVal) {
+                if (newVal === val) {
+                    return;
+                }
+                val = newVal;
+                console.log(val);
+                // 作为发布者发出通知
+                dep.notify();
+            }
+        });
+    }
+
+    function observe (obj, vm) {
+        Object.keys(obj).forEach(function (key) {
+            // vm.data下的每一个key值都绑定get set, vm.text不是vm.data.text
+            defineReactive(vm, key, obj[key]);
+        });
+    }
+
+    function Vue (options) {
+        this.data = options.data;
+
+        observe(this.data, this);
+
+        var id = options.el;
+        var dom = nodeToFragment(document.getElementById(id), this);
+        // 编译完成后，将dom返回到app中
+        document.getElementById(id).appendChild(dom);
+
+    }
+
+    var vm = new Vue({
+        el: 'app',
+        data: {
+            text: 'hello',
+            abc: 'world',
+            xyz: 'baidu'
+        }
+    });
+</script>
+</body>
+</html>

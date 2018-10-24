@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function rc () {
+            return [1,2,3,4].reduceRight((prev,current)=>{
+                console.log(prev, current);
+                return prev + current;
+            }, 5)
+        }
+        console.log(rc());
+    </script>
+</body>
+</html>

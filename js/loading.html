@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>css加载动画</title>
+
+<style>
+
+body { background: #ccc; }
+
+.mloading {
+    width: 64px;
+    height: 64px;
+}
+
+.mloading>div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 100%;
+    background: #1890ff;
+    opacity: .5;
+    -webkit-animation: ball-scale-pulse 2s infinite ease-in-out;
+    -moz-animation: ball-scale-pulse 2s infinite ease-in-out;
+    -o-animation: ball-scale-pulse 2s infinite ease-in-out;
+    animation: ball-scale-pulse 2s infinite ease-in-out
+}
+
+.mloading>div:last-child {
+    -webkit-animation-delay: -1.0s;
+    -moz-animation-delay: -1.0s;
+    -o-animation-delay: -1.0s;
+    animation-delay: -1.0s
+}
+
+@keyframes ball-scale-pulse {
+    0%,100% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1)
+    }
+}
+
+span{font-size: 240px;font-weight: bolder;-webkit-text-stroke:1px #ff9c00;color: #f10;}
+
+
+.loadingDot{
+                min-width:2px;
+                min-height:2px;
+                display:inline-block;
+                box-shadow:
+                    2px 0 currentColor ,
+                    6px 0 currentColor ,
+                    10px 0 currentColor ;
+                -webkit-animation:dot 2.4s infinite steps(1,start);
+                -moz-animation:dot 2.4s infinite steps(1,start);
+                animation:dot 2.4s infinite steps(1,start);
+            }
+            @-webkit-keyframes dot{
+                25%{
+                    box-shadow:none;
+                }
+                50%{
+                    box-shadow:2px 0 currentColor ;
+                }
+                75%{
+                    box-shadow:2px 0 currentColor,6px 0 currentColor;
+                }
+            }
+            @keyframes dot{
+                25%{
+                    box-shadow:none;
+                }
+                50%{
+                    box-shadow:
+                        2px 0 currentColor ;
+                }
+                75%{
+                    box-shadow:
+                        2px 0 currentColor ,
+                        6px 0 currentColor ;
+                }
+            }
+            @-moz-keyframes dot{
+                25%{
+                    box-shadow:none;
+                }
+                50%{
+                    box-shadow:
+                        2px 0 currentColor ;
+                }
+                75%{
+                    box-shadow:
+                        2px 0 currentColor ,
+                        6px 0 currentColor ;
+                }
+            }
+            .load_btns{
+                display: inline-block;margin-right: 5px; padding:0 20px 0 12px;font-size: 14px; height: 40px; border-radius: 4px;border:none;
+                 background: #333; color: #fff;cursor: pointer;
+            }
+            .load_btns:hover{background: #222}
+            .load_btns2{display: block;width: 100%;margin-top: 20px;}
+</style>
+</head>
+<body>
+<div class="mloading">
+    <div></div>
+    <div></div>
+</div>
+<span>
+wuqian
+</span>
+
+<button class="load_btns load_btns2">正在加载<span class="loadingDot"></span></button>
+</body>
+</html>
